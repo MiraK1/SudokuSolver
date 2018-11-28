@@ -1,0 +1,5868 @@
+try :
+    from tkinter import *
+except :
+    from Tkinter import *
+
+
+class Windows1():
+    def __init__(self, master):
+        self.master = master
+        self.logo = PhotoImage(data = "R0lGODlhvAI5AfcAAAAAAAEBAQICAgMDAwQEBAQEBQUFBgYGBgcHBwgICAkICQkJCgoKCwsLDAwMDQ0MDQ4NDg4ODw8PEBAQEREQEhIRExMSExMTFBQUFRUUFhYVFxcWGBcXGRgYGhkYGhoZGxsaHBwbHRwcHh0cHx4dIB8eICAfISEgIiEgIyIhJCMiJSQjJiUkJyYkJyYlKCcmKSgnKikoKyopLCspLSsqLSwrLi0sLy4tMC8tMS8uMjAvMzEwNDIxNDMxNTQyNjQzNzU0ODY1OTc1Ojg2Ojk3Ozk4PDo5PTs5Pjw6Pz07QD48QT49QT89QkA+Q0E/REJARUNBRkNBR0RCR0VDSEZESUdFSkdFS0hGTElHTUpITktJTkxJT0xKUE1LUU5MUk9NU1BNVFFOVFFPVVJQVlNRV1RSWFVSWVZTWlZUW1dVW1hWXFlWXVpXXltYX1tZYFxaYV1aYV5bYl9cY19dZGBeZWFeZmJfZ2NgaGRhaGRiaWViamZja2dkbGhlbWlmbmpnb2tocGxpcW1qcm5qc25rdG9sdXBtdXFudnJud3NveHNweXRxenVye3Zye3dzfHd0fXh1fnl2f3p2gHt3gXx4gnx5gn16g357hH97hYB8hoF9h4F+iIJ/iIN/iYSAioWBi4aCjIaDjYeDjoiEj4mFj4qGkIuHkYuHkoyIk42JlI6KlY+LlY+LlpCMl5GNmJKOmZOPmpSPm5SQnJWRnJaSnZeTnpiTn5mUoJmVoZqWopuXopyXo52YpJ6ZpZ6app+bp6CbqKGcqaKdqaOeqqOfq6SfrKWgraahrqeir6ejr6iksKmksaqlsqums6yntKyota2otq6ptq+qt7CruLGsubGsurKtu7OuvLSvvLWwvbawvraxv7m5ubeywLizwbm0wrq0w7u1w7u2xLy3xb24xr64x7+5yL+6ycC7ycG8ysK8y8O9zMS+zcS/zsXAz8bA0MfB0MjC0cnD0snE08rE1MvF1czG1s3H1s7I187I2M/J2dDK2tHL29LM3NPN3ebm5iH+IENyb3BwZWQgd2l0aCBlemdpZi5jb20gR0lGIG1ha2VyACwAAAAAvAI5AQAI/wD9CRxIsKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsqTJkyhTqlzJsqXLlzBjypxJs6bNmzhz6tzJs6fPn0CDCh1KtKjRo0iTKl3KtKnTp1CjSp1KtarVq1izat3KtavXr2DDih1LtqzZs2jTql3Ltq3bt3Djyp1Lt67du3jz6t3Lt6/fv4ADCx5MuLDhw4gTK17MuLHjx5AjS55MubLly5gza97MubPnz6BDix5NurTp06hTq17NurXr17Bjy55Nu7bt27hz697Nu7fv38CDCx9OvLjx48iTK1/OvLnz59CjS59Ovbr169iza9/Ovbv37+DDi/8fT768+fPo06tfz769+/fw48ufT7++/fv48+vfz7+///8ABijggAQWaOCBCCao4IIMNujggxBGKOGEFFZo4YUYZqjhhhx26OGHIIYo4ogklmjiiSimqOKKLLbo4oswxijjjDTWaOONOOao44489ujjj0AGKeSQRBZp5JFIJqnkkkw26eSTUEYp5ZRUVmnllVhmqeWWXHbp5ZdghinmmGSWaeaZaKap5ppstunmm3DGKeecdNb5Uj/82DnkPd5gY4+eQO7zTCGHbNMPoD32o40fJQShiz6I8jgOIygAIAIj7ESqYzmRsAAAAAxEMcw+mt54ziQvfPqpCIScU2qN5lD/kqqqACBABC34vBpjP+AkUgKtqmIARza6vsjPNXx4AKyqBNAQCj3FsqiPMmtQsCytEHCRTLQq1rNLFgxcS6sAJBSCDrcnvrPKEQaIC+wBPZySK7ojfpPICu5eC0EW29IL4j7FkHFBvtcGIIIf5fjrYTyqHBEuwdceUIMn8yqcYTaGtEAAxO4uoIQvFmNIDy5kbBAAx/lSYMY1IVfozSRCOIAywQOMMIg7LUdoDzFtnNDuzAQXUMMopObcYDmkNEHByUBDnIARvBxqdIL2NMPHCz83zXEEWzgj9dQFsrPKFBkwrTXKF9jxDdgE4oMNIC8scHbTAqAASTtsA9hPPbdw/7H03FobkMMp0ObNXz/dONKD3ICfjQASt/xpeH7z5FKGCBs3PrcCVxCTz+T3bQMzBJprPkEa03wNOnz27LJGCgeUXroHfoyzenzkXIKEBZnLrvkKlaxze3v4GFMHCwr47nsAOJgyz/DqrWMKFRkIoLzyBhQhyz3Qn4eNITg4YP31yjNQRTBFdx/ePcGoQULW5Ct/gRrQqB/eOqlEQcH48V8fwAh+AIf9uqMoSPTgYf2LXwFcAAl1DFA7+VjGHVYAvwSSzwA34EQ8HnidefAiDBowmwX7Z6tWcI+D02kHK6DwgBG6EAARqMIvUBidfqADFERI3gtHGAALnIEaNHROP//KMYkcxG6HLhTAB/pwriAqhx/iQAQL+IfEEQpABZMonBON0w9v+OEDVaziAXTAii0a51h74EAYqxiABTzhGGYkTjby0IE1sjEAE2hDOOIYnHDgoY52DKMALqVFPu7GHH/QABUDucMB3OAV6TMkbuAxiRKIkJFIXAAVnpEnSd6GHqewwSIxiUQK3MEcnrRNP3RxBASQ0o4nQ4Em5JFK2kBjCy18JSwNcIRidLKWr2lHIDCgS1harwJ02CMwXaOPV9BglMV8YQAEIIAXkKKQy0zNNMLQgGgG8mQKsIIzsrmadzhCBN78pgACcIFAOJCcqCGGEaCZzh2e7AWtgOdp4HH/CGLW05ht/II29FkaZTThn+oUAAFSwAnVEdQz7qhECBCqzjZiARsPDc00utA7ioZxmgAAgSYy+pl+1MJTHjWmABDgBAGSlDPxgIQrU7rGaQpgACHwxEs5440z0NSYAxjAAsCAt51iZh/H8MFPVToAE/TCqJjJRyw0sNSa3lQABfCDQ6EaGXt8oqqYDIAPlMnVycCDEWDF5AZksVWonuMLEUhAEIaRmHXUIa2MREAh6oEuIXDsGRTZhw0g5oWDnAOMqhpAPrvSCq2ZYCC1gJgMCgKPLeCVkVpIGLf6EAQVVBBYs6CIIiBGAkUcxAvLksDzuGIMG+QSYgJIwRgG0owf/1BVXBc4Q0Hw0QR6XnaELmhGW19lDym4yxITycZMxSUH2yGEdMuiBViy0YZ8gWAUtDyILgoArDBI4yD6qEIBAkDe3yKxAqyoGLpc4S49SKQfSnXXHhZyRGCZQiy3XRYGXKWQDKiKAYs9iD3YkABqXtK8CWTAIopKL1G4qwsSqUS+IIBNg+TgWtUQywjEdYmFsPdTGRhnQvbxBwhc9cAIjt8dNEsvNrgLCBEJBwKvNduFwGJZVxBLPKBZAHgoBBwW+NQJXKoQSXDAwCl+4Ri6oTATGAClwBpBRJDwKTVeSxUNmcRys1BhrsxCXD9QSDvwBQAcZIohtVgBNdeZ5BFCof8Z/soGAIRQhYhBBBSf4oKyliUAnDVkHa04BbHGUt1rDSIh7pDBp5jA14Z0gwkHQHKbE0iEYPwyWo4AwCHmIK50OOQcEQBABYghrhvc5QTiQgZC1BGDT4khkgvBhx8sME0UT1p2P/DFpYtFBAA0IxLiWoZDpvApVEhCXHywSzjEFYFdCwQcqAaAeyMSCxoMQNK3vl4PgjHcSMmjABbox42v5YqGrOJTT/CHE8QVDLtsQlxTOAg0qBoASkzkG2NgQK2zTT4eFINerADAFvzhDHFFgiHtGNgDyqGPbi6rAZCqixU4bBBeyOwAq6hIKVLA7/75QNXoEgMAQOEPd4irDgz/QS0ANuGPYYirCQ+BBzEq4YUUvMMh9UDGJbqAhIHg4xAoSMAKWO4QfthCDChYwAKAMEN/8OMczrjFJw4RB3KQhB8TEJc3CgKKjT2g6RQJBxu6Wd6Ol44AToAzt/pBTFT6w+HAwsJCbPEpIgjED+KShIC3IQxUIMIMRADkp0xtEH6UAxmseAQbkEACsyXbH+RoNa0y0ZBatGBZAwCZFoBFAWd7RBnikjJB8A4ADUTjIqsEwsZsbXagMYAMg47WMgDQgoGQGVg7UEg86qiArftDB+LCqEFUQLA+HETC+RqnOqJNK9EnhB4ipxUFpFApGPTDWrQqLEkIIS40DOQelgUA/wqIbJF3VOJXrS9dBPbwzmgBAgB0GIgSruUBhaThU48QCDwGcK0PIMQNRVAp4iIMB2ELRgADn2UpTgcEBRNxBwEOxEcrWeBj+hAFI7csqVASPyAuZeQP6rADn5IDZ5YR33AH2Jd+gGMBlSA50TJYuTAQaHAtBOB5/gAMIdhJH7YsZLAQ0+BPtOIADngQzXAtKGcI4rIACVENGwAsXfBL3QAAE0UrBbBBI0EP3MVnODMNUSgDjaYR/AANZSAzKDg3KTALNIgo6RAACHBC/mCE12J1BlEPJAAABgBEAqEG4pKBCxF9tJJuCoEN13IM1mAAAjAE/EcrWoAQ21ABwEIDbP8oEHCnKkNQEl92LaZWC3AHAdm1EfpgDFawXHdEUQeQBdOALp4AAEZAEKUgLsZwEHTwKYJAEOgHLAHAYAkBBctibwqhCsvCAf0QBAMQC/6wCwPzKSPgdgXBDiYALAmwDQYBAsuSfyThBsjmCIuUCB5xD7+ABTM2QgvwAATAZqpiU6xXRRrwCH4WLVQAAItAEC53LXpIEMlgPS7ggOAgLjXQEHtGKwOlEHcFLG6QCgBgCAPhDokwBovgYwbRD0awLI1wEFFIK85IEhx3LTBwLRjwiBpxD8rQBkvoQiEwBTLwWQPQAAswAOUoTUBADLBWKvogM981EOMgLoxQEPngKQP/IGwDoQniMl8LsWzAEgIMcWHAkgsfIANnaBCZBiwp0JJvx5QlMZPXsgBFIC7I5RH5gA2JIANXGD8BQAOOEAk00JWq0gA2gAMRII6BxAB8kI7F0gulVxD80FGqAgcFQXp2UBATdy3AwBA8CSy6pRD1QJYAYAGHAADE8BDZUF+qIguGtSx5SRKcIC5KEAziIgJOiRFPVwpPID7kUwFNAAvmkAgdMEoEMAaJYESYRABF8Avdhiic9gXPeC3xNhDRwF0lwIL+0A9ZtywM8DkLsZe00oEJsQs4FgFMABEHBSyTdRC4sCztRhJYIC6O4A9EuSykEBLxoAyCwAMRQJdzAwE0/4AHyKAP6DAGkUgrakANhNABKBlIJDAJtlgslZKdBbGBy2IDA7EPNPAp0TkQs3ctybkQvAksA3BzCrEH+QkAINcQxrksWHYQCkorEuCU5dAMGJqhGqqha8MQ1ycupThuy1J7IdEP6xAMfiAEGsCYQFMAEAADcOAK4nAoxiAEB4BiWaAO6OAG1WNHDyAHTIYuTwgA7TcQKgcsGTAQifApamAQbrgsB7cQoAcsOTCUy3IAdvcQ+EkrG5CZ1/kpA3cQwkkwkbkQAbosSbqbtwcswigS5qkLhEAFMLABDZCSnzIACGACSqAHtBAO86IPmnACh7gsWJBh1AAGFjCoO2QAUv9wDK+JKMDWnAXBBw3oD8oFAB2wiQMRBOJiDQxRCMviBwsRD4qqKq/wEFMKLKJqWJd0CggRkQTjqp8qLtrnD3h2LVVKEvmwDtYwC4xgBklQAynwAROwAAlwrAkQAR2QAjuABX5QCslgDkFYDmowAdAkAFrASS2XBRfgW+RzAEIgC+oVLUcAAHhwEH+5LN8AX59SC3GYgPXHEJwKLImpEK9Af0lZEGBwLRNpEMjHLAhaEOswM/24EPO6LKIwEPogeMACdiShD+xQDcEAC52wCH5wB3dgB3WgB4eQCauwC9TADviwVcPwAyw6jlbADKTCD7/ABd36QgpQBKuwWugyD7H/81QGkQvsRgmfAmEGQXc0xhD0UEEPkJkDsQbXEggPkQ/QRSszkBD9SSthVoAo8wANMbTiwl8C8QjicgQp0Q/6gA/xcA7i8A3hEA7gMA7o4A70MLIJsQkm4FtLwAy/pAxsUAIJqDwQQAW1oJHRcq8KMK4CcQ3iYgjhYgEjSBByIC6yqhCRBSxRwBCzSCsd2hC3cC2xeBBnqipKexCBgDIwxhC0IC4uUBD0IAHionYscSj90LqP6g/mIAcYwHpzFUniAAlAIAGlKjsD8AFpUAxBiC5lAABKgBD2IC5XGI8FcXnLEgCJixBxsCxXmRDfcC09ABGUuiz/dhBXsCwEeBDL/wkxc9AQcCAu43uX4kIFQOELR6BDYOYLsCYPsQAGJHCjy+MAPJAIhhIyVEWQCMGI4gIFCHEO4kIDDbGmnxKkCXEJ10J5D0FlwGIAwSsQ1nBJByC4AuGDBGOfCxGBy3ILBsEO7ksrAcAyPUEPjDAC5fgDtuC3+iANkgAFIFBgjUMAD+ACbIALCmkxAQoyCBG1ywIByFgQDnYt06YQ5bAszpcQxgUsAlCkDIFOwFK6B4GLwHK9JEEO4mIAXUgQbyAuYuAT2OAF6ZmfrqCbBEEPznAJWrACD4CSdsosCoABOcAGqjAOE0wvE0qFB0Fs18IJCXGkwOLDCnGrtJIG35cEof9FEC+5LEEQEa+lKgNaEA8KLCg3EEPMEad4LUKAEOEAngBQAM61E7KgA6BMKycACl1sEPQQDaHgBkbAAhnQAAhwAAZAAHBMXgNQAAoQARxQA1gwCLMADn6rMKgmlAkRvcuSpQiRX7SyAMCpEE1MK30pENWliwNhmcsyCRExSllgEPIwAp/VuJfAAPXaEVlQuIEsLna5E+wgCAwrLhwQCZqKEPSwDtfwCoQgBkqwAzFwAiAAAiJAAikwA0JABWhQCKwADeqAwQozhADQcwnBtcCiAJVrENMgLqm4ENdwSc53YxJNEHlwLaPsEJH8KVhMEF5wAOsILHaYDAYgAjS7Ef3/AMDLopMHQQ3iogDCoxPGAAUJADEacAhQrBD5AA/iEA29oAqaAAlODQmWgAq7wAzZsA553DKFlogJkYOqAgkKwX3X8gcM8cXAgsj+sAwNcAGZ7A+SRytUDBFQllgmLBDlewhDsCx8FQ4ZMADf2xHFIC4O8Jq9di3GlxPwEAmWBDEWwAdw+BCtKxB44g/7gA9XDTbu4HBJoBDMQKVnuA9SvCydEMXLggToMAoPIACEPBAEvCw+CRFmcC0joAvqwAtKZQQ1vSzXIAzQiI0f8drXogILUcTLEgH1TBPVsAUj7C4OwAYlnU1fUJbzSRDsQCsGkGEJIQjukrkKccqfEqUF/7HJwNIvECEMECMCDsTdXAAS0ECY/2W0/lAN7rKqNoEPqdACcVwAUyB82XQNTwAsMTALaDwQjAMAh4YQ1OBT7kIBragQnw2ZCDGmn6IBr3sQSZAvGDBoArgsShDNG5EPplCM4nIGbkkQ8ZC911IAllDMLwEOcIC6HDMAQDAM+bpFs3LiMADCBVGRLzDBpKADvQkxFJADbYAQoHot8l0Q+9C0quJ9E2EOc3gtKKDAwLYsXMDhGrE4HBNbYQq7R5AC3vopCmADcw0T97AKOMDdBmoDsODQfAQxDkwQVDYAzHAQpAc0b43k+0orMqALCUHey2ILFXEO0/wpD7AHutkPCP/+KRRAdB7RNBowEHIGNNsbE+OABkoOMSVgCgFeVj51ByYBDZAwCJkQkynhDZxACI6AC6s8EMfwB3ngPHuBD63gwSjjAJRQ3GV1HuJg6U1zAHPQ3LluHvgwCi3w5ZhnBfUT7OkBDVYghkATADwgDJWt7N6BD4XgAcb+26qw6tT+Hf3gC0CQtxDDAJIQsN0eHt6ABid4NmzQDRN+7tTRDoqAArsLNEsgDGwO79dRCjoAimfDAqeA6/p+HcHQBN14NhMwCCw28NkxDWVQAXEMMVWgsgy/E/ygD/cwD+6QDuPQDdXgDMXgC7bQCqSwCZKQCIGAB29wBl5gBU5wBD5wAzD/sAIl4AEaUAER0AAJcAAFkMu6XAAHkAANEAEVoAEeUAIrAAM34ANH4ARW4AVn8AZ4EAiJIAmbQAqtYAu+UAzOUA3dMA7p4A7zcA/6MOM9QQ1yAAL1/u+gwMcVTxL9sA/2AA/n4A3RQAy2YAqVIAhwwAVHIAMcwN4oWAAcIANHwAVwIAiVYAq2QAzR4A3nAA/2sA/vfhLTMAcjIPhzEwF1oA2V//YjVg/sAA7RAAysYAl+QAZdHtRjGEYJkAJHQAZ+YAmsAAzRAA7sUA/u3RHO8AaZTz5FcAsqDvoD0Q/34A7g4Ay48AmCQAZA4Mytn1YaAARkIAifgAvOAA7ucA+f/58Q+PALZgACmt84IKAIWlvx/WAP65ANw3AKiEAGO3DS0R/9D7ADZIAIpzAMVW0P7w4Q4T5FyUAAwEGECRUuZIiQQBNf+fxNpFjR4kWMGTVu5NjR40eQIUWOJFnS5EmUKVWuZNnSpcZ+9tJN05VpzhELDXXu5NnT50+gQYUOJVqUp4UjczLpmpbOXj+K6HLVqfEggNGeGgaNe9nV61ewYcWOJVvW7NmN/eiRU7aKkBURWOUOTVABxAobQJRQ8XIGTh5AiCBh+mSq1SxdwIotg1Ytmzdx5tS1gyev3r18+vbx69e5M799+vLdqycPXjt15sR5y1YN2rJiwHTNamXqE/8mSIgA5YFzxgsVJUBsrABRIcFc5D8/IPFS5UaGA8l1Gjhiyx5a7Nm1b+fe3fv3j/rYUZvFaEtc6cgPYECRAwmWM3YISQLlilcya+Tg8QMPlh88cqxJhhdXQJGEEDvOwAKJHFDAILr0IpTwgjqw6e9CDDPUcEMOxRJPGlcCUeI4CYOSwIQdnhDDDkQ0aeWXaMapp0MaJ6pnnGh+aUUTROwQ44kdTJCgRCJ7EuCFTNqpcUkmm3Tyya/o+YYXR7CYoEidBNBABiXCwKMRUnSBxpx9oDSzo33MgUYXUhrBIwwlZNBAACwlLACJW+45c08++/QTvH7myUYWP3yoUyEMZnD/Ao1ANqHFmXP+lPSkc5yhZZNA0HBiBgwOLaoBLoiRaFJSS32SG1NPsgccXAQBwlMKZICijURMEeYbfVLVtSV9vhHGlETagEIGCjzlSQIyiNFz15NQZfbZk/6BlqN+2mFmky1IJPKCG7C4w5JaqJlnWnLBmoeaWiy5A4sbLjAWIQq+0EWeckWStl58892In3SESeTVEgc4QQk2GnklmnH1VXiseaJ5pRE2lDhhACwXUEKVdBbWeOON+VFHGENuKLEEJd6Y5JZtOFY5u21umeQNJUookYM0ZiGHv5Vz1rnPeJqhpIgIJdAhjENcqQbnnZPOjp9qXDkkDB2GTI8ISpqJ/0dprLP2bh9xXjkDQuQuCGKNSXgpR2u0vyuHl0nWCMLd5A444xVxykz7brxTsmcaSwCeywEdzIiEF3TyNrw/dHiJxAwdHEgOCEumue5wyiv3Zx5lDDkBuRKmAMSVlC0X/cJtXAFkCpnnOsEQZRIe/XWV6VFGEA/kCkAGMSIB5mrYe88wHmAiEUOGq7DyQBBl6PF9+WfxmaaRFLAKgAYzLknGbuaz13CfZC4xg4bii0qhkWnw0f58M/shpxSgjVLhC0mMyRV9+jvUxxhJvlABqyJKIQeq+gWwP/QoBhyMYoEmCAIX7xBgA5f0jlY1ISdFgUMxlOdADJLFHKTYQVFecP+GT1gjgyNskjU+cYYXFGUHpDAHCV2YEn5YoxALGAoBgKCHWbjjhTtskjtmoQcgGEQoCyiENZDGQyReJB/LeMNQFoAEQgDjiEmkIo34AQxCIIGGQnnDMkZVxRfiwxhkEEoCkGAIYoBRjWYihiGQoK2fkMEY5lujAPWRDDIGBQh/+EUd/binX/zBb3FMxvz+6Lt+UGMOQXFBHGQxo0NG8kz1kEUcXBCUOVADgJKkXDkaAZQJYGET4OBkKfsEjk1YCSiNOJsp0VaPWKTQJzXgQzBcecs/BYMPNfjJC2IBSVyu7Bps8EkCpJAJrgRTmX4aRyakAEedsOEay1RYPVahgZ7/dAANstgkNb3Jp37IAg0dyMoqgPnNXYkDDz1ZQR7SiE54SooYeVhBT/AgjniSqh/IIAJPZhAIaORToJOCRiBmwBMiIKObA3WSPmBxJZ3QgBDVYGhFJ1UNQtBgJxOAhSEt2qF6eGInLgDEND560klNAxCX1IknzolS8MwjEjoBgR2UAVOcTkoZdgCBTiLhupxqhx6QaMgCxpCLoCZ1UrkYwxYXAokLKrUs+NBEQ5IQCuxJVat82kcoktAQTdBxq17pRysYYoJAdGOsa/1TNwJhAoa0YqFsRQkyOqWQLNiCrnv9ky2ysBAMIIOvJynHFBSCgkNEarCL5dM5DoEChUyh/5WM9Yg+ZpoQKMiCspvtkyygoJBIeJSzFnHGAxDyADpMc7SrPdM16GDagzzAGaylyD3ygBAWSOKLtOWtk/IhCRYgJA/LGu0zKAYAIrCit8vdEyv6CYABPIOz/SAqAKxgS+Zm90zBsMJBIDFXtrbDUGMIqHbNeyZojAEAPlASX50BADVk47zz3VM21ACA2dI1FWzwBn39uydvsCEVdNXGfw28pwIfWMELZnCDHfxgCEdYwhOmcIUtfGEMZ1jDG+Zwhz38YRCHWMQjJnGJTXxiFKdYxStmcYtd/GIYx1jGM6ZxjW18YxznWMc75nGPffxjIAdZyEMmcpGNfGQkJ1nJSzxmcpOd/GQoR1nKU6Zyla18ZSxnWctb5nKXvfxlMIdZzGMmc5nNfGY0p1nNa2Zzm938ZjjHWc5zpvOTAgIAOw==")
+        self.LOGO = Label(self.master, image =self.logo , background = '#d3cddd')
+        self.frameButton = Frame(self.master, width = 700, height = 40, background = '#d3cddd')
+        self.frameexit   = Frame(self.master, width = 700, height = 40, background = '#d3cddd')
+        self.frameespace = Frame(self.master, width = 700, height = 40, background = '#d3cddd')
+
+        self.SOLVER   = Button(self.frameButton, relief = FLAT, width = 20 , height = 2 ,text = 'SOLVER' ,background = '#000000', foreground = '#d3cddd', font = 2 , command = self.windows2)
+        self.EXIT     = Button(self.frameexit  , relief = FLAT, width = 20 , height = 2 ,text = 'EXIT'   ,background = '#000000', foreground = '#d3cddd', font = 2 , command = self.master.quit)
+
+        self.LOGO.grid(row = 1, padx = 210)
+        self.frameespace.grid(row = 2)
+        self.frameButton.grid(row = 3, padx = 210)        
+        self.frameexit.grid(row = 4, padx = 210)
+
+        self.SOLVER.grid(row = 1,column = 2)
+        self.EXIT.grid()
+
+    def windows2(self):
+        self.LOGO.destroy()
+        self.frameButton.destroy()
+        self.frameespace.destroy()
+        self.SOLVER.destroy()
+        self.frameexit.destroy()
+        self.EXIT.destroy()
+        change(2)
+    def windows3(self):
+        self.LOGO.destroy()
+        self.frameespace.destroy()
+        self.frameButton.destroy()
+        self.frameexit.destroy()
+        self.SOLVER.destroy()
+        self.EXIT.destroy()
+        change(3)
+
+class Windows2():
+    def __init__(self, master):
+        self.ATB = True
+        self.SquarePosition_1 = [[1,1], [1,2], [1,3], 
+                            [2,1], [2,2], [2,3], 
+                            [3,1], [3,2], [3,3]]
+        self.SquarePosition_2 = [[1,4], [1,5], [1,6],  
+                            [2,4], [2,5], [2,6], 
+                            [3,4], [3,5], [3,6]]
+        self.SquarePosition_3 = [[1,7], [1,8], [1,9], 
+                            [2,7], [2,8], [2,9], 
+                            [3,7], [3,8], [3,9]]
+        self.SquarePosition_4 = [[4,1], [4,2], [4,3], 
+                            [5,1], [5,2], [5,3], 
+                            [6,1], [6,2], [6,3]]
+        self.SquarePosition_5 = [[4,4], [4,5], [4,6], 
+                            [5,4], [5,5], [5,6], 
+                            [6,4], [6,5], [6,6]]
+        self.SquarePosition_6 = [[4,7], [4,8], [4,9], 
+                            [5,7], [5,8], [5,9], 
+                            [6,7], [6,8], [6,9]]
+        self.SquarePosition_7 = [[7,1], [7,2], [7,3], 
+                            [8,1], [8,2], [8,3], 
+                            [9,1], [9,2], [9,3]]
+        self.SquarePosition_8 = [[7,4], [7,5], [7,6], 
+                            [8,4], [8,5], [8,6], 
+                            [9,4], [9,5], [9,6]]
+        self.SquarePosition_9 = [[7,7], [7,8], [7,9], 
+                            [8,7], [8,8], [8,9], 
+                            [9,7], [9,8], [9,9]]
+        self.SQUARESPOSITION  = [self.SquarePosition_1, self.SquarePosition_2, self.SquarePosition_3,
+                            self.SquarePosition_4, self.SquarePosition_5, self.SquarePosition_6, 
+                            self.SquarePosition_7, self.SquarePosition_8, self.SquarePosition_9 ]
+        self.SQUARES = [[], [], [], [], [], [], [], [], []]
+        
+        self.counter1  = 0
+        self.counter2  = 0
+        self.counter3  = 0
+        self.counter4  = 0
+        self.counter5  = 0
+        self.counter6  = 0
+        self.counter7  = 0
+        self.counter8  = 0
+        self.counter9  = 0
+        self.counter10  = 0
+        self.counter11  = 0
+        self.counter12  = 0
+        self.counter13  = 0
+        self.counter14  = 0
+        self.counter15  = 0
+        self.counter16  = 0
+        self.counter17  = 0
+        self.counter18  = 0
+        self.counter19  = 0
+        self.counter20  = 0
+        self.counter21  = 0
+        self.counter22  = 0
+        self.counter23  = 0
+        self.counter24  = 0
+        self.counter25  = 0
+        self.counter26  = 0
+        self.counter27  = 0
+        self.counter28  = 0
+        self.counter29  = 0
+        self.counter30  = 0
+        self.counter31  = 0
+        self.counter32  = 0
+        self.counter33  = 0
+        self.counter34  = 0
+        self.counter35  = 0
+        self.counter36  = 0
+        self.counter37  = 0
+        self.counter38  = 0
+        self.counter39  = 0
+        self.counter40  = 0
+        self.counter41  = 0
+        self.counter42  = 0
+        self.counter43  = 0
+        self.counter44  = 0
+        self.counter45  = 0
+        self.counter46  = 0
+        self.counter47  = 0
+        self.counter48  = 0
+        self.counter49  = 0
+        self.counter50  = 0
+        self.counter51  = 0
+        self.counter52  = 0
+        self.counter53  = 0
+        self.counter54  = 0
+        self.counter55  = 0
+        self.counter56  = 0
+        self.counter57  = 0
+        self.counter58  = 0
+        self.counter59  = 0
+        self.counter60  = 0
+        self.counter61  = 0
+        self.counter62  = 0
+        self.counter63  = 0
+        self.counter64  = 0
+        self.counter65  = 0
+        self.counter66  = 0
+        self.counter67  = 0
+        self.counter68  = 0
+        self.counter69  = 0
+        self.counter70  = 0
+        self.counter71  = 0
+        self.counter72  = 0
+        self.counter73  = 0
+        self.counter74  = 0
+        self.counter75  = 0
+        self.counter76  = 0
+        self.counter77  = 0
+        self.counter78  = 0
+        self.counter79  = 0
+        self.counter80  = 0
+        self.counter81  = 0
+
+
+        self.LIST_DES_IMAGES = ["R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sMlJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIlqHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+SlL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPnFDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7",
+                        "R0lGODlhKAAoAPUAAD48Qz89REA+REJASENASEZDS0ZETEhGTklHTlBOVlBOV1NQWFdVXWBdZmllcGpmcGpncGpncWtocm1qdG9sdnNwenRwe397hoSAi4aCjYeDjYqGkZSQnJeUn5uWo6Gdqa2nta2otb23xr65x8G7ysG8y8O8zMbBz8fB0MvG1c7I2M/J2dPN3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAoACgAAAb+QJZwSCSKPhnIYjBYQDIfUXFKpaI8DYB2y9U2PKiqeJjidM9oTmpMDS3Q8O4ixCaa43gup87K5P9bGWx+gIWCVXeFhXtTIYoACBgmFH90RClvgAwdKkKUeQtrQ4lxAhIgRZ95jCwofxcjJCuphWEsHn8aCQATtIAeQlmFBb5/DSwijwDFf0fKzHlIz0Sqf0nTQ9V5StieikvdLNp4TOHjcU3m3xDqhU/tgFDwf1HzeVLChdBxx7eKAfvgAGul6EARC7VGFXpQZAMgViww4SGgoEKJIiccGMATqogjOBHqnNNiqQgpZXEgFiGEEs4hMSxbcnk55mRLlWPcyJzD55IWzT9qek65ko8fGKFjjiRZ0uRJlJ5BAAA7",
+                        "R0lGODlhKAAoAPYAAD48Qz89RD89RUA+REA+RUE/RkJARkJASENASENBSURCSUVDSkZDS0hGTklGTktJUVBNVVBOVlFPV1JQWFNQWFRSWldVXVtXYFpYYFtYYVxZYl9bZV9dZWBdZmNgaWVia2pncGxpc3Btd3Ftd3NwenRwe3l2gH15hYB8h4N/ioWAjIaCjYeDjo6Klo+Kl5CMl5SQm5SQnJuWo5uYpJ6ZpqCbqKGdqaafrqSgraWhraums6umtKynta2ota2otq6ptrCquLKuvLOvvLSvvbWwvraxwLiywbm0wrm0w7u2w723xr65x7+6ycG8y8O+zcbBz8bA0MfB0MfC0cnD08jE0svG1czG1s3H1s3H18/J2c/K2dHL29LM3NPN3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAoACgAAAf+gF2Cg4SESjYrIBQHBxQgKzZKhZOUlFEyHQCam5yaHTJRlaKDVTGdp6gxVaOUPRSosJ0UPayEprG4nDG1XSu5v5srrL7AxcKVt8XFu5M9vwUmP1NZTTUfv7SEVa+4E0aUNAm4FKuDybARTqI4ucxdUbkEQqwjuaFdMrkoXT4hFRksrBTikUuGoEyxFlBx0enCFUJYcnXooiTXiR0BTqUoZCDXoVwOFKCCQMjKL0TKOhkgpONXopScSA4i8UsRzE0lBh0h8GvRTU07BGXRAIzRzw2CuJQo1ujmgCFduJhQ5uimii5a6il7BNPDlirXUkJKKUEKlAynMHDAFUlZgySCTCacCiBEBC5JCHMhAFLkwSkEL7pEiDUR3y8BN7ogCcKYMZElWro8wWXwXa4AM2rlwHWvy7lTMHipiOWuyzZYLXh1CXuKXCFnpyyo5sIAVrZCn3+eKl2ImO5Tx0T5/q0p+KjcN3mPcqV7lmpSyNuVez7oUl7CoKiLOpRoUaNHkVQHAgA7",
+                        "R0lGODlhKAAoAPYAAD48Qz89RD89RUA+REE/RkJARkJAR0JASENBSURCSkVDSkZDS0dES0ZETEdFTUhGTktJUExJUk1MU05MVFBNVVNQWFRRWVRSW1VTW1dUXFdVXVhVXllWX1pXYFtXYFtYYVxZYl1bY19bZV5cZWBdZmdkbmhkbmhlbmpncGpncW9sdW9sdnl0gHx4g315hH15hYJ/iYJ+ioOAi4aCjYeDjoqGko+Kl5CMl5CNmZGNmZSQnJWRnZeSn5iToJqWopuWo5uYpJ6ap6GdqaGdqqOeq6afrqeisKqlsaiksqums62nta2ota+quLGsubKtu7KuvLWwvraxwLizwbu2w7q1xLy2xby3xb23xr24x8G7ysK9y8O+zMO+zcfB0MnD08jE0srE1MvF1cvG1c3H1s3H187I2M/K2dDK2tHL29LM3NPN3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAoACgAAAf+gGqCg4SEV0IzKBUHBxUoM0JXhZOUlF0/JACam5yaJD9dlaKDYjqdp6g6YqOUSxWosJ0VS6yEprG4nDq1ajO5v5szrL7AxcKVt8XFu5NLwBc2UGBoX00wCri0hGKvuAg6aJRZFrEVq4PJsA5OY0lDUpNRuMxqXbkCSkEPmydhhR24Qqn5kUsGkQCdWhRKgeuHoEy4TDA4RaHQB1wk1FxR1mkBISoDch3iyEnEIC0bfiEiuamImjM4GgBLxFJBj0FGyP1SRLKGwEFkGOZaRJLGlkllAOJixNJADDKFkORqxFKTBi2E0sgsh6KqJgxlCIXA9cirphuEQOCCZBbACEKSEHBFautgkBSRaiBWTTDIBUZBBGNl2AGERYFTHAQ9EdBQkD1YCb4MsuKhUw41WCbk+pmOk4RCZmAQ0KTCDJMIueip4QaLx6QtR6ZweYEQl7lCzmCV8FHFy5kuUnqsGP1LW6HObTepLkQsebBhzjUdY4Wc5fJRrrzO4rWteupz3Ald0hvr08/wlA4lWtToUSTugQAAOw==",
+                        "R0lGODlhKAAoAPUAAD48Qz89RUA+REJARkJASERCSkVDSklGTkpHT0pIUExJUk1MU1NQWFVTW1pXYF1bY2BdZmJfaWpncGtocm9sdW9sd3l2gH56hIaCjYiEkI+Kl5OPm5SQnJqVopuWo56ZpqGdqaWhraeir6ynta2ota6ptraxwLu2w7y2xb23xsK9y8O8zMfB0MjC0svG1c7I2M/J2dHL29PN3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAoACgAAAb+QJlwSCSmQBgJg0BgSDCgVHFKpbI8EIB2y9VCPKyqeOjidM9ojmtMJTHQ8C6DxCaa43gupy7D5P9bGGx+gIWCVXeFhXtTJIpaDzBCBnh0RC5vigkqQ5RxDGtDiYABI0SecYwyLI8AGkWocWEyHo8UL7B/HkJZhQ0uF7l5EDIpigUnIQDCeUeKHysHy6eASIUWMRFazHhJgA4vGVvccUp/BSglAuPUf0t/HS0LXORwTHkVMhNd9WhNeApabDjT74wTPCJMDCDYLs8TPHw65YECMaKMWGiiVIyI8YyUXmgsXsRDjFYrBAW57Fp1MuWWWTJG/UHZEI4qGZgU0ZT4KdQ3EEeFdk6qREVmK5tiCB2FcyjpUjRNxxg9epONm6dzROKcmkeN1iFXQMb5AvOrESRKmDiBIoVPEAA7",
+                        "R0lGODlhKAAoAPYAAD48Qz89REA+REJASENASENBSURCSURCSkdES0hGTklGTklHTkpIUEtJUUxJUk1KUk1MU1BNVVBOVlJPV1NQWFZTXFdUXFdVXVpYYFxZYlxaYl9bZWBdZmNgaWNgamhlbmpncG9sdm9sd3Rwe3ZzfXh1f3l0gHl1gHt3gnx4g4B9iIN/ioaCjYeDjYeDj4+Kl5GNmZKOmpSQm5SQnJWRnZeSn5mUoZqVopuWo6CbqKCcqaGdqaOeq6afrqSgraeisKmjsaynta2ota6pt6+quLCquLKtu7OvvLSvvbWwvraxv7iywbq1xL23xr63xr24x8C5ycG7ysO8zMO+zMO+zcS/zsbA0MfB0MjC0snD08vF1cvG1czG1s/K2dHL29LM3NPN3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAoACgAAAf+gGCCg4SETTssIBQDAxQgLDtNhZOUlFc4HACam5yaHDhXlaKDWzOdp6gzW6OUQhSosJ0UQqyEprG4nDO1YCy5v5ssrL7AxcKVt8XFu5NCv0ujNrC0hFuvuA5foxqwFKuDybEko0m4zGBXwDmjJrmhYDi/Alg+M/b39jIHuTiCmbkbvihQdooDmCbAXCAhiOoQMCNZivCAgSJDAIaIfiXwMinKigLKEv0SIcqJhWKKft0YZWUCsEW/qLAiAoxRrgAVPIxooQMKpQ6/GjEEcIFGF0IxfjkaqunCk0FBfj1iqulBFUFHfkGiqqmEoB+/InEFwEDQi1+S/sGCECIDLAJ+gjbkMggvFgYugpR4OPUBDJBf/dDFilHoxoJNEZ5MkfDrHZhwnFxMKpVCBpcoFX6dA2MNlQImlbrUQKD02yBnqAycGCKlixYoPVQ0KEatEOSxmzYXIoY72LDemo6xuj1U9yhXVGfxqkY8l6rlky6pjfXJMXRKhxItavQo0vJAADs=",
+                        "R0lGODlhKAAoAPYAAD48Qz89RD89RUA+REA+RUE/RkJARkJAR0JASENASERCSURCSkVDSkdFTUhGTklGTkpIUEtJUE5MVE9MVFBNVVBOVlJPV1NQWFRRWVRSW1ZTXFdVXVxaYl5aZGBdZmFdZmFfaGRhamhkbmllcGpmcGpncGpncWxpc29sdnJveXRwe3RxfHd0fnh1f356hH56hX97hoB8h4B9iIJ/iYOAi4aCjYeDjYaCjoeDjoeDj4qGk4+LlpCMl5OPm5SQnJqVopuWo5yWo52ZpaGdqaafrqeisK2ota6ptq6pt7CrubGsubKuvLOvvLiywbmzwrm0w7u2w7q1xLy3xb23xr+5yMC5ycG7ysK9y8O+zcS/zsW/z8fB0MfC0cnD08jE0srE08vG1czG1s3H1s3H187I2M/J2dDK2tHL29LM3NPN3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAoACgAAAf+gGmCg4SEU0M1JRcICBclNUNThZOUlFtAHgCam5yaHkBblaKDYD6dp6g+YKOURheosJ0XRqyEprG4nD61aTW5v5s1rL7AxcKVt8XFu5NGypsVKz1IWRmwtIRgr8UNME6CTC4bsRerg8m5CTdhgkodwMxpW8UfVYJoOQHKoWlAwC9nBr14BgCIoEy5bBAKQhCAhzRTfqkgxMVBQwCHck0wJwjHRQCIcgkhdAbCx0S4JAQclCQEDR46VkRQpgjXC1ZldhQAtggXkUIsDlgYOajIgF+McFEhNOYogAFNCMVAug0Wu0FVOMkghOWXI1wrBUHhBKKQhlyPcHkh9IRThUKlInJBwhWFkBROCwqNyBUJ1w9CVzgRKMQhlySEqFAQIsNpACExBnA97BdLgBVCMzUpICQkl0F5uEwQIrGJwiAyGHLxS4PuFI5BPzaJToMmRa54abThavEljRkVDDZ8+3IiV7lCznA9mHFEi5kuS25YzIWtUOuPnXAXIoa90zFR3LsD+D7qekPto1x9nMUrm/nbHNsPuoQ41qfV8ikdSrSo0aNI7QUCADs=",
+                        "R0lGODlhKAAoAPYAAD48Qz89REA+RUE/RkJASERCSUVDSkpHT01KUk5LU09MVFBOV1FPV1NQWFNQWVhVXmBdZmFeZ2FfaGNgamRhamhkbmllcGpncGtocnRwe3Vye3d0fnx4g4WAjIaCjYeDjYmFkIuHko2JlZSQnJaSnpiToJqVopuWo5yXpZ2YpJ6ZpqCbqKGdqaeisKmjsaumtK2ota6pt7CrubGsubmzwrm0wr23xr65x8C5ycG7ysO8zMS/zsW/z8fB0MfC0cjE0srE1MvG1czG1s3H1s3H18/J2c/K2dHL29LM3NPN3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAoACgAAAf+gEmCg4SENiweFw0EBA0XHiw2hZOUlD0nEACam5yaECc9laKDQSOdp6gjQaOUMA2osJ0NMKyEprG4nCO1SR65v5serL7AxcKVt8XFu5MwsTu8QgWotIRBr6gIvEkqsA2rg8mnGNsWscxJPbggvD4CuKFJJ7gtgkdA+PlARYIkuSeCMsXiQUPCu1MvBEXIBSGJDVwJjDCApQBJkhwBfh3CVSFFrA+CRABDpOzUDUEPgCUqyUmCoBrFFLHcZEJQh2KLZgIosArJgmKMdGoQNENZI50xBHFQ5mjmAotHDih7NJNdEhclIbEMgENQhpKRWFIQRMRASUkCi6EQtKJkQ3lgygwMEYShJMB0yjYI+jGgZLwk4nDJEFSiJLok1345GDSBKbhBznKFEKQjY7FqhQLrPHW4ELHNp46J+gxak+hRmmd2HuVq86xtpFLnUgW70KW0sT79rT3pUKJFjR5F2hYIADs=",
+                        "R0lGODlhKAAoAPYAAD48Qz89RD89RUA+REA+RUE/RkJARkJAR0JASENASENBSUVDSkdFTUhGTkpHT0tJUExJUk1KUk5MVE9MVFBNVVNQWFNQWVdUXFdVXVlWX1tXYFpYYF5cZWBdZmFdZmVia2ZjbWdkbmhkbmllcGpncGpncWtocmxqcm9sd3Btd3JveXZzfnl2gHp3gXt4gn97hoB9iIJ+ioN/ioWBjYaCjYeDjYaCjomFkIyIk4yJlI6KlpCNmZOPm5SQnJuWo52ZpZ6Zpp6ap5+ap6GdqaOeq6afrqSgraeir6iksKqls6ynta2nta2ota6pt7GsurKtu7KuvLSvvbaxv7exwLizwbmzwrm0w7u2w7q1xLy3xb23xr24x7+6ycC5ycG7ysG8y8O+zMO+zcS/zsW/z8fB0MfC0crE08rE1MvG1c3H1s3H187I2M/J2c/K2dDK2tHL29LM3NPN3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAoACgAAAf+gHGCg4SEWkM0JBUICBUkNENahZOUlGQ+HQCam5yaHT5klaKDaD2dp6g9aKOUTBWosJ0VTKyEprG4nD21cTS5v5s0rL7AxcKVt8XFu5NMuRQ1S2JsbGNNNhK5tIRor7ACOW5xRx0OGT+CazG4FauDyacBRIJIAZxJgzC4zHFkuCuDUHT6MOhMAlyh4vjA9SRgJwiENODyIShTLHdxinQyEBFXhzhacq0h5IKThUFjCOQ6lEsKITg4Cmi6IchNiV+IcsGYdOXEhpFTOABLlOsAFUpvoohQpuiXhCxIdygotggYAyOVsFgAxqhYAyeVylz41ehXABmrWACh1GVBLkfCuQTMi8PFnogwk2rkepTrxSAdmx5AKWQlF6SWg1RwYgDm5QBckXKpGQSikw1CbwTgkmQR1khBJjqBIOTFo6CFsaoMYtEpBCEeEwX5izVjkJBOMQaZiYDwXSwFquOwmbCpgRhBaT7s4+YN1QMlgrak8NDiiyAnGNhhFOQsVoARQbqsaUMGCo/OsbYVgqcsF79JxNrjOiYqvvxT9Eexvw/gPStX/AEwCy/c7PeLKgROcgl6sHySUIKVHJLIIo08EgmBgQAAOw==",
+                        "R0lGODlhKAAoAPYAAD48Q0A+REE/RkJAR0JASENASENBSURCSkVDSkZDS0dFTUhGTkpIUEtJUEtJUUxJUlFPV1JPV1JQWFNQWFRRWVVTW1dVXVhVXlpXYFpYYF1bY2BdZmFdZmFeZ2NgamVia2VjbGpncG9sdm9sd3Btd3Ftd3JveXNwenVye3RxfHd0fnh1f3l1gHt3gnx4g315hX56hX97hoB8h4B9iIJ/iYJ+ioOAi4aCjYeDjoiEkIqGkoyIk46Klo+LlpGMmJCNmZSQnJWRnZaRnpqWopuWo56ap6GcqKGdqaGdqqSgraeir6eisKums6ynta2ota2otq6ptrKturKtu7WvvraxwLexwLmzwry3xb23xr+5yL+6ycG7ysG8y8K9y8W/z8bBz8bA0MfB0MfC0cjE0srE1MvG1c3H1s3H187I2M/J2c/K2dDK2tHL29LM3NPN3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAoACgAAAf+gG6Cg4SEWEc3IRMEBBMhN0dYhZOUlGFEGwCam5yaG0RhlaKDZUCdp6hAZaOUThOosJ0TTqyEprG4nEC1bje5v5s3rL7AxcKVt8XFu5NOuQMuTWBqXlA1Cr+0hGWvsRdabmYgCDGCYiO5E6uDyagVZIJCm0uCbSu5zG5huAFWgzCbUAxSgyFXKDdEcJEgdGJTBkJPchERlCkWEkLoNDkoZAHXBjdYcnEhVGJTgUIzch3KhYZQik0BChnJhSjXGUIxNgkoBCVXolxXCPXYtKBQlVyKcgUhxGQThEJR0hHIVYHNoDQPNGkolCQXo18zIEYQQKPQDq/dcqkYU6hNoQ+d6UIUSyBChw8bHKgQ+iIAKTFlmiQUwvELEuBNPwh1OfAr0mEADda5YeMBmKSKyooMasMC2EeEgF8MWqOi2ER9ymS4dZOlg7KDbtrBokDPDRoeBpTlc8MNlgMTStxuycEAsLpCzlBJmTKkRcfH2grJfpxK1F/qp45Zx56d1/THu1m5wj6L17bv+CSbH3QJc6xPsNdTOpRoUaNHkcwHAgA7"]
+        self.LIST_DES_IMAGESF = ["",
+                            "R0lGODlhKAAoAKUAAP8AAP8NDf8UF/8WFv4iKv0vNfw1Ov03PPw6P/w7QPtLUfpNVPpPVvlYYPhaY/N0fvN1f/N2gPN3gfJ5g/J6g/J9h/CBi/CBjO6JlO2MmOuRnuyRnOuVn+qYpOuYo+WjsOWkseCzwd+1xNrAz9nB0djC0tnC0dfF1NfG1NTK2tXK2tPN3f8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AACH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAD8ALAAAAAAoACgAAAb+wJVwSCSKOpPGQSA4NCYdUXFKpY42CoB2y9UqNqOqeHjCdM9ozGlMBR3Q8O4BxCaa43gupr6a5P9bE2x+gIWCVXeFhXtTIIoJGiUVgHREJ29/Dh8qQpN/B2tDiXADEiFFnn+MKyN5GSMkKaiKYSsbeRwLABSzhRtCWYAFvYAKKyKKAMSAR8nLf0jORKmASdJD1H9K153JS9wr2XlM4OJ4TeXeDemKT+yGHe+AUfJ/UsGAz3jGtoUB+nF+sSqEoMgFWqIAQSjiYZElTGgIMLBgogiKBwbygCriCE2EOua2VCoyKhmeVVMImYxzSIzKlV1ajikJEyUbNzABzOFjiaYWqlA8iVzBF+dLraBVjiRZ0uRJFJ5BAAA7",
+                            "R0lGODlhKAAoAMYAAP8AAP8NDf4PHP8UF/4WFv8WFv4cHP4hIf4iKv0nLv0rMf0vNf0xMf03PPw4Qvw6P/tBSfpLUvtLUfpNVPpRWPlWXPlYYPhaY/hfZ/hgaPdhaPdiavdlb/Zob/VsdfVvd/RwefJ4gvJ5g/F9iPF+h/CBi/CBjO6Hku6JlO2Ll+2OmeyRnOuSnuqUoOqYpOibp+mcqeidqOigrOWkseSntOSotuOqt+Ktu+KtvOGuu+Cywd+zweCzwN+0wt+1wt+1xN24xt25x9y6yt26yNy7ytq8zNu8y9u+zNrAz9rA0NnC0djD0tfF1NfG1NfG1dbH1tfH1tbI2NXJ2NXJ2dTK2tTL29PM3NTM3NPN3f8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AACH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAH8ALAAAAAAoACgAAAf+gFiCg4SEPy4iFg0DAw0WIi4/hZOUlEgrEgCam5yaEitIlaKDTCidp6goTKOUMw2osJ0NM6yEprG4nCi1WCK5v5sirL7AxcKVt8XFu5MzuQYnPk9USjYfwLSETK+xFESUNQm5DauDyagTS6I3v8xYSLgEQawkv6FYK7gqWD0hFRotpBTa8WuFoEywGECB0QnDFEJTfknA8gNXCh0BThkkdODXIVwOFKCKQEgKMETKOB0gxANYopSbSA4qAUwRTE0mBhkhAGzRTQA6BFHZUIzRTQ6DTChrBLPAPCsnUjqCyQJLlXopH6X0cCUKiJuQlFFwwkTDqQwdckUq9uBIEgqBpwIEGZFLEkJcCH4IgXAKQQwsE3BNxJdLAA4sRYAoVjwESRUsTXJthBcrAI1aOXLdw3KukwxeLHC5w7IN1QteWK7BIlfIWacLqK0siJWtUOefp0YXIob71DFRvHtr+j3q9k3do1zhnoWalPFcqpoXunQ31qfN0icdSrSo0aNIqAMBADs=",
+                            "R0lGODlhKAAoAMYAAP8AAP8NDf4PHP8UF/8WFv4cHP4hIf4mJv0nLv0uNP0vNf0xMf0yOPw1Ov03PPw4Pfw6P/tCRvtDS/tJTfpLT/pLUvtLUflVXvpVW/lXYPlYYPhaY/laYPhcZPhdZvhfZ/dhaPdiavdlbPdlb/ZmcPRxfPRzfPRzffN2gPJ5g/J8hfJ9h++Gku6JlO6Jle2Ll+6LluyPnOyQm+yRnOuSneqUoOqYpOmcqeidqOeequeeq+ahreehruajr+ajseWkseWls+SntOOot+KrueOsueKtvOGvveCxvuCxwOCzwOCzwd+1w9+1xN63xd63xt24xty6yt26yNy8ytu9zNq+zdu+zNu+zdq/ztrAz9nB0dnC0dfD0tjD0tfF1NfF1dbH1tfH1tbI19bI2NXJ2dXK2tTL29PM3NTM29TM3NPN3f8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AAP8AACH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAH8ALAAAAAAoACgAAAf+gGmCg4SETDYpGg4DAw4aKTZMhZOUlFgzFgCam5yaFjNYlaKDXS2dp6gtXaOUPw6osJ0OP6yEprG4nC21aSm5v5sprL7AxcKVt8XFu5M/vxc3UWFnYE0yC7m0hF2vsQg7aJRZGLgOq4PJqA9OY0lDUpNQucxpWLgCSkIQmyZihR+5QqWZgYsGkQCdXBRCkWuGoEyxTjA4VaEQiFwW0jBRxkkBoSkEfh3iuGnEIC0dgCEiqalImjI5GhjTQHKBj0FGyAFTxNGGl0JjGP5axLHGlklkAOZiRPJAjDGFkPxqxBLABi2EzMgsR7NqBjKEROR6VFUTDkIhckEqC4AEoQiQuSKxfTBIisg0EFkmGAQDoyCCsDjwCMLCwCkPgp4IaCjIHqoEYAZRUbpJR5orFH4JTJNu04RCZWQU0KSizBIJv+il4Yaqx6QtR6pweYEwl7lCzlCVAGLlSxkvUnysGA1MW6HObHWJIpac07HlzYPxQs5SNStXZWfx2kZ93rnthC7ljfVpM3hKhxItavQo0vZAADs=",
+                            "R0lGODlhKAAoAKU0AP8AAP4PHP8UF/8WFv4hIf0uNP0xMf03PPw4Qvw9QvtARPtDS/tJTftLUflXYPlYYPhfZ/dlbPVsdfN3gfJ5g/F8h/J8he6Hku6JlO6MluyRnOqWouqYpOmcqeegreWkseWlsuSotuGuu+Gvvd+zwd+1wt+1xNy6ytu+zNu+zdrAz9jC0tnC0dfF1NfG19bI2NTK2tXK2tTM3NPN3f///////////////////////////////////////////////yH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAD8ALAAAAAAoACgAAAb+wJlwSCSaOJTHQSA4PCgcU3FKpao0DYB2y9U2NKqqeNjCdM9oTGtM/RzQ8O7hwyaa43gupj6j5P9bFGx+gIWCVXeFhXtTH4paETBCBnh0RC1vigosQ5RxB2tDiYABJESecYwzKo8AHUWocWEzGo8WMbB/GkJZhQ4vGbl5DTMmigUoIgDCeUeKISsIy6eASIUXMhJazHhJgBAxG1vccUp/BSklA+PUf0t/IC4MXORwTHkVMxNd9WhNeAtceDjT74wTPCNOECDYLs8TPHw65YECMeKMWGiiVIyI8YyUXmgsXsRDjFarBAW57Fp1MuWWWTNG/UHZEI6qGZgU0ZT4KdQ3EEeFdk6qREVmK5tiCB2FcyjpUjRNxxg9epONm6dzROKcmkeN1iFXQMb5AvOrESRKmDiBIoVPEAA7",
+                            "R0lGODlhKAAoAMZcAP8AAP8NDf8UF/8WFv4iKv0nLv0rMf0uNP0yOP03PPw4Qvw6P/w7QPtARPtBSftDS/tFTPtJTfpLUvtLUfpNVPpQVvlYYPlYYfhaY/laYPlcYfhgaPdiavdja/dlb/VsdfVtdvRzfPJ5g/F8h/J9h/CBjO+Eju+Gke+Gku+Hku6JlO6JleyPmuyRnOqVoeuVn+qYpOmcqeeeq+ifq+igrOahreehruajr+WkseWlsuOqt+OquOOsueKtu+KtvOGvveGwvt+zwd+1w9+1xN63xt25x926yN26ydy7ytu9zNu+ztq/ztnA0NrAz9nB0djC0tfD0tjD0tjE09fF1NfG19bH1tbI2NXJ2NTL29PM3NTM3NPN3f///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAH8ALAAAAAAoACgAAAf+gFuCg4SEQzAiFgkCAgkWIjBDhZOUlE0tEwCam5yaEy1NlaKDUyqdp6gqU6OUOAmosJ0JOKyEprG4nCq1WyK5v5sirL7AxcKVt8XFu5M4v0ijzqi0hFOvuA+sHbAJq4PJsSajRrjMW03AOqMouaFbLb8DVD019fb1NAe5LYKZuR5ZFCg7NWHLEGAuigxEdQgYkSpDeMhQwSHAQkS/FmiZ5KRFAWWJfo0QpSRDMUW/coyaUgHYol9RWAkBxihXgAsgSrzYwYTSh1+NFgLAYAMLoRm/HAnVpGHJoCC/Hi3VBEGKIIW5IE3VdELQj1+RtgJoICjGL0n+YEUgwQEWAUF+HnIVfBdrwxVBR0CcCrEFyC9+52LNKJSDwSYJS6BQ+OVuCzhOLiZZqbGCxhUnF36Z22INlYIklbDcQJDU2yBppwykEPIEixUmPlg4KEat0GOxmzYXIoY72LDemo6xui1Ud7RrQmfxqkY8l6rlky6ljfWpMXRKhxItavQo0vJAADs=",
+                            "R0lGODlhKAAoAMZpAP8AAP8NDf4PHP8UF/4WFv8WFv4cHP4hIf4iKv4mJv0rMf0uNP0xMf03PPw4Pfw4Qvw6P/tARPtCRvtJUfpLT/pLUvtLUfpNVPpQVvlVXvpVW/lYYPlYYflcYfdja/dkbvZocfVrdPVtdvRzffN0fvN1f/N2gPJ4gvJ5g/J9h/GAivCBjPCDje+GkO+Gke6JlO2Ml+2MmO6Mlu2NmeyPmuyQm+yRnOuSneqUoOuUoOqVoeuVn+mXpeqYpOicqOidqOegreWkseWlsuWms+SoteKtvOGvvd+1wt+1w9+1xN62xN63xd24xt25x9y7ytq8zNy8y9u9zNq+zdu+zNnA0NrAz9nB0dnC0djD0tjE09jE1NfF1NfG1dbH1tbH19fH1tbI2NXJ2NXJ2dTK2tXK2tTL29TM29TM3NPN3f///////////////////////////////////////////////////////////////////////////////////////////yH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAH8ALAAAAAAoACgAAAf+gGiCg4SEST0oGw0DAw0bKD1JhZOUlFU2FgCam5yaFjZVlaKDWy+dp6gvW6OUQQ2osJ0NQayEprG4nC+1aCi5v5sorL7AxcKVt8XFu5NBypwXLEBIWRmotIRbr8oOMVCCTTIdsA2rg8m/CDlhgksfv8xoVcogVIM6AcWhaDbFMGeDYDyzISjTrx2EhjwDYAFNEmArCHGBsBDAoV8TwBDCUREAol9ECJ2J0DFRLgpmCCkRceMHDxYSiinKBYPVGB8Gfi3KVaRQiwQYQg4yUiAXo1z7BIkpCqCAE0IzjG6LxW4QFU40CGHJ5ShXykFTOIUoxAHXo1xfCD2BVmgELkieuaIQksJpQSESuCLlEkLoCicChTzgkmQQVgpCZDgVICTmQKyG/HAJsEIopiYFhIjgIigvlwlCJTZVGERGA66k6FDhGCRk02dBKnDFQ6MtlwsvaMqsYNDhm5cTuMoVcpbrQY0jWsp0YZKDIi5shVJ3PDW7ELHpp46Juo5dk/ZR0itWH+Vq+ixe2cLnUoV+0qXCj0G1H3Uo0aJGjyKhDwQAOw==",
+                            "R0lGODlhKAAoAMZIAP8AAP8NDf8UF/4WFv4cHP0rMf0xMf03PPw9QvtFTPtHT/tJUftLUfpPVvpRWPpTWflYYPhcZPZpc/VrdPVtdvRzffN0fvN3gfJ5g/CBjPCDjO+GkO6JlO6JleyRnOuSnuuVn+qWouqYpOqbpuairuajseWkseWlsuWmteSntOSotuOqt+GvveGwvuCywd+1w9+1xN62xN63xdu8y9y8y9nA0NrAz9nB0djC0tjE09jE1NfF1NfG1dfH1tbI19bI2NXJ2NXJ2dTK2tTL29PM3NTM29TM3NPN3f///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////yH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAH8ALAAAAAAoACgAAAf+gEeCg4SEMCIYEAcCAgcQGCIwhZOUlDYeDACam5yaDB42laKDOxydp6gcO6OUJgeosJ0HJqyEprG4nBy1Rxi5v5sYrL7AxcKVt8XFu5MmsTm8QAWotIQ7r6gJvEcqsAerg8mnF9sWscxHNrghvDwDuKFHHrgsgkY++Pk+QoIkuR6CMsXSQWPCu1MuBEnIxeAIDFwKhjiAtYDIkRsBfh3CVSFFLBCCRgBDpOxUvAjAEpXkNEHQjGKKVm46IehDsUUyART4IahBMUY5NQiSoaxRzheCOihzJLOBoCIIlD2Sye5Ii5KQVgaoIShDyUgrKQgKYqCkJIHFUAhaUbKhPGVfBoIIulASYDplGwT1IFAy3hFxuGIIKlES3ZFrvx4MorAU3CBnuUQIwpGxWLVCgHOeMlyImOZTx0R5/qwp9KjMMjmPcqV51jZSqHOpel3oEtpYn/zSnnQo0aJGjyJtCwQAOw==",
+                            "R0lGODlhKAAoAMZzAP8AAP8NDf4PHP8UF/4WFv8WFv4cHP4hIf4iKv4mJv0nLv0xMf03PPw4Pfw6P/w9QvtCRvtDS/tFTPtJUfpLT/pLUvtLUfpTWflYYPhaY/laYPhdZvhfZ/hgaPZmcPZocfZpcPVvd/RwefRwe/RxfPRzffN0fvN2gPN3gfJ5g/J6gfF8h/F9iPGAiu+Ej+6Hku6Iku6JlO2MmOyPmuyPnOyRnOuToOuUoOuVn+qWouqYpOmZpOmapuibp+eequegreWkseOot+SoteSotuSqtuOsueKtu+KtvOGvveGxvuCywN+zweCzwd+1w9+1xN63xd63xt24xt25x9y6yd26ydq8zNy8yty8y9u9zNq+zdu+zNq/ztnA0NrAz9rA0NnB0dnC0dfD0tjD0tjE09jE1NfF1NfF1dfG1dbH19bI19bI2NXJ2dTK2tXK2tTL29PM3NTM29TM3NPN3f///////////////////////////////////////////////////yH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAH8ALAAAAAAoACgAAAf+gHKCg4SETjopGAwDAwwYKTpOhZOUlF01FgCam5yaFjVdlaKDZTGdp6gxZaOUQAyosJ0MQKyEprG4nDG1cim5v5sprL7AxcKVt8XFu5NAuRU4TGNsbGRNNxS5tIRlr7ACPG5ySCAPG0KCbTS4DKuDyacBRYJJAZxKgzO4zHJduC6DVnQSMSgNAlyh5NTABSVgpwiEOOCqIShTLDWDjnQ6EBGXBTlOcrWxxenCIDIEch3KRaXQDgOacghyc+IXolwzJmlR0WHkFA/AEuVKYIUSHCkllCn6RSELpTg+FBRbBKyBkUpYLgBjVMzBk0pnNPxq9CtADYwvhlDisiCXo1zCAubJ8WKvhJhJOHI9yiVjUI9NEKIUqpILEstBLTg1CEPoTQFckXKtGTSi0w1CcQTgkmQR1khBKDqNIPTFo6CFsa4MetGJBKEfEwX5i2VjEJFONAahkYDwXSwFquWwmbDJwRhBa0Ls4+YNFYQlgraw+AADjKAnGdi5G+QsVgATQbi0cWMmyg8Qv7YVgqcsF79JxNrjOiYqvvxT9Eexvw/gPStX/AEwCy/c7PeLKgROcklnsXySUIKVHJLIIo08EgmBgQAAOw==",
+                            "R0lGODlhKAAoAMZpAP8AAP8UF/8WFv4cHP4iKv4mJv0nLv0uNP0vNf0xMf03PPw4Pfw6P/tARPtBSftCRvtDS/tLUfpQVvpRWPpVW/lXYPlYYPhaY/hcZPlcYfhfZ/hgaPdlbPZocfZpc/VtdvRwefRxefJ5g/F8h/F9iPJ9h/F+h/B/ivCBi/CDjPCDje+GkO+Gke+Hku6JlO6Jle2Ll+2Ml+2MmO2OmeyPmuyPnOyQm+yRnOuSneqUoOqWouqYpOmZpOibp+icqOmcqueequahr+ehruWkseWls+Oot+Oqt+KrueKtu+Gvvd+zweCzwN+0wt+1wt+1xN63xt64xd25yNy6ydy6yty8y9q+zdrAz9rA0NnB0dnC0djE1NfF1NfG1NfG1dfH1tbI19bI2NXJ2dTK2tXK2tTL29PM3NTM29TM3NPN3f///////////////////////////////////////////////////////////////////////////////////////////yH+EUNyZWF0ZWQgd2l0aCBHSU1QACH5BAEKAH8ALAAAAAAoACgAAAf+gGiCg4SETjsiFgoBAQoWIjtOhZOUlFY3EQCam5yaETdWlaKDWy6dp6guW6OUQwqosJ0KQ6yEprG4nC61aCK5v5sirL7AxcKVt8XFu5NDuQUvSltkWk01C7+0hFuvsRhXaGEhCTKCXSO5CquDyagVX4JBm0mCZSy5zGhWuAJUgzGbUgwioyFXKDQ3cJEghGLTBkJMct0QlCnWEULoNDkodAFXBDROcmUhZGITgUI0ch3KNYaQik0CChnJhShXGEIyNg0o1CRXolxVCPnYxKCQlFyKcgkhtGTThEJQ0gXIVcHMIDEQNHEohCQXo180IEoYYKMQD6/dcq3wUqhMIRCe6SwUQ1Bixw8cHaYQ4jIAKTFlmp4SyvELEuBNQAhlOfAr0mEAD8AMOvMBmKSKyooQagHsI0LAMAauKDZRn7IZbvV5UHYQTTtYFOihGdPDgLJ8aLjBcnAiiVssOhoAVlfIGaonUYi4yPAYgLZCr5ufwl3or/ROx0RZvw4g+6joj6mPciV9Fq9t4PGtO0/oEuZYn1qzp3Qo0aJGjyKdDwQAOw==",
+                            ]
+
+        self.img1 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img2 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img3 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img4 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img5 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img6 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img7 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img8 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img9 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img10 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img11 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img12 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img13 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img14 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img15 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img16 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img17 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img18 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img19 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img20 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img21 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img22 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img23 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img24 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img25 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img26 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img27 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img28 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img29 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img30 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img31 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img32 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img33 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img34 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img35 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img36 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img37 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img38 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img39 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img40 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img41 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img42 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img43 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img44 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img45 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img46 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img47 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img48 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img49 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img50 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img51 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img52 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img53 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img54 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img55 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img56 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img57 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img58 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img59 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img60 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img61 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img62 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img63 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img64 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img65 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img66 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img67 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img68 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img69 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img70 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img71 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img72 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img73 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img74 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img75 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img76 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img77 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img78 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img79 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img80 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img81 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                        otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                        lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                        qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                        lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                        6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                        FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+
+        self.master = master
+        self.frame1 = Frame(self.master, width = 60, height = 20, background = '#d3cddd')
+        self.frame2 = Frame(self.master, width = 60, height = 500, background = '#d3cddd')
+        self.frame3 = Frame(self.master, width = 500, height = 500, background = '#d3cddd')   ###SUDOKU
+        self.frame4 = Frame(self.master, width = 160, height = 500, background = '#d3cddd')
+        self.frame5 = Frame(self.master, width = 340, height = 500, background = '#d3cddd')
+        self.frame6 = Frame(self.frame5, width = 340, height = 150, background = '#d3cddd')    ###LOGO
+        self.frame7 = Frame(self.frame5, width = 340, height = 40, background = '#d3cddd')
+        self.frame8 = Frame(self.frame5, width = 340, height = 310, background = '#d3cddd')    ###BUTTONS
+
+        self.frameC1 = Frame(self.frame3, width = 140, height = 500, background = '#d3cddd')
+        self.frameC2 = Frame(self.frame3, width = 40, height = 500, background = '#d3cddd')
+        self.frameC3 = Frame(self.frame3, width = 140, height = 500, background = '#d3cddd')
+        self.frameC4 = Frame(self.frame3, width = 40, height = 500, background = '#d3cddd')
+        self.frameC5 = Frame(self.frame3, width = 140, height = 500, background = '#d3cddd')
+
+        self.frameC1_1 = Frame(self.frameC1 , width = 140, height = 140, background = '#d3cddd')
+        self.frameC1_2 = Frame(self.frameC1 , width = 140, height = 40, background = '#d3cddd')
+        self.frameC1_3 = Frame(self.frameC1 , width = 140, height = 140, background = '#d3cddd')
+        self.frameC1_4 = Frame(self.frameC1 , width = 140, height = 40, background = '#d3cddd')
+        self.frameC1_5 = Frame(self.frameC1 , width = 140, height = 140, background = '#d3cddd')
+
+        self.frameC3_1 = Frame(self.frameC3 , width = 140, height = 140, background = '#d3cddd')
+        self.frameC3_2 = Frame(self.frameC3 , width = 140, height = 40, background = '#d3cddd')
+        self.frameC3_3 = Frame(self.frameC3 , width = 140, height = 140, background = '#d3cddd')
+        self.frameC3_4 = Frame(self.frameC3 , width = 140, height = 40, background = '#d3cddd')
+        self.frameC3_5 = Frame(self.frameC3 , width = 140, height = 140, background = '#d3cddd')
+
+        self.frameC5_1 = Frame(self.frameC5 , width = 140, height = 140, background = '#d3cddd')
+        self.frameC5_2 = Frame(self.frameC5 , width = 140, height = 40, background = '#d3cddd')
+        self.frameC5_3 = Frame(self.frameC5 , width = 140, height = 140, background = '#d3cddd')
+        self.frameC5_4 = Frame(self.frameC5 , width = 140, height = 40, background = '#d3cddd')
+        self.frameC5_5 = Frame(self.frameC5 , width = 140, height = 140, background = '#d3cddd')
+
+
+        self.button1  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img1 , command = self.plusun1 )
+        self.button2  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img2 , command = self.plusun2 )
+        self.button3  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img3 , command = self.plusun3 )
+        self.button4  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img4 , command = self.plusun4 )
+        self.button5  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img5 , command = self.plusun5 )
+        self.button6  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img6 , command = self.plusun6 )
+        self.button7  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img7 , command = self.plusun7 )
+        self.button8  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img8 , command = self.plusun8 )
+        self.button9  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img9 , command = self.plusun9 )
+        
+        self.button10 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img10 , command = self.plusun10 )
+        self.button11 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img11 , command = self.plusun11 )
+        self.button12 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img12 , command = self.plusun12 )
+        self.button13 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img13 , command = self.plusun13 )
+        self.button14 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img14 , command = self.plusun14 )
+        self.button15 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img15 , command = self.plusun15 )
+        self.button16 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img16 , command = self.plusun16 )
+        self.button17 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img17 , command = self.plusun17 )
+        self.button18 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img18 , command = self.plusun18 )
+        
+        self.button19 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img19 , command = self.plusun19 )
+        self.button20 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img20 , command = self.plusun20 )
+        self.button21 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img21 , command = self.plusun21 )
+        self.button22 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img22 , command = self.plusun22 )
+        self.button23 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img23 , command = self.plusun23 )
+        self.button24 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img24 , command = self.plusun24 )
+        self.button25 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img25 , command = self.plusun25 )
+        self.button26 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img26 , command = self.plusun26 )
+        self.button27 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img27 , command = self.plusun27 )
+        
+        self.button28 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img28 , command = self.plusun28 )
+        self.button29 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img29 , command = self.plusun29 )
+        self.button30 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img30 , command = self.plusun30 )
+        self.button31 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img31 , command = self.plusun31 )
+        self.button32 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img32 , command = self.plusun32 )
+        self.button33 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img33 , command = self.plusun33 )
+        self.button34 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img34 , command = self.plusun34 )
+        self.button35 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img35 , command = self.plusun35 )
+        self.button36 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img36 , command = self.plusun36 )
+        
+        self.button37 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img37 , command = self.plusun37 )
+        self.button38 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img38 , command = self.plusun38 )
+        self.button39 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img39 , command = self.plusun39 )
+        self.button40 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img40 , command = self.plusun40 )
+        self.button41 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img41 , command = self.plusun41 )
+        self.button42 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img42 , command = self.plusun42 )
+        self.button43 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img43 , command = self.plusun43 )
+        self.button44 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img44 , command = self.plusun44 )
+        self.button45 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img45 , command = self.plusun45 )
+        
+        self.button46 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img46 , command = self.plusun46 )
+        self.button47 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img47 , command = self.plusun47 )
+        self.button48 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img48 , command = self.plusun48 )
+        self.button49 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img49 , command = self.plusun49 )
+        self.button50 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img50 , command = self.plusun50 )
+        self.button51 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img51 , command = self.plusun51 )
+        self.button52 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img52 , command = self.plusun52 )
+        self.button53 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img53 , command = self.plusun53 )
+        self.button54 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img54 , command = self.plusun54 )
+        
+        self.button55 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img55 , command = self.plusun55 )
+        self.button56 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img56 , command = self.plusun56 )
+        self.button57 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img57 , command = self.plusun57 )
+        self.button58 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img58 , command = self.plusun58 )
+        self.button59 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img59 , command = self.plusun59 )
+        self.button60 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img60 , command = self.plusun60 )
+        self.button61 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img61 , command = self.plusun61 )
+        self.button62 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img62 , command = self.plusun62 )
+        self.button63 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img63 , command = self.plusun63 )
+        
+        self.button64 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img64 , command = self.plusun64 )
+        self.button65 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img65 , command = self.plusun65 )
+        self.button66 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img66 , command = self.plusun66 )
+        self.button67 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img67 , command = self.plusun67 )
+        self.button68 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img68 , command = self.plusun68 )
+        self.button69 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img69 , command = self.plusun69 )
+        self.button70 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img70 , command = self.plusun70 )
+        self.button71 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img71 , command = self.plusun71 )
+        self.button72 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img72 , command = self.plusun72 )
+
+        self.button73 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img73 , command = self.plusun73 )
+        self.button74 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img74 , command = self.plusun74 )
+        self.button75 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img75 , command = self.plusun75 )
+        self.button76 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img76 , command = self.plusun76 )
+        self.button77 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img77 , command = self.plusun77 )
+        self.button78 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img78 , command = self.plusun78 )
+        self.button79 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img79 , command = self.plusun79 )
+        self.button80 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img80 , command = self.plusun80 )
+        self.button81 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img81 , command = self.plusun81 )
+        
+        self.AT1 = Label(self.frame7, background = '#d3cddd', font = 3)
+        self.AT1.grid()
+        self.logo = PhotoImage(data = "R0lGODlhVAGWAPcAAAAAAAEBAQICAgMDAwQEBAQEBQUFBgYGBgcHBwgICAkICQkJCgoKCwsLDAwMDQ0MDQ4NDg4ODw8PEBAQEREQEhIRExMSExMTFBQUFRUUFhYVFxcWGBcXGRgYGhkYGhoZGxsaHBwbHRwcHh0cHx4dIB8eICAfISEgIiEgIyIhJCMiJSQjJiUkJyYkJyYlKCcmKSgnKikoKyopLCspLSsqLSwrLi0sLy4tMC8tMS8uMjAvMzEwNDIxNDMxNTQyNjQzNzU0ODY1OTc1Ojg2Ojk3Ozk4PDo5PTs5Pjw6Pz07QD48QT49QT89QkA+Q0E/REJARUNBRkNBR0RCR0VDSEZESUdFSkdFS0hGTElHTUpITktJTkxJT0xKUE1LUU5MUk9NU1BNVFFOVFFPVVJQVlNRV1RSWFVSWVZTWlZUW1dVW1hWXFlWXVpXXltYX1tZYFxaYV1aYV5bYl9cY19dZGBeZWFeZmJfZ2NgaGRhaGRiaWViamZja2dkbGhlbWlmbmpnb2tocGxpcW1qcm5qc25rdG9sdXBtdXFudnJud3NveHNweXRxenVye3Zye3dzfHd0fXh1fnl2f3p2gHt3gXx4gnx5gn16g357hH97hYB8hoF9h4F+iIJ/iIN/iYSAioWBi4aCjIaDjYeDjoiEj4mFj4qGkIuHkYuHkoyIk42JlI6KlY+LlY+LlpCMl5GNmJKOmZOPmpSPm5SQnJWRnJaSnZeTnpiTn5mUoJmVoZqWopuXopyXo52YpJ6ZpZ6app+bp6CbqKGcqaKdqaOeqqOfq6SfrKWgraahrqeir6ejr6iksKmksaqlsqums6yntKyota2otq6ptq+qt7CruLGsubGsurKtu7OuvLSvvLWwvbawvraxv7m5ubeywLizwbm0wrq0w7u1w7u2xLy3xb24xr64x7+5yL+6ycC7ycG8ysK8y8O9zMS+zcS/zsXAz8bA0MfB0MjC0cnD0snE08rE1MvF1czG1s3H1s7I187I2M/J2dDK2tHL29LM3NPN3ebm5iH+IFJlc2l6ZWQgd2l0aCBlemdpZi5jb20gR0lGIG1ha2VyACwAAAAAVAGWAAAI/wD9CRxIsKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsqTJkyhTqlzJsqXLlzBjypxJs6bNmzhz6tzJs6fPn0CDCh1KtKjRo0iTKl3KtKnTp1CjSp1KtarVq1izat3KtavXr2DDih1LtqzZs2jTql3Ltq3bt3Djyp1Lt67du3jz6t3Lt6/fv4ADCx5MuLBhkv3u9TvMOGg/bKTmNZ7cc1ybH9Ioa8ZZjo4BBorobR4t8xscAwAA2CC2mLRrlf2mdRGQGgABOOte6zap7xeSALVTexClb7dxkPA0rQgeHMiy49A1Pp4zgXnwAWbMRd9O0V4sIwSsM/930Mge9/MN+40b9EG8+A+u9qGffzDfLycF3Luvcaw1/fn9qCMJCPrpF0AU2fj333b6IMPFAQUWGAAa2i0YXT/saOICcBEWaEAh8Vh43D7SqNFAhyhK0Mk9IupWzyw+0IYiiiLIwk+LpK0DCYEz9pgDMgrieFg/28jBQI9IBsAENkI2xo8zXISHJJICpKFOk4btY4wTMk6J5AKJ1IPlYPsAQwSHXk7pgSryjfkXP8OcmWaaAfDAjJt+9RNNE2jOOaUAY1SIp17jlDGAn3468Ih5g+JVDyMLIOpnADAAE2SjcfUDjAuSIjoAGehgWlc7afTZ6ZQBRNBJm6LC1Q8v7Z3/OmcAAhCxTatx1bOHqbImiYAlrOLK1jdE9DqpAEOII2xb/QhDgbF+CoBAK8uelJhiQfHTCrSSuiFZtQgNo8q45MqTEDmskDtuOALxU8sIQiTTkjnqqstKPfG8Ui85/vCjCbeI3nAruAd5s8wYwVmDkD16BKdFMO4IJI8IqaEh2krxKMMImi900kw++EDjh21mBPOOP/10IgCvAKO4wC6XEizQJcEZc1A/tSRQmwX8DiQPDKmp8S1L7RyZWir++UvAJBejjIoBXbbcYwCZFCdzQfzEwSMAvhwkjhLPphZHsPzYcoUYz7n0TG0hKCtQP8WgMIrVAwVjQdRSzxgIo1cP/0TOGl3U5opB9xCSBhO1vWJQP+6Y61I/pNSGxrf8FLMDLDcWVA4SeOfdIR1D9+2PMZ1YUpshBfXTSxG3pJBaANfgdI8atVkikD65HNFLzPg8YgDLnrtnR9OiI1JML7WBofkTseTCoQ5iojyPOuNY4wormfMjDzriQDPKNPv8okgqLBKkTzWYKEJKPdv4gso0Ea2DQWoCyHvPKU8sE7NA1sgZfIcBAATf+gaPMLCDGRACwA8Ikg9H2GEeiKhNI9rUDDYkgQSHysRAeHGGIXAgAAYoRyp0doHMDAQeljABBg4hh1fQAAAXgEZEflGbHJRDHpG4wjX2d7tUxOp/BSIAJ/+CdbVq7OEe0+BAaljAqmIAARvtuEJtcDEQepQDEqlhwDMGEo9sKCE1YVCGB1KjgC0KZB17EIACaLEPdzQBNUEYIEP4QbPU3AEcfZiAwhgCD0ZEAIgF0kDXRCcQUZzCH+KQQWo+UCF1TAEV/NBG2BggKIHMIjVICNVAygGE1HyiDNZIhREU8S16AAI4jsiHQIqQmkJExB5IqM0YwhCAANjCIepARAbUlAEODeBQiLpCz0SXjzjEDpapkUBm9kGJNJgrFbXhQvTa1Qg7KkgaEgDAAPjwi37BQ5X9OgVqgFChfXTSAMOIyDeA6YAv1CYLjmPIO0ZRA+AxRwBMwAQOakP/AyJ0rkcPEAURZSYOK0TMH1IEgAFs1gwcwG8fgKiNJxSUDxukRnEEKcUSzwBOgnjjhQAYRWvA4ToSsONt8GiHSldaPoLUojZOYEYP6DfIhuCDGXoowT/ppwJAZKMXW3tCL2BgTwmZoRyEFMguGJE5NrwOGPCggidulI4f1MZmBMEGcD6wx7fVITUGAIZB9jGJ1KxgmMJADRlOKAUjuPWtYiXIPvpQmz/QUZZyVEg/5GGMRkzBBBMwwAAI4IASUAESzaCHPhiBgNokQR20MEGahNAMHi6rH4WoxUAcUZtQaOIK8BAINIBpgnYU5JIAwELozDGE1Oggr+uIQWoGQbc8/6RGswLJhqkE4LaB2KMEtZmFP77BKW1i9SH90Ic6pMGLVrDCFb6YRjuslg4qoGkI6MjHK15QVOYEgAjCGKjM1AGFYdKiNkpIwZ0E0ona7AEfBOGHG1IjiII4o7EACMWlfFEbWgwkHLIFQOwEIgvr0CC0BGlGbUCgjX4lojZu6GhE+kFhfgQpGCgIDg74tQ9mcEFnHVLAGKSRuaRGgwsIHh0wARCJ1tQjDrU5JEHqUR0BpJMglKgNkwwCCjKySyCVAI4GSmyNWxj5yMKgm0BUURsvfOsaPBKAMzqCD0LkpzYyGFiASsGEBrAsAAw4QilMm9SBUIIR/nFGNgFQhIP6A/8dFNNmNgqCjNTcQBz1UMSV7EE7ADQhr/5oLwBQgFR/WOMFFfNHOabcEH5goTaHGMhca5MH8VYEHF8MjgiiQZAA8QIRUaABCUAwghgwYQ+2QIdlCdYOKmhwIN2QbASO6w/kpYYHZB6IbQGwhnyAAqPekGx+Y+aJ1DyAGvxIRxw6CQBSxIMNA2YIO6QUgGIkOGwCiDZG+IEKCzAnA8I4yD7iUb1pSOMb7FBymftViwAkoqPy2KcruQjj1DzBzQIxGhD6YIjy3eJ1zUAIMKR0BEgkoRleSE0axAALh/DDFLUhwHoFwo4o1AYQ6q7IOshgqgYId90SmUcjvK2APuzCakf/qEFuhosKMARHAIiABXwFknAATMAPIeqXIFwbuhn3ATUAyEEw+FGIQ4XAFKsWiDccceXUSCEV7AgfJMb4OkME/CL9yAUJrEOASpQY5A65BzPGPnZpWA0QNUUH2dfOjGbQLR2deIQx+KaPaYzdGl8viDxwoQhU/Pgdn1gEp3HJdrLLYx/VKDwzvIGRdqyBVwHoQ8bBPpiybY05BqU8Y8yxBeDZYGCaJ4w9MOEA/WRgd6GvPC8QrZ8CQGLyqX8cP/RxD3rEox3rQEc5yCGOcIDjG8D3hvCH7w3gAx8c4hgHOcyRDna8Qx71yMc+ko71PXVXC+mIfUn2UY92lMMb28CG/zSOoYtVbMIRhQjEH/hwhzioAQxYcAIRdACDE3igAg9AQAFWxiFaDcAACyABGjACK1ADP4AEU8AFZdAGdKAHfgAIgoAIlDAKsxAMzWAN2dAN4pAO8YAP1Jc60rAFUlIgJYB62ncR/FAP6eAN1xANw9AKkwAIejAHZ1AFPiACQAdIXhIAEwADSeAFbnAHfIAIoJALy1AN2TAO7yBhA4EPxUAFIxhEftBzJ6gQ+sAO3TANyRALkHAHbyAGSqACCZQmBBABH8ACOUAET5AFY8AGdLAHgWAIiwAJk2AJmJAJmqAJmXAJlSAJjpAIhOAHdwAHZ+AFVKAEPyADKqQA3WUgF/+wA1egBnIACKDgC89QDc8wCTewU+IxA8XwgWCHD+ZADcswC4vQBmPgBCsQhRHCACggBFxAB4vgCYbkCrYQDMyQDeegUu7gDu8AD/EwD/RQD/aAD/mgD/tgYRTWaf3AD/ywD/qQD/dgD/UwD/IQD/DwDu6gUusADtNgDLwgC6pACqFwCYCABk9QAxqwYh1ihiDWIwQgByunffXgDcywC5BwBlgABBoAQBwABGRgCKKQCrIADNKADsAIffdgaTPRD/lgD/Rwje7QDciAC61wCpdgB1PwApFyKhzgCYDmJC7BD+jQDLwACV3QBC/QdOJBACtwBYJwCrAQXewwjAs5Ffz/8JARGQ7IYAutkAluIATe5iUsYArE4xIzRxj8cA7IAAt4kAQ18EfuQQAyYAaZIAu+YA3xcA/SVxbJNY3mkAy3wAqA0AT92CEkkAjNEE/CUg/RYAuB8AMqoADugQBAwAeu0AvTMA/ICIplMXv5UA7HcAuZ8AUjoB8UEANaAArCQA55JyT9EA/GgApY8AFG83IKsAJqgAq/YA33YGGBUWHpkAy5sAhKUAG/c08Y4AKFgAvbwJDbwQ/zkAyk8AS8ogAjEAR6UAvJkA5+CRj4YA3BwAlcAAN3Yx0XAAi3AA768JtDcg/b8ApvcJn0AwJAwAasoAzn4JyMcQ/VAAx+FQMP/2AdOWAJw/AOsMkY2qMMmhAEzGEALkAFhBAM15CUIpIOzJAKaEAEuxQcDVAHsDAOHkgZ+wAPwuAIrhNxL9AFjXAM3sCd3BEP0RALcZAE8xMcYIAK3xCSeRIPyPAIGbZgVjAIwdAN6Ykn7hANpcAGPYBfqSEGqUAO9tkX9qANncBKqTEAOhAHqXANbNk3/EAOx6AIWaBEqXEAeqAL7PCYdYEhuiAHpadQTDAIxCAOJ3o18YANodAGIQoAPXAJ2MChbrEP4fAJmYYAUrAIy5B9VSgQ+OANrEAHKpAaF4AHw5BzcaEP2OAIQDMAScAIyzCPbVoQ+fANrBAHIQAAASAGtv2Qa2yxD9dwCBkWA4QgDOoAoZpnD90gCmJwJFkwC/h2Fv0QDo6wAg1gBq0wDlc6qAURD83gCPvUBbwwTWUBD6XQAy7QCM/wo6waEftwDrAgBgrQBtGAqU/RD8uQBUqQCuWwqr3KEPOgDIQQA5bgqF4RD5hABrmAp8+6EfrgDZSwBVfnFd/QCMRAq93aEfxQDqKgCjOKFewQDS2VriGRbOOqFcZKrxOmr/zar/76rwAbsAI7sARbsAZ7sAibsAq7sAzbsA77sBAbsRI7sRRbsRZ7sRibsRq7sRzbsR77sSAbsiI7siRbsiZ7siibsiq7sizbsi77sjAbszKLKwEBADs=")
+        self.LOGO = Label(self.frame6 ,image =self.logo,  background = '#d3cddd')
+
+        self.SOLVE = Button(self.frame8, relief = FLAT, width = 20 , height = 2 ,text = 'SOLVE' ,background = '#000000', foreground = '#d3cddd', font = 2 , command = self.SOLVE_SUDOKU)
+        self.NEW   = Button(self.frame8, relief = FLAT, width = 20 , height = 2 ,text = 'NEW'   ,background = '#000000', foreground = '#d3cddd', font = 2 , command = self.NEW_SUDOKU)
+        self.BACK  = Button(self.frame8, relief = FLAT, width = 20 , height = 2 ,text = 'BACK'  ,background = '#000000', foreground = '#d3cddd', font = 2 , command = self.BACKMENU)
+        self.SOLVE.grid(row = 2, column = 1, pady = 10)
+        self.NEW.grid(row = 3, column = 1, pady = 10)
+        self.BACK.grid(row = 4, column = 1, pady = 10)
+
+        self.frame1.grid(row= 1, column = 1)
+        self.frame2.grid(row= 2, column = 1)
+        self.frame3.grid(row= 2, column = 2)
+        self.frame4.grid(row= 2, column = 3)
+        self.frame5.grid(row= 2, column = 4)
+        self.frame6.grid(row= 1, column = 1)
+        self.frame7.grid(row= 2, column = 1)
+        self.frame8.grid(row= 3, column = 1)
+
+        self.frameC1.grid(row = 1, column = 1)
+        self.frameC2.grid(row = 1, column = 2)
+        self.frameC3.grid(row = 1, column = 3)
+        self.frameC4.grid(row = 1, column = 4)
+        self.frameC5.grid(row = 1, column = 5)
+
+        self.frameC1_1.grid(row = 1)
+        self.frameC1_2.grid(row = 2)
+        self.frameC1_3.grid(row = 3)
+        self.frameC1_4.grid(row = 4)
+        self.frameC1_5.grid(row = 5)
+
+        self.frameC3_1.grid(row = 1)
+        self.frameC3_2.grid(row = 2)
+        self.frameC3_3.grid(row = 3)
+        self.frameC3_4.grid(row = 4)
+        self.frameC3_5.grid(row = 5)
+
+        self.frameC5_1.grid(row = 1)
+        self.frameC5_2.grid(row = 2)
+        self.frameC5_3.grid(row = 3)
+        self.frameC5_4.grid(row = 4)
+        self.frameC5_5.grid(row = 5)
+
+
+        self.button1.grid(row= 1, column = 1)
+        self.button2.grid(row= 2, column = 1)
+        self.button3.grid(row= 3, column = 1)
+        self.button4.grid(row= 1, column = 2)
+        self.button5.grid(row= 2, column = 2)
+        self.button6.grid(row= 3, column = 2)
+        self.button7.grid(row= 1, column = 3)
+        self.button8.grid(row= 2, column = 3)
+        self.button9.grid(row= 3, column = 3)
+
+        self.button10.grid(row= 1, column = 1)
+        self.button11.grid(row= 2, column = 1)
+        self.button12.grid(row= 3, column = 1)
+        self.button13.grid(row= 1, column = 2)
+        self.button14.grid(row= 2, column = 2)
+        self.button15.grid(row= 3, column = 2)
+        self.button16.grid(row= 1, column = 3)
+        self.button17.grid(row= 2, column = 3)
+        self.button18.grid(row= 3, column = 3)
+
+        self.button19.grid(row= 1, column = 1)
+        self.button20.grid(row= 2, column = 1)
+        self.button21.grid(row= 3, column = 1)
+        self.button22.grid(row= 1, column = 2)
+        self.button23.grid(row= 2, column = 2)
+        self.button24.grid(row= 3, column = 2)
+        self.button25.grid(row= 1, column = 3)
+        self.button26.grid(row= 2, column = 3)
+        self.button27.grid(row= 3, column = 3)
+
+        self.button28.grid(row= 1, column = 1)
+        self.button29.grid(row= 2, column = 1)
+        self.button30.grid(row= 3, column = 1)
+        self.button31.grid(row= 1, column = 2)
+        self.button32.grid(row= 2, column = 2)
+        self.button33.grid(row= 3, column = 2)
+        self.button34.grid(row= 1, column = 3)
+        self.button35.grid(row= 2, column = 3)
+        self.button36.grid(row= 3, column = 3)
+
+        self.button37.grid(row= 1, column = 1)
+        self.button38.grid(row= 2, column = 1)
+        self.button39.grid(row= 3, column = 1)
+        self.button40.grid(row= 1, column = 2)
+        self.button41.grid(row= 2, column = 2)
+        self.button42.grid(row= 3, column = 2)
+        self.button43.grid(row= 1, column = 3)
+        self.button44.grid(row= 2, column = 3)
+        self.button45.grid(row= 3, column = 3)
+
+        self.button46.grid(row= 1, column = 1)
+        self.button47.grid(row= 2, column = 1)
+        self.button48.grid(row= 3, column = 1)
+        self.button49.grid(row= 1, column = 2)
+        self.button50.grid(row= 2, column = 2)
+        self.button51.grid(row= 3, column = 2)
+        self.button52.grid(row= 1, column = 3)
+        self.button53.grid(row= 2, column = 3)
+        self.button54.grid(row= 3, column = 3)
+
+        self.button55.grid(row= 1, column = 1)
+        self.button56.grid(row= 2, column = 1)
+        self.button57.grid(row= 3, column = 1)
+        self.button58.grid(row= 1, column = 2)
+        self.button59.grid(row= 2, column = 2)
+        self.button60.grid(row= 3, column = 2)
+        self.button61.grid(row= 1, column = 3)
+        self.button62.grid(row= 2, column = 3)
+        self.button63.grid(row= 3, column = 3)
+
+        self.button64.grid(row= 1, column = 1)
+        self.button65.grid(row= 2, column = 1)
+        self.button66.grid(row= 3, column = 1)
+        self.button67.grid(row= 1, column = 2)
+        self.button68.grid(row= 2, column = 2)
+        self.button69.grid(row= 3, column = 2)
+        self.button70.grid(row= 1, column = 3)
+        self.button71.grid(row= 2, column = 3)
+        self.button72.grid(row= 3, column = 3)
+
+        self.button73.grid(row= 1, column = 1)
+        self.button74.grid(row= 2, column = 1)
+        self.button75.grid(row= 3, column = 1)
+        self.button76.grid(row= 1, column = 2)
+        self.button77.grid(row= 2, column = 2)
+        self.button78.grid(row= 3, column = 2)
+        self.button79.grid(row= 1, column = 3)
+        self.button80.grid(row= 2, column = 3)
+        self.button81.grid(row= 3, column = 3)
+
+        self.LOGO.grid(row = 1, column = 1)
+        self.AT1.grid(row  = 1, column = 1)
+    def check_lines(self, S):   
+        repitation = []
+        for x in range(9):
+            for y in range(9):
+                L = S[x]
+                if L.count(y+1)> 1 :
+                    repitation.append([L.count(y+1),y+1,x+1])
+        return repitation
+    def check_columne(self, S):
+        repitation = []
+        for x in range(9):
+            L = [S[i][x] for i in range(9) ]
+            for y in range(9):
+                if L.count(y+1)> 1 :
+                    repitation.append([L.count(y+1),y+1,x+1])
+        return repitation
+    def check_square(self, S):
+        i = 0
+        repitation = []
+        square_1 = [S[0][0], S[0][1], S[0][2], S[1][0], S[1][1], S[1][2], S[2][0], S[2][1], S[2][2]]
+        square_2 = [S[0][3], S[0][4], S[0][5], S[1][3], S[1][4], S[1][5], S[2][3], S[2][4], S[2][5]]
+        square_3 = [S[0][6], S[0][7], S[0][8], S[1][6], S[1][7], S[1][8], S[2][6], S[2][7], S[2][8]]
+        square_4 = [S[3][0], S[3][1], S[3][2], S[4][0], S[4][1], S[4][2], S[5][0], S[5][1], S[5][2]]
+        square_5 = [S[3][3], S[3][4], S[3][5], S[4][3], S[4][4], S[4][5], S[5][3], S[5][4], S[5][5]]
+        square_6 = [S[3][6], S[3][7], S[3][8], S[4][6], S[4][7], S[4][8], S[5][6], S[5][7], S[5][8]]
+        square_7 = [S[6][0], S[6][1], S[6][2], S[7][0], S[7][1], S[7][2], S[8][0], S[8][1], S[8][2]]
+        square_8 = [S[6][3], S[6][4], S[6][5], S[7][3], S[7][4], S[7][5], S[8][3], S[8][4], S[8][5]]
+        square_9 = [S[6][6], S[6][7], S[6][8], S[7][6], S[7][7], S[7][8], S[8][6], S[8][7], S[8][8]]
+        SQUARES  = [square_1, square_2, square_3, square_4, square_5, square_6, square_7, square_8, square_9]
+        for L in SQUARES :
+            i += 1
+            for x in range(9):
+                if L.count(x+1)>1 :
+                    repitation.append([L.count(x+1),x+1,i])
+        return repitation
+    def countEmpty(self, LIST):
+        n = 0
+        for l in LIST:
+            for c in l :
+                if c == 0:
+                    n += 1
+        return n
+    def NumberInSquares(self, LIST):
+        global SQUARESPOSITION
+        L = [[], [], [], [], [], [], [], [], []]
+        for SquarePosition in range(len(self.SQUARESPOSITION)):
+            for position in self.SQUARESPOSITION[SquarePosition] :
+                L[SquarePosition].append(LIST[position[0] - 1][position[1] - 1])
+        return L
+    def NumberPositionPossible(self, LIST):
+        global  SQUARESPOSITION
+        L = [[], [], [], [], [], [], [], [], []]
+        for num in range(1,10):
+            Line    = []
+            Columne = []
+            for line    in range(9):
+                if num not in LIST[line] :
+                    Line.append(line + 1)
+            for columne in range(9):
+                if num not in [LIST[l][columne] for l in range(9)] :
+                    Columne.append(columne + 1)
+            for l in Line : 
+                for c in Columne :
+                    if LIST[l - 1][c - 1] == 0 :
+                        for index in range(9):
+                            if [l,c] in self.SQUARESPOSITION[index] and num not in self.NumberInSquares(LIST)[index]:
+                                L[num - 1].append([num, l, c])
+        return L
+    def FillInListOfLine(self, LIST) :
+        L_L =  [[[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],]
+        for num in self.NumberPositionPossible(LIST):
+            for position in num :
+                L_L[position[1] - 1 ][position[0] - 1].append(position)
+        
+        WASTA = L_L
+        L_L = []
+        for i in range(1,10):
+            for Box in WASTA :
+                for BoxD in Box :
+                    if len(BoxD) == i :
+                        L_L.append(BoxD) 
+
+        for SN in self.FillInListOfSquare(LIST):
+            if [SN[0][1] for x in range(len(SN))] == [i[1] for i in SN]:
+                for x in L_L :
+                    for y in x :
+                        if [SN[0][0], SN[0][1]] == [y[0], y[1]] and y not in SN :
+                            x.remove(y)
+                
+            if [SN[0][2] for x in range(len(SN))] == [i[2] for i in SN]:
+                for x in L_L :
+                    for y in x :
+                        if [SN[0][0], SN[0][2]] == [y[0], y[2]] and y not in SN :
+                            x.remove(y)
+                        
+        WASTA = L_L
+        L_L = []
+        for i in range(1,10):
+            for Box in WASTA :
+                if len(Box) == i :
+                    L_L.append(Box) 
+        return L_L
+    def FillInListOfColumne(self, LIST) :
+        L_C =  [[[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],]
+        for num in self.NumberPositionPossible(LIST):
+            for position in num :
+                L_C[position[2] - 1 ][position[0] - 1].append(position)
+        
+        WASTA = L_C
+        L_C = []
+        for i in range(1,10):
+            for Box in WASTA :
+                for BoxD in Box :
+                    if len(BoxD) == i :
+                        L_C.append(BoxD) 
+
+        for SN in self.FillInListOfSquare(LIST):
+            if [SN[0][1] for x in range(len(SN))] == [i[1] for i in SN]:
+                for x in L_C :
+                    for y in x :
+                        if [SN[0][0], SN[0][1]] == [y[0], y[1]] and y not in SN :
+                            x.remove(y)
+                
+            if [SN[0][2] for x in range(len(SN))] == [i[2] for i in SN]:
+                for x in L_C :
+                    for y in x :
+                        if [SN[0][0], SN[0][2]] == [y[0], y[2]] and y not in SN :
+                            x.remove(y)
+                        
+        WASTA = L_C
+        L_C = []
+        for i in range(1,10):
+            for Box in WASTA :
+                if len(Box) == i :
+                    L_C.append(Box) 
+        return L_C
+    def FillInListOfSquare(self, LIST) :
+        global SQUARESPOSITION
+        
+        L_S =  [[[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],]
+        
+        for num in self.NumberPositionPossible(LIST):
+            for position in num :
+                for index in range(9):
+                    if [position[1],position[2]] in self.SQUARESPOSITION[index] :
+                        L_S[index][position[0] - 1].append(position)
+        WASTA = L_S
+        L_S = []
+        for i in range(1,10):
+            for Box in WASTA :
+                for BoxD in Box :
+                    if len(BoxD) == i :
+                        L_S.append(BoxD)
+        
+        
+        return L_S       
+    def FillInListOfPosition(self, LIST):
+        global SQUARESPOSITION
+        L_P =  [[[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],
+                [[], [], [], [], [], [], [], [], []],]
+        
+        for num in self.NumberPositionPossible(LIST): 
+            for position in num :     
+                L_P[ position[1] - 1 ][ position[2] - 1 ].append(position)
+            
+        WASTA = L_P
+        L_P = []
+        for i in range(1,10):
+            for Box in WASTA :
+                for BoxD in Box :
+                    if len(BoxD) == i :
+                        L_P.append(BoxD)
+        
+        for SN in self.FillInListOfSquare(LIST):
+            if [SN[0][1] for x in range(len(SN))] == [i[1] for i in SN]:
+                for x in L_P :
+                    for y in x :
+                        if [SN[0][0], SN[0][1]] == [y[0], y[1]] and y not in SN :
+                            x.remove(y)
+                
+            if [SN[0][2] for x in range(len(SN))] == [i[2] for i in SN]:
+                for x in L_P :
+                    for y in x :
+                        if [SN[0][0], SN[0][2]] == [y[0], y[2]] and y not in SN :
+                            x.remove(y)
+                        
+        WASTA = L_P
+        L_P = []
+        for i in range(1,10):
+            for Box in WASTA :
+                if len(Box) == i :
+                    L_P.append(Box) 
+        return L_P   
+    def Leave(self, LIST,LIST2):
+        for List in LIST :
+            if len(List) == 1: 
+                n = List[0][0]
+                l = List[0][1] - 1
+                c = List[0][2] - 1
+                LIST2[l][c] = n 
+    def solver(self, LIST):
+        self.Leave(self.FillInListOfLine(LIST), LIST)
+        self.Leave(self.FillInListOfColumne(LIST), LIST)
+        self.Leave(self.FillInListOfPosition(LIST), LIST)
+        self.Leave(self.FillInListOfSquare(LIST), LIST)
+    def TheEXPERTFunction(self, LIST,FUNCTION):
+        self.ListOfPosition = FUNCTION
+        self.indexListOfPosition = [len(x) for x in FUNCTION]
+        self.nombreOFlen2 = self.indexListOfPosition.count(2)
+        list_counter = [0 for x in range(self.nombreOFlen2)]
+        self.LIST_Copy = LIST
+        self.ListOfCoords = []
+        self.counter = 0 
+        for line in range(9):
+            for columne in range(9):
+                if LIST[line][columne] == 0 :
+                    self.ListOfCoords.append([line, columne])
+
+        for haha in range(1,self.nombreOFlen2):    
+            LISTO = [0 for x in range(haha) ]
+            for x in range(2**haha):
+                if self.counter != -1 :
+                    self.counter = 0
+                    for z in range(haha):
+                        zozo = self.ListOfPosition[z][LISTO[z]]
+                        n = zozo[0]
+                        l = zozo[1] - 1
+                        c = zozo[2] - 1
+                        self.LIST_Copy[l][c] = n 
+                    for i in range(haha):
+                        if LISTO[haha - 1 - i] == 0 :
+                            LISTO[haha - 1 - i] = 1
+                            break
+                        elif LISTO[haha - 1 - i] == 1 :
+                            LISTO[haha - 1 - i] = 0
+
+                    while  self.countEmpty(self.LIST_Copy) != 0  :
+                        self.solver(self.LIST_Copy)
+                        if len(self.FillInListOfLine(self.LIST_Copy))and len(self.FillInListOfColumne(self.LIST_Copy))and len(self.FillInListOfSquare(self.LIST_Copy))and len(self.FillInListOfPosition(self.LIST_Copy)):
+                            if len(self.FillInListOfLine(self.LIST_Copy)[0]) > 1 and len(self.FillInListOfColumne(self.LIST_Copy)[0]) > 1 and len(self.FillInListOfSquare(self.LIST_Copy)[0]) > 1 and len(self.FillInListOfPosition(self.LIST_Copy)[0]) > 1 :
+                                for coords in self.ListOfCoords :
+                                    l = coords[0] 
+                                    c = coords[1] 
+                                    self.LIST_Copy[l][c] = 0 
+                                self.counter = 1
+                                break
+                        elif len(self.check_columne(self.LIST_Copy)) != 0 or len(self.check_lines(self.LIST_Copy)) != 0 or len(self.check_square(self.LIST_Copy)) != 0 :
+                            for coords in self.ListOfCoords :
+                                l = coords[0] 
+                                c = coords[1] 
+                                self.LIST_Copy[l][c] = 0
+                            self.counter = 1
+                            break
+                        elif self.countEmpty(self.LIST_Copy) != 0 and len(self.FillInListOfPosition(self.LIST_Copy)) == 0:
+                            for coords in self.ListOfCoords :
+                                l = coords[0] 
+                                c = coords[1] 
+                                self.LIST_Copy[l][c] = 0
+                            self.counter = 1
+                            break
+                    if self.counter == 0 :
+                        self.counter = -1
+                        break
+                    elif self.counter == 1 :
+                        for coords in self.ListOfCoords :
+                            l = coords[0] 
+                            c = coords[1] 
+                            self.LIST_Copy[l][c] = 0
+            if self.countEmpty(self.LIST_Copy) == 0 :
+                break
+        LIST = self.LIST_Copy
+    def the_finale_solver(self,LIST):
+        while  self.countEmpty(LIST) != 0  :
+            self.solver(LIST)
+            if len(self.FillInListOfLine(LIST))and len(self.FillInListOfColumne(LIST))and len(self.FillInListOfSquare(LIST))and len(self.FillInListOfPosition(LIST)):
+                if len(self.FillInListOfLine(LIST)[0]) > 1 and len(self.FillInListOfColumne(LIST)[0]) > 1 and len(self.FillInListOfSquare(LIST)[0]) > 1 and len(self.FillInListOfPosition(LIST)[0]) > 1 :
+                    LIST_bigg = []
+                    
+                    LIST_line = [len(x) for x in self.FillInListOfLine(LIST) ].count(2)
+                    LIST_columne = [len(x) for x in self.FillInListOfColumne(LIST) ].count(2)
+                    LIST_position = [len(x) for x in self.FillInListOfPosition(LIST) ].count(2)
+                    LIST_square = [len(x) for x in self.FillInListOfSquare(LIST) ].count(2)
+
+                    DICTIONNAIRE = {LIST_line:self.FillInListOfLine(LIST), LIST_columne:self.FillInListOfColumne(LIST), LIST_position:self.FillInListOfPosition(LIST), LIST_square:self.FillInListOfSquare(LIST)}
+                    indexDic = sorted([LIST_line, LIST_columne, LIST_position, LIST_square])
+
+
+                    self.TheEXPERTFunction(LIST,DICTIONNAIRE[indexDic[0]])
+                    if self.countEmpty(LIST) != 0 :
+                        self.TheEXPERTFunction(LIST,DICTIONNAIRE[indexDic[1]])
+                    if self.countEmpty(LIST) != 0 :
+                        self.TheEXPERTFunction(LIST,DICTIONNAIRE[indexDic[2]])
+                    if self.countEmpty(LIST) != 0 :
+                        self.TheEXPERTFunction(LIST,DICTIONNAIRE[indexDic[3]])
+                    
+
+                    break
+    def SOLVE_SUDOKU(self):
+        global  button1  ,button2  ,button3  ,button4  ,button5  ,button6  ,button7  ,button8  ,button9   ,button10 ,button11 ,button12 ,button13 ,button14 ,button15 ,button16 ,button17 ,button18  ,button19 ,button20 ,button21 ,button22 ,button23 ,button24 ,button25 ,button26 ,button27 ,button28 ,button29 ,button30 ,button31 ,button32 ,button33 ,button34 ,button35 ,button36 ,button37 ,button38 ,button39 ,button40 ,button41 ,button42 ,button43 ,button44 ,button45 ,button46 ,button47 ,button48 ,button49 ,button50 ,button51 ,button52 ,button53 ,button54 ,button55 ,button56 ,button57 ,button58 ,button59 ,button60 ,button61 ,button62 ,button63 ,button64 ,button65 ,button66 ,button67 ,button68 ,button69 ,button70 ,button71 ,button72 ,button73 ,button74 ,button75 ,button76 ,button77 ,button78 ,button79 ,button80 ,button81
+        global  img1  ,img2  ,img3  ,img4  ,img5  ,img6  ,img7  ,img8  ,img9  ,img10 ,img11 ,img12 ,img13 ,img14 ,img15 ,img16 ,img17 ,img18 ,img19 ,img20 ,img21 ,img22 ,img23 ,img24 ,img25 ,img26 ,img27 ,img28 ,img29 ,img30 ,img31 ,img32 ,img33 ,img34 ,img35 ,img36 ,img37 ,img38 ,img39 ,img40 ,img41 ,img42 ,img43 ,img44 ,img45 ,img46 ,img47 ,img48 ,img49 ,img50 ,img51 ,img52 ,img53 ,img54 ,img55 ,img56 ,img57 ,img58 ,img59 ,img60 ,img61 ,img62 ,img63 ,img64 ,img65 ,img66 ,img67 ,img68 ,img69 ,img70 ,img71 ,img72 ,img73 ,img74 ,img75 ,img76 ,img77 ,img78 ,img79 ,img80 ,img81
+        global counter1 , counter2 , counter3 , counter4 , counter5 , counter6 , counter7 , counter8 , counter9 , counter10, counter11, counter12, counter13, counter14, counter15, counter16, counter17, counter18, counter19, counter20, counter21, counter22, counter23, counter24, counter25, counter26, counter27, counter28, counter29, counter30, counter31, counter32, counter33, counter34, counter35, counter36, counter37, counter38, counter39, counter40, counter41, counter42, counter43, counter44, counter45, counter46, counter47, counter48, counter49, counter50, counter51, counter52, counter53, counter54, counter55, counter56, counter57, counter58, counter59, counter60, counter61, counter62, counter63, counter64, counter65, counter66, counter67, counter68, counter69, counter70, counter71, counter72, counter73, counter74, counter75, counter76, counter77, counter78, counter79, counter80, counter81
+        global SQUARESPOSITION, ATB, AT1, LIST_DES_IMAGES
+
+        suduku = [  [self.counter1 , self.counter4 , self.counter7 ,   self.counter28, self.counter31, self.counter34,   self.counter55, self.counter58, self.counter61],
+                    [self.counter2 , self.counter5 , self.counter8 ,   self.counter29, self.counter32, self.counter35,   self.counter56, self.counter59, self.counter62],
+                    [self.counter3 , self.counter6 , self.counter9 ,   self.counter30, self.counter33, self.counter36,   self.counter57, self.counter60, self.counter63],
+
+                    [self.counter10, self.counter13, self.counter16,   self.counter37, self.counter40, self.counter43,   self.counter64, self.counter67, self.counter70],
+                    [self.counter11, self.counter14, self.counter17,   self.counter38, self.counter41, self.counter44,   self.counter65, self.counter68, self.counter71],
+                    [self.counter12, self.counter15, self.counter18,   self.counter39, self.counter42, self.counter45,   self.counter66, self.counter69, self.counter72],
+
+                    [self.counter19, self.counter22, self.counter25,   self.counter46, self.counter49, self.counter52,   self.counter73, self.counter76, self.counter79],
+                    [self.counter20, self.counter23, self.counter26,   self.counter47, self.counter50, self.counter53,   self.counter74, self.counter77, self.counter80],
+                    [self.counter21, self.counter24, self.counter27,   self.counter48, self.counter51, self.counter54,   self.counter75, self.counter78, self.counter81],]
+        SUDOKU = [  [0, 0, 0,   0, 0, 0,   0, 0, 0],
+                    [0, 0, 0,   0, 0, 0,   0, 0, 0],
+                    [0, 0, 0,   0, 0, 0,   0, 0, 0],
+
+                    [0, 0, 0,   0, 0, 0,   0, 0, 0],
+                    [0, 0, 0,   0, 0, 0,   0, 0, 0],
+                    [0, 0, 0,   0, 0, 0,   0, 0, 0],
+
+                    [0, 0, 0,   0, 0, 0,   0, 0, 0],
+                    [0, 0, 0,   0, 0, 0,   0, 0, 0],
+                    [0, 0, 0,   0, 0, 0,   0, 0, 0],]
+
+        COLUMNE = self.check_columne(suduku)
+        LINE    =   self.check_lines(suduku)
+        SQUARE  =  self.check_square(suduku)
+
+        if len(LINE):
+            num_button = LINE[0][0]
+            num = LINE[0][1]
+            line = LINE[0][2]
+            index  = []
+            for x in range(9):
+                if suduku[line - 1][x] == num :
+                    if [line , x+1]   == [1,1]:
+                        self.button1.destroy()
+                        self.img1 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button1  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img1 , command = self.plusun1 )
+                        self.button1.grid(row= 1, column = 1)
+                    elif [line , x+1] == [2,1] :
+                        self.button2.destroy()
+                        self.img2 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button2  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img2 , command = self.plusun2 )
+                        self.button2.grid(row= 2, column = 1)
+                    elif [line , x+1] == [3,1] :
+                        self.button3.destroy()
+                        self.img3 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button3  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img3 , command = self.plusun3 )
+                        self.button3.grid(row= 3, column = 1)
+
+                                    
+                    elif [line , x+1] == [1,2] :
+                        self.button4.destroy()
+                        self.img4 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button4  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img4 , command = self.plusun4 )
+                        self.button4.grid(row= 1, column = 2)
+                    elif [line , x+1] == [2,2] :
+                        self.button5.destroy()
+                        self.img5 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button5  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img5 , command = self.plusun5 )
+                        self.button5.grid(row= 2, column = 2)
+                    elif [line , x+1] == [3,2] :
+                        self.button6.destroy()
+                        self.img6 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button6  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img6 , command = self.plusun6 )
+                        self.button6.grid(row= 3, column = 2)
+
+                                    
+                    elif [line , x+1] == [1,3] :
+                        self.button7.destroy()
+                        self.img7 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button7  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img7 , command = self.plusun7 )
+                        self.button7.grid(row= 1, column = 3)
+                    elif [line , x+1] == [2,3] :
+                        self.button8.destroy()
+                        self.img8 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button8  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img8 , command = self.plusun8 )
+                        self.button8.grid(row= 2, column = 3)
+                    elif [line , x+1] == [3,3] :
+                        self.button9.destroy()
+                        self.img9 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button9  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img9 , command = self.plusun9 )
+                        self.button9.grid(row= 3, column = 3)
+
+
+                    elif [line , x+1] == [4,1] :
+                        self.button10.destroy()
+                        self.img10 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button10  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img10 , command = self.plusun10 )
+                        self.button10.grid(row= 1, column = 1)
+                    elif [line , x+1] == [5,1] :
+                        self.button11.destroy()
+                        self.img11 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button11  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img11 , command = self.plusun11 )
+                        self.button11.grid(row= 2, column = 1)
+                    elif [line , x+1] == [6,1] :
+                        self.button12.destroy()
+                        self.img12 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button12  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img12 , command = self.plusun12 )
+                        self.button12.grid(row= 3, column = 1)
+
+                    
+                    elif [line , x+1] == [4,2] :
+                        self.button13.destroy()
+                        self.img13 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button13  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img13 , command = self.plusun13 )
+                        self.button13.grid(row= 1, column = 2)
+                    elif [line , x+1] == [5,2] :
+                        self.button14.destroy()
+                        self.img14 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button14  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img14 , command = self.plusun14 )
+                        self.button14.grid(row= 2, column = 2)
+                    elif [line , x+1] == [6,2] :
+                        self.button15.destroy()
+                        self.img15 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button15  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img15 , command = self.plusun15 )
+                        self.button15.grid(row= 3, column = 2)
+
+                    
+                    elif [line , x+1] == [4,3] :
+                        self.button16.destroy()
+                        self.img16 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button16  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img16 , command = self.plusun16 )
+                        self.button16.grid(row= 1, column = 3)
+                    elif [line , x+1] == [5,3] :
+                        self.button17.destroy()
+                        self.img17 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button17  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img17 , command = self.plusun17 )
+                        self.button17.grid(row= 2, column = 3)
+                    elif [line , x+1] == [6,3] :
+                        self.button18.destroy()
+                        self.img18 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button18  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img18 , command = self.plusun18 )
+                        self.button18.grid(row= 3, column = 3)
+
+                    
+                    elif [line , x+1] == [7,1] :
+                        self.button19.destroy()
+                        self.img19 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button19  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img19 , command = self.plusun19 )
+                        self.button19.grid(row= 1, column = 1)
+                    elif [line , x+1] == [8,1] :
+                        self.button20.destroy()
+                        self.img20 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button20  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img20 , command = self.plusun20 )
+                        self.button20.grid(row= 2, column = 1)
+                    elif [line , x+1] == [9,1] :
+                        self.button21.destroy()
+                        self.img21 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button21  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img21 , command = self.plusun21 )
+                        self.button21.grid(row= 3, column = 1)
+
+                    
+                    elif [line , x+1] == [7,2] :
+                        self.button22.destroy()
+                        self.img22 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button22  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img22 , command = self.plusun22 )
+                        self.button22.grid(row= 1, column = 2)
+                    elif [line , x+1] == [8,2] :
+                        self.button23.destroy()
+                        self.img23 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button23  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img23 , command = self.plusun23 )
+                        self.button23.grid(row= 2, column = 2)
+                    elif [line , x+1] == [9,2] :
+                        self.button24.destroy()
+                        self.img24 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button24  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img24 , command = self.plusun24 )
+                        self.button24.grid(row= 3, column = 2)
+
+                    
+                    elif [line , x+1] == [7,3] :
+                        self.button25ro.desty()
+                        self.img25 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button25  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img25 , command = self.plusun25 )
+                        self.button25.grid(row= 1, column = 3)
+                    elif [line , x+1] == [8,3] :
+                        self.button26.destroy()
+                        self.img26 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button26  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img26 , command = self.plusun26 )
+                        self.button26.grid(row= 2, column = 3)
+                    elif [line , x+1] == [9,3] :
+                        self.button27.destroy()
+                        self.img27 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button27  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img27 , command = self.plusun27 )
+                        self.button27.grid(row= 3, column = 3)
+
+                    
+                    elif [line , x+1] == [1,4] :
+                        self.button28.destroy()
+                        self.img28 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button28  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img28 , command = self.plusun28 )
+                        self.button28.grid(row= 1, column = 1)
+                    elif [line , x+1] == [2,4] :
+                        self.button29.destroy()
+                        self.img29 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button29  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img29 , command = self.plusun29 )
+                        self.button29.grid(row= 2, column = 1)
+                    elif [line , x+1] == [3,4] :
+                        self.button30.destroy()
+                        self.img30 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button30  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img30 , command = self.plusun30 )
+                        self.button30.grid(row= 3, column = 1)
+
+                    
+                    elif [line , x+1] == [1,5] :
+                        self.button31.destroy()
+                        self.img31 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button31  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img31 , command = self.plusun31 )
+                        self.button31.grid(row= 1, column = 2)
+                    elif [line , x+1] == [2,5] :
+                        self.button32.destroy()
+                        self.img32 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button32  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img32 , command = self.plusun32 )
+                        self.button32.grid(row= 2, column = 2)
+                    elif [line , x+1] == [3,5] :
+                        self.button33.destroy()
+                        self.img33 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button33  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img33 , command = self.plusun33 )
+                        self.button33.grid(row= 3, column = 2)
+
+                    
+                    elif [line , x+1] == [1,6] :
+                        self.button34.destroy()
+                        self.img34 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button34  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img34 , command = self.plusun34 )
+                        self.button34.grid(row= 1, column = 3)
+                    elif [line , x+1] == [2,6] :
+                        self.button35.destroy()
+                        self.img35 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button35  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img35 , command = self.plusun35 )
+                        self.button35.grid(row= 2, column = 3)
+                    elif [line , x+1] == [3,6] :
+                        self.button36.destroy()
+                        self.img36 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button36  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img36 , command = self.plusun36 )
+                        self.button36.grid(row= 3, column = 3)
+
+                    
+                    elif [line , x+1] == [4,4] :
+                        self.button37.destroy()
+                        self.img37 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button37  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img37 , command = self.plusun37 )
+                        self.button37.grid(row= 1, column = 1)
+                    elif [line , x+1] == [5,4] :
+                        self.button38.destroy()
+                        self.img38 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button38  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img38 , command = self.plusun38 )
+                        self.button38.grid(row= 2, column = 1)
+                    elif [line , x+1] == [6,4] :
+                        self.button39.destroy()
+                        self.img39 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button39  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img39 , command = self.plusun39 )
+                        self.button39.grid(row= 3, column = 1)
+
+                    
+                    elif [line , x+1] == [4,5] :
+                        self.button40.destroy()
+                        self.img40 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button40  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img40 , command = self.plusun40 )
+                        self.button40.grid(row= 1, column = 2)
+                    elif [line , x+1] == [5,5] :
+                        self.button41.destroy()
+                        self.img41 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button41  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img41 , command = self.plusun41 )
+                        self.button41.grid(row= 2, column = 2)
+                    elif [line , x+1] == [6,5] :
+                        self.button42.destroy()
+                        self.img42 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button42  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img42 , command = self.plusun42 )
+                        self.button42.grid(row= 3, column = 2)
+
+                    
+                    elif [line , x+1] == [4,6] :
+                        self.button43.destroy()
+                        self.img43 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button43  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img43 , command = self.plusun43 )
+                        self.button43.grid(row= 1, column = 3)
+                    elif [line , x+1] == [5,6] :
+                        self.button44.destroy()
+                        self.img44 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button44  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img44 , command = self.plusun44 )
+                        self.button44.grid(row= 2, column = 3)
+                    elif [line , x+1] == [6,6] :
+                        self.button45.destroy()
+                        self.img45 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button45  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img45 , command = self.plusun45 )
+                        self.button45.grid(row= 3, column = 3)
+
+                    
+                    elif [line , x+1] == [7,4] :
+                        self.button46.destroy()
+                        self.img46 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button46  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img46 , command = self.plusun46 )
+                        self.button46.grid(row= 1, column = 1)
+                    elif [line , x+1] == [8,4] :
+                        self.button47.destroy()
+                        self.img47 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button47  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img47 , command = self.plusun47 )
+                        self.button47.grid(row= 2, column = 1)
+                    elif [line , x+1] == [9,4] :
+                        self.button48.destroy()
+                        self.img48 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button48  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img48 , command = self.plusun48 )
+                        self.button48.grid(row= 3, column = 1)
+
+                    
+                    elif [line , x+1] == [7,5] :
+                        self.button49.destroy()
+                        self.img49 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button49  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img49 , command = self.plusun49 )
+                        self.button49.grid(row= 1, column = 2)
+                    elif [line , x+1] == [8,5] :
+                        self.button50.destroy()
+                        self.img50 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button50  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img50 , command = self.plusun50 )
+                        self.button50.grid(row= 2, column = 2)
+                    elif [line , x+1] == [9,5] :
+                        self.button51.destroy()
+                        self.img51 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button51  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img51 , command = self.plusun51 )
+                        self.button51.grid(row= 3, column = 2)
+
+                    
+                    elif [line , x+1] == [7,6] :
+                        self.button52.destroy()
+                        self.img52 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button52  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img52 , command = self.plusun52 )
+                        self.button52.grid(row= 1, column = 3)
+                    elif [line , x+1] == [8,6] :
+                        self.button53.destroy()
+                        self.img53 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button53  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img53 , command = self.plusun53 )
+                        self.button53.grid(row= 2, column = 3)
+                    elif [line , x+1] == [9,6] :
+                        self.button54.destroy()
+                        self.img54 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button54  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img54 , command = self.plusun54 )
+                        self.button54.grid(row= 3, column = 3)
+                    
+                    
+                    elif [line , x+1] == [1,7] :
+                        self.button55.destroy()
+                        self.img55 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button55  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img55 , command = self.plusun55 )
+                        self.button55.grid(row= 1, column = 1)
+                    elif [line , x+1] == [2,7] :
+                        self.button56.destroy()
+                        self.img56 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button56  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img56 , command = self.plusun56 )
+                        self.button56.grid(row= 2, column = 1)
+                    elif [line , x+1] == [3,7] :
+                        self.button57.destroy()
+                        self.img57 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button57  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img57 , command = self.plusun57 )
+                        self.button57.grid(row= 3, column = 1)
+
+                    
+                    elif [line , x+1] == [1,8] :
+                        self.button58.destroy()
+                        self.img58 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button58  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img58 , command = self.plusun58 )
+                        self.button58.grid(row= 1, column = 2)
+                    elif [line , x+1] == [2,8] :
+                        self.button59.destroy()
+                        self.img59 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button59  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img59 , command = self.plusun59 )
+                        self.button59.grid(row= 2, column = 2)
+                    elif [line , x+1] == [3,8] :
+                        self.button60.destroy()
+                        self.img60 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button60  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img60 , command = self.plusun60 )
+                        self.button60.grid(row= 3, column = 2)
+
+                    
+                    elif [line , x+1] == [1,9] :
+                        self.button61.destroy()
+                        self.img61 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button61  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img61 , command = self.plusun61 )
+                        self.button61.grid(row= 1, column = 3)
+                    elif [line , x+1] == [2,9] :
+                        self.button62.destroy()
+                        self.img62 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button62  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img62 , command = self.plusun62 )
+                        self.button62.grid(row= 2, column = 3)
+                    elif [line , x+1] == [3,9] :
+                        self.button63.destroy()
+                        self.img63 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button63  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img63 , command = self.plusun63 )
+                        self.button63.grid(row= 3, column = 3)
+
+                    
+                    elif [line , x+1] == [4,7] :
+                        self.button64.destroy()
+                        self.img64 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button64  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img64 , command = self.plusun64 )
+                        self.button64.grid(row= 1, column = 1)
+                    elif [line , x+1] == [5,7] :
+                        self.button65.destroy()
+                        self.img65 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button65  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img65 , command = self.plusun65 )
+                        self.button65.grid(row= 2, column = 1)
+                    elif [line , x+1] == [6,7] :
+                        self.button66.destroy()
+                        self.img66 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button66  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img66 , command = self.plusun66 )
+                        self.button66.grid(row= 3, column = 1)
+
+                    
+                    elif [line , x+1] == [4,8] :
+                        self.button67.destroy()
+                        self.img67 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button67  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img67 , command = self.plusun67 )
+                        self.button67.grid(row= 1, column = 2)
+                    elif [line , x+1] == [5,8] :
+                        self.button68.destroy()
+                        self.img68 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button68  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img68 , command = self.plusun68 )
+                        self.button68.grid(row= 2, column = 2)
+                    elif [line , x+1] == [6,8] :
+                        self.button69.destroy()
+                        self.img69 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button69  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img69 , command = self.plusun69 )
+                        self.button69.grid(row= 3, column = 2)
+
+                    
+                    elif [line , x+1] == [4,9] :
+                        self.button70.destroy()
+                        self.img70 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button70  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img70 , command = self.plusun70 )
+                        self.button70.grid(row= 1, column = 3)
+                    elif [line , x+1] == [5,9] :
+                        self.button71.destroy()
+                        self.img71 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button71  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img71 , command = self.plusun71 )
+                        self.button71.grid(row= 2, column = 3)
+                    elif [line , x+1] == [6,9] :
+                        self.button72.destroy()
+                        self.img72 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button72  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img72 , command = self.plusun72 )
+                        self.button72.grid(row= 3, column = 3)
+
+                    
+                    elif [line , x+1] == [7,7] :
+                        self.button73.destroy()
+                        self.img73 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button73  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img73 , command = self.plusun73 )
+                        self.button73.grid(row= 1, column = 1)
+                    elif [line , x+1] == [8,7] :
+                        self.button74.destroy()
+                        self.img74 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button74  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img74 , command = self.plusun74 )
+                        self.button74.grid(row= 2, column = 1)
+                    elif [line , x+1] == [9,7] :
+                        self.button75.destroy()
+                        self.img75 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button75  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img75 , command = self.plusun75 )
+                        self.button75.grid(row= 3, column = 1)
+
+                    
+                    elif [line , x+1] == [7,8] :
+                        self.button76.destroy()
+                        self.img76 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button76  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img76 , command = self.plusun76 )
+                        self.button76.grid(row= 1, column = 2)
+                    elif [line , x+1] == [8,8] :
+                        self.button77.destroy()
+                        self.img77 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button77  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img77 , command = self.plusun77 )
+                        self.button77.grid(row= 2, column = 2)
+                    elif [line , x+1] == [9,8] :
+                        self.button78.destroy()
+                        self.img78 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button78  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img78 , command = self.plusun78 )
+                        self.button78.grid(row= 3, column = 2)
+
+                    
+                    elif [line , x+1] == [7,9] :
+                        self.button79.destroy()
+                        self.img79 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button79  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img79 , command = self.plusun79 )
+                        self.button79.grid(row= 1, column = 3)
+                    elif [line , x+1] == [8,9] :
+                        self.button80.destroy()
+                        self.img80 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button80  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img80 , command = self.plusun80 )
+                        self.button80.grid(row= 2, column = 3)
+                    elif [line , x+1] == [9,9] :
+                        self.button81.destroy()
+                        self.img81 = PhotoImage(data = self.LIST_DES_IMAGESF[LINE[0][1]])
+                        self.button81  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img81 , command = self.plusun81 )
+                        self.button81.grid(row= 3, column = 3)
+        elif len(COLUMNE):
+            num_button = COLUMNE[0][0]
+            num = COLUMNE[0][1]
+            columne = COLUMNE[0][2]
+            index  = []
+            for x in range(9):
+                if suduku[x][columne - 1] == num :
+                    if [x + 1 , columne] == [1,1]:
+                        self.button1.destroy()
+                        self.img1 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button1  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img1 , command = self.plusun1 )
+                        self.button1.grid(row= 1, column = 1)
+                    elif [x + 1 , columne] == [2,1] :
+                        self.button2.destroy()
+                        self.img2 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button2  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img2 , command = self.plusun2 )
+                        self.button2.grid(row= 2, column = 1)
+                    elif [x + 1 , columne] == [3,1] :
+                        self.button3.destroy()
+                        self.img3 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button3  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img3 , command = self.plusun3 )
+                        self.button3.grid(row= 3, column = 1)
+
+                                    
+                    elif [x + 1 , columne] == [1,2] :
+                        self.button4.destroy()
+                        self.img4 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button4  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img4 , command = self.plusun4 )
+                        self.button4.grid(row= 1, column = 2)
+                    elif [x + 1 , columne] == [2,2] :
+                        self.button5.destroy()
+                        self.img5 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button5  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img5 , command = self.plusun5 )
+                        self.button5.grid(row= 2, column = 2)
+                    elif [x + 1 , columne] == [3,2] :
+                        self.button6.destroy()
+                        self.img6 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button6  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img6 , command = self.plusun6 )
+                        self.button6.grid(row= 3, column = 2)
+
+                                    
+                    elif [x + 1 , columne] == [1,3] :
+                        self.button7.destroy()
+                        self.img7 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button7  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img7 , command = self.plusun7 )
+                        self.button7.grid(row= 1, column = 3)
+                    elif [x + 1 , columne] == [2,3] :
+                        self.button8.destroy()
+                        self.img8 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button8  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img8 , command = self.plusun8 )
+                        self.button8.grid(row= 2, column = 3)
+                    elif [x + 1 , columne] == [3,3] :
+                        self.button9.destroy()
+                        self.img9 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button9  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img9 , command = self.plusun9 )
+                        self.button9.grid(row= 3, column = 3)
+
+
+                    elif [x + 1 , columne] == [4,1] :
+                        self.button10.destroy()
+                        self.img10 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button10  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img10 , command = self.plusun10 )
+                        self.button10.grid(row= 1, column = 1)
+                    elif [x + 1 , columne] == [5,1] :
+                        self.button11.destroy()
+                        self.img11 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button11  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img11 , command = self.plusun11 )
+                        self.button11.grid(row= 2, column = 1)
+                    elif [x + 1 , columne] == [6,1] :
+                        self.button12.destroy()
+                        self.img12 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button12  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img12 , command = self.plusun12 )
+                        self.button12.grid(row= 3, column = 1)
+
+                    
+                    elif [x + 1 , columne] == [4,2] :
+                        self.button13.destroy()
+                        self.img13 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button13  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img13 , command = self.plusun13 )
+                        self.button13.grid(row= 1, column = 2)
+                    elif [x + 1 , columne] == [5,2] :
+                        self.button14.destroy()
+                        self.img14 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button14  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img14 , command = self.plusun14 )
+                        self.button14.grid(row= 2, column = 2)
+                    elif [x + 1 , columne] == [6,2] :
+                        self.button15.destroy()
+                        self.img15 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button15  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img15 , command = self.plusun15 )
+                        self.button15.grid(row= 3, column = 2)
+
+                    
+                    elif [x + 1 , columne] == [4,3] :
+                        self.button16.destroy()
+                        self.img16 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button16  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img16 , command = self.plusun16 )
+                        self.button16.grid(row= 1, column = 3)
+                    elif [x + 1 , columne] == [5,3] :
+                        self.button17.destroy()
+                        self.img17 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button17  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img17 , command = self.plusun17 )
+                        self.button17.grid(row= 2, column = 3)
+                    elif [x + 1 , columne] == [6,3] :
+                        self.button18.destroy()
+                        self.img18 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button18  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img18 , command = self.plusun18 )
+                        self.button18.grid(row= 3, column = 3)
+
+                    
+                    elif [x + 1 , columne] == [7,1] :
+                        self.button19.destroy()
+                        self.img19 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button19  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img19 , command = self.plusun19 )
+                        self.button19.grid(row= 1, column = 1)
+                    elif [x + 1 , columne] == [8,1] :
+                        self.button20.destroy()
+                        self.img20 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button20  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img20 , command = self.plusun20 )
+                        self.button20.grid(row= 2, column = 1)
+                    elif [x + 1 , columne] == [9,1] :
+                        self.button21.destroy()
+                        self.img21 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button21  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img21 , command = self.plusun21 )
+                        self.button21.grid(row= 3, column = 1)
+
+                    
+                    elif [x + 1 , columne] == [7,2] :
+                        self.button22.destroy()
+                        self.img22 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button22  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img22 , command = self.plusun22 )
+                        self.button22.grid(row= 1, column = 2)
+                    elif [x + 1 , columne] == [8,2] :
+                        self.button23.destroy()
+                        self.img23 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button23  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img23 , command = self.plusun23 )
+                        self.button23.grid(row= 2, column = 2)
+                    elif [x + 1 , columne] == [9,2] :
+                        self.button24.destroy()
+                        self.img24 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button24  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img24 , command = self.plusun24 )
+                        self.button24.grid(row= 3, column = 2)
+
+                    
+                    elif [x + 1 , columne] == [7,3] :
+                        self.button25.destroy()
+                        self.img25 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button25  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img25 , command = self.plusun25 )
+                        self.button25.grid(row= 1, column = 3)
+                    elif [x + 1 , columne] == [8,3] :
+                        self.button26.destroy()
+                        self.img26 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button26  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img26 , command = self.plusun26 )
+                        self.button26.grid(row= 2, column = 3)
+                    elif [x + 1 , columne] == [9,3] :
+                        self.button27.destroy()
+                        self.img27 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button27  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img27 , command = self.plusun27 )
+                        self.button27.grid(row= 3, column = 3)
+
+                    
+                    elif [x + 1 , columne] == [1,4] :
+                        self.button28.destroy()
+                        self.img28 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button28  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img28 , command = self.plusun28 )
+                        self.button28.grid(row= 1, column = 1)
+                    elif [x + 1 , columne] == [2,4] :
+                        self.button29.destroy()
+                        self.img29 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button29  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img29 , command = self.plusun29 )
+                        self.button29.grid(row= 2, column = 1)
+                    elif [x + 1 , columne] == [3,4] :
+                        self.button30.destroy()
+                        self.img30 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button30  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img30 , command = self.plusun30 )
+                        self.button30.grid(row= 3, column = 1)
+
+                    
+                    elif [x + 1 , columne] == [1,5] :
+                        self.button31.destroy()
+                        self.img31 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button31  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img31 , command = self.plusun31 )
+                        self.button31.grid(row= 1, column = 2)
+                    elif [x + 1 , columne] == [2,5] :
+                        self.button32.destroy()
+                        self.img32 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button32  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img32 , command = self.plusun32 )
+                        self.button32.grid(row= 2, column = 2)
+                    elif [x + 1 , columne] == [3,5] :
+                        self.button33.destroy()
+                        self.img33 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button33  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img33 , command = self.plusun33 )
+                        self.button33.grid(row= 3, column = 2)
+
+                    
+                    elif [x + 1 , columne] == [1,6] :
+                        self.button34.destroy()
+                        self.img34 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button34  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img34 , command = self.plusun34 )
+                        self.button34.grid(row= 1, column = 3)
+                    elif [x + 1 , columne] == [2,6] :
+                        self.button35.destroy()
+                        self.img35 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button35  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img35 , command = self.plusun35 )
+                        self.button35.grid(row= 2, column = 3)
+                    elif [x + 1 , columne] == [3,6] :
+                        self.button36.destroy()
+                        self.img36 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button36  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img36 , command = self.plusun36 )
+                        self.button36.grid(row= 3, column = 3)
+
+                    
+                    elif [x + 1 , columne] == [4,4] :
+                        self.button37.destroy()
+                        self.img37 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button37  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img37 , command = self.plusun37 )
+                        self.button37.grid(row= 1, column = 1)
+                    elif [x + 1 , columne] == [5,4] :
+                        self.button38.destroy()
+                        self.img38 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button38  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img38 , command = self.plusun38 )
+                        self.button38.grid(row= 2, column = 1)
+                    elif [x + 1 , columne] == [6,4] :
+                        self.button39.destroy()
+                        self.img39 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button39  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img39 , command = self.plusun39 )
+                        self.button39.grid(row= 3, column = 1)
+
+                    
+                    elif [x + 1 , columne] == [4,5] :
+                        self.button40.destroy()
+                        self.img40 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button40  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img40 , command = self.plusun40 )
+                        self.button40.grid(row= 1, column = 2)
+                    elif [x + 1 , columne] == [5,5] :
+                        self.button41.destroy()
+                        self.img41 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button41  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img41 , command = self.plusun41 )
+                        self.button41.grid(row= 2, column = 2)
+                    elif [x + 1 , columne] == [6,5] :
+                        self.button42.destroy()
+                        self.img42 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button42  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img42 , command = self.plusun42 )
+                        self.button42.grid(row= 3, column = 2)
+
+                    
+                    elif [x + 1 , columne] == [4,6] :
+                        self.button43.destroy()
+                        self.img43 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button43  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img43 , command = self.plusun43 )
+                        self.button43.grid(row= 1, column = 3)
+                    elif [x + 1 , columne] == [5,6] :
+                        self.button44.destroy()
+                        self.img44 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button44  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img44 , command = self.plusun44 )
+                        self.button44.grid(row= 2, column = 3)
+                    elif [x + 1 , columne] == [6,6] :
+                        self.button45.destroy()
+                        self.img45 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button45  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img45 , command = self.plusun45 )
+                        self.button45.grid(row= 3, column = 3)
+
+                    
+                    elif [x + 1 , columne] == [7,4] :
+                        self.button46.destroy()
+                        self.img46 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button46  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img46 , command = self.plusun46 )
+                        self.button46.grid(row= 1, column = 1)
+                    elif [x + 1 , columne] == [8,4] :
+                        self.button47.destroy()
+                        self.img47 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button47  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img47 , command = self.plusun47 )
+                        self.button47.grid(row= 2, column = 1)
+                    elif [x + 1 , columne] == [9,4] :
+                        self.button48.destroy()
+                        self.img48 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button48  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img48 , command = self.plusun48 )
+                        self.button48.grid(row= 3, column = 1)
+
+                    
+                    elif [x + 1 , columne] == [7,5] :
+                        self.button49.destroy()
+                        self.img49 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button49  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img49 , command = self.plusun49 )
+                        self.button49.grid(row= 1, column = 2)
+                    elif [x + 1 , columne] == [8,5] :
+                        self.button50.destroy()
+                        self.img50 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button50  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img50 , command = self.plusun50 )
+                        self.button50.grid(row= 2, column = 2)
+                    elif [x + 1 , columne] == [9,5] :
+                        self.button51.destroy()
+                        self.img51 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button51  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img51 , command = self.plusun51 )
+                        self.button51.grid(row= 3, column = 2)
+
+                    
+                    elif [x + 1 , columne] == [7,6] :
+                        self.button52.destroy()
+                        self.img52 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button52  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img52 , command = self.plusun52 )
+                        self.button52.grid(row= 1, column = 3)
+                    elif [x + 1 , columne] == [8,6] :
+                        self.button53.destroy()
+                        self.img53 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button53  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img53 , command = self.plusun53 )
+                        self.button53.grid(row= 2, column = 3)
+                    elif [x + 1 , columne] == [9,6] :
+                        self.button54.destroy()
+                        self.img54 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button54  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img54 , command = self.plusun54 )
+                        self.button54.grid(row= 3, column = 3)
+                    
+                    
+                    elif [x + 1 , columne] == [1,7] :
+                        self.button55.destroy()
+                        self.img55 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button55  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img55 , command = self.plusun55 )
+                        self.button55.grid(row= 1, column = 1)
+                    elif [x + 1 , columne] == [2,7] :
+                        self.button56.destroy()
+                        self.img56 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button56  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img56 , command = self.plusun56 )
+                        self.button56.grid(row= 2, column = 1)
+                    elif [x + 1 , columne] == [3,7] :
+                        self.button57.destroy()
+                        self.img57 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button57  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img57 , command = self.plusun57 )
+                        self.button57.grid(row= 3, column = 1)
+
+                    
+                    elif [x + 1 , columne] == [1,8] :
+                        self.button58.destroy()
+                        self.img58 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button58  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img58 , command = self.plusun58 )
+                        self.button58.grid(row= 1, column = 2)
+                    elif [x + 1 , columne] == [2,8] :
+                        self.button59.destroy()
+                        self.img59 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button59  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img59 , command = self.plusun59 )
+                        self.button59.grid(row= 2, column = 2)
+                    elif [x + 1 , columne] == [3,8] :
+                        self.button60.destroy()
+                        self.img60 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button60  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img60 , command = self.plusun60 )
+                        self.button60.grid(row= 3, column = 2)
+
+                    
+                    elif [x + 1 , columne] == [1,9] :
+                        self.button61.destroy()
+                        self.img61 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button61  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img61 , command = self.plusun61 )
+                        self.button61.grid(row= 1, column = 3)
+                    elif [x + 1 , columne] == [2,9] :
+                        self.button62.destroy()
+                        self.img62 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button62  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img62 , command = self.plusun62 )
+                        self.button62.grid(row= 2, column = 3)
+                    elif [x + 1 , columne] == [3,9] :
+                        self.button63.destroy()
+                        self.img63 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button63  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img63 , command = self.plusun63 )
+                        self.button63.grid(row= 3, column = 3)
+
+                    
+                    elif [x + 1 , columne] == [4,7] :
+                        self.button64.destroy()
+                        self.img64 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button64  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img64 , command = self.plusun64 )
+                        self.button64.grid(row= 1, column = 1)
+                    elif [x + 1 , columne] == [5,7] :
+                        self.button65.destroy()
+                        self.img65 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button65  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img65 , command = self.plusun65 )
+                        self.button65.grid(row= 2, column = 1)
+                    elif [x + 1 , columne] == [6,7] :
+                        self.button66.destroy()
+                        self.img66 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button66  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img66 , command = self.plusun66 )
+                        self.button66.grid(row= 3, column = 1)
+
+                    
+                    elif [x + 1 , columne] == [4,8] :
+                        self.button67.destroy()
+                        self.img67 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button67  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img67 , command = self.plusun67 )
+                        self.button67.grid(row= 1, column = 2)
+                    elif [x + 1 , columne] == [5,8] :
+                        self.button68.destroy()
+                        self.img68 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button68  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img68 , command = self.plusun68 )
+                        self.button68.grid(row= 2, column = 2)
+                    elif [x + 1 , columne] == [6,8] :
+                        self.button69.destroy()
+                        self.img69 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button69  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img69 , command = self.plusun69 )
+                        self.button69.grid(row= 3, column = 2)
+
+                    
+                    elif [x + 1 , columne] == [4,9] :
+                        self.button70.destroy()
+                        self.img70 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button70  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img70 , command = self.plusun70 )
+                        self.button70.grid(row= 1, column = 3)
+                    elif [x + 1 , columne] == [5,9] :
+                        self.button71.destroy()
+                        self.img71 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button71  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img71 , command = self.plusun71 )
+                        self.button71.grid(row= 2, column = 3)
+                    elif [x + 1 , columne] == [6,9] :
+                        self.button72.destroy()
+                        self.img72 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button72  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img72 , command = self.plusun72 )
+                        self.button72.grid(row= 3, column = 3)
+
+                    
+                    elif [x + 1 , columne] == [7,7] :
+                        self.button73.destroy()
+                        self.img73 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button73  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img73 , command = self.plusun73 )
+                        self.button73.grid(row= 1, column = 1)
+                    elif [x + 1 , columne] == [8,7] :
+                        self.button74.destroy()
+                        self.img74 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button74  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img74 , command = self.plusun74 )
+                        self.button74.grid(row= 2, column = 1)
+                    elif [x + 1 , columne] == [9,7] :
+                        self.button75.destroy()
+                        self.img75 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button75  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img75 , command = self.plusun75 )
+                        self.button75.grid(row= 3, column = 1)
+
+                    
+                    elif [x + 1 , columne] == [7,8] :
+                        self.button76.destroy()
+                        self.img76 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button76  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img76 , command = self.plusun76 )
+                        self.button76.grid(row= 1, column = 2)
+                    elif [x + 1 , columne] == [8,8] :
+                        self.button77.destroy()
+                        self.img77 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button77  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img77 , command = self.plusun77 )
+                        self.button77.grid(row= 2, column = 2)
+                    elif [x + 1 , columne] == [9,8] :
+                        self.button78.destroy()
+                        self.img78 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button78  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img78 , command = self.plusun78 )
+                        self.button78.grid(row= 3, column = 2)
+
+                    
+                    elif [x + 1 , columne] == [7,9] :
+                        self.button79.destroy()
+                        self.img79 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button79  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img79 , command = self.plusun79 )
+                        self.button79.grid(row= 1, column = 3)
+                    elif [x + 1 , columne] == [8,9] :
+                        self.button80.destroy()
+                        self.img80 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button80  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img80 , command = self.plusun80 )
+                        self.button80.grid(row= 2, column = 3)
+                    elif [x + 1 , columne] == [9,9] :
+                        self.button81.destroy()
+                        self.img81 = PhotoImage(data = self.LIST_DES_IMAGESF[COLUMNE[0][1]])
+                        self.button81  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img81 , command = self.plusun81 )
+                        self.button81.grid(row= 3, column = 3)
+        elif len(SQUARE):
+            num_button = SQUARE[0][0]
+            num        = SQUARE[0][1]
+            square     = SQUARE[0][2]
+            index      = []
+            for pos in self.SQUARESPOSITION[square - 1]:
+                if suduku[pos[0]- 1][pos[1]- 1] == num :
+                    if pos == [1,1]:
+                        self.button1.destroy()
+                        self.img1 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button1  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img1 , command = self.plusun1 )
+                        self.button1.grid(row= 1, column = 1)
+                    elif pos == [2,1] :
+                        self.button2.destroy()
+                        self.img2 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button2  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img2 , command = self.plusun2 )
+                        self.button2.grid(row= 2, column = 1)
+                    elif pos == [3,1] :
+                        self.button3.destroy()
+                        self.img3 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button3  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img3 , command = self.plusun3 )
+                        self.button3.grid(row= 3, column = 1)
+
+                                    
+                    elif pos == [1,2] :
+                        self.button4.destroy()
+                        self.img4 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button4  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img4 , command = self.plusun4 )
+                        self.button4.grid(row= 1, column = 2)
+                    elif pos == [2,2] :
+                        self.button5.destroy()
+                        self.img5 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button5  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img5 , command = self.plusun5 )
+                        self.button5.grid(row= 2, column = 2)
+                    elif pos == [3,2] :
+                        self.button6.destroy()
+                        self.img6 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button6  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img6 , command = self.plusun6 )
+                        self.button6.grid(row= 3, column = 2)
+
+                                    
+                    elif pos == [1,3] :
+                        self.button7.destroy()
+                        self.img7 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button7  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img7 , command = self.plusun7 )
+                        self.button7.grid(row= 1, column = 3)
+                    elif pos == [2,3] :
+                        self.button8.destroy()
+                        self.img8 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button8  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img8 , command = self.plusun8 )
+                        self.button8.grid(row= 2, column = 3)
+                    elif pos == [3,3] :
+                        self.button9.destroy()
+                        self.img9 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button9  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img9 , command = self.plusun9 )
+                        self.button9.grid(row= 3, column = 3)
+
+
+                    elif pos == [4,1] :
+                        self.button10.destroy()
+                        self.img10 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button10  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img10 , command = self.plusun10 )
+                        self.button10.grid(row= 1, column = 1)
+                    elif pos == [5,1] :
+                        self.button11.destroy()
+                        self.img11 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button11  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img11 , command = self.plusun11 )
+                        self.button11.grid(row= 2, column = 1)
+                    elif pos == [6,1] :
+                        self.button12.destroy()
+                        self.img12 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button12  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img12 , command = self.plusun12 )
+                        self.button12.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [4,2] :
+                        self.button13.destroy()
+                        self.img13 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button13  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img13 , command = self.plusun13 )
+                        self.button13.grid(row= 1, column = 2)
+                    elif pos == [5,2] :
+                        self.button14.destroy()
+                        self.img14 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button14  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img14 , command = self.plusun14 )
+                        self.button14.grid(row= 2, column = 2)
+                    elif pos == [6,2] :
+                        self.button15.destroy()
+                        self.img15 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button15  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img15 , command = self.plusun15 )
+                        self.button15.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [4,3] :
+                        self.button16.destroy()
+                        self.img16 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button16  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img16 , command = self.plusun16 )
+                        self.button16.grid(row= 1, column = 3)
+                    elif pos == [5,3] :
+                        self.button17.destroy()
+                        self.img17 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button17  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img17 , command = self.plusun17 )
+                        self.button17.grid(row= 2, column = 3)
+                    elif pos == [6,3] :
+                        self.button18.destroy()
+                        self.img18 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button18  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img18 , command = self.plusun18 )
+                        self.button18.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [7,1] :
+                        self.button19.destroy()
+                        self.img19 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button19  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img19 , command = self.plusun19 )
+                        self.button19.grid(row= 1, column = 1)
+                    elif pos == [8,1] :
+                        self.button20.destroy()
+                        self.img20 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button20  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img20 , command = self.plusun20 )
+                        self.button20.grid(row= 2, column = 1)
+                    elif pos == [9,1] :
+                        self.button21.destroy()
+                        self.img21 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button21  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img21 , command = self.plusun21 )
+                        self.button21.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [7,2] :
+                        self.button22.destroy()
+                        self.img22 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button22  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img22 , command = self.plusun22 )
+                        self.button22.grid(row= 1, column = 2)
+                    elif pos == [8,2] :
+                        self.button23.destroy()
+                        self.img23 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button23  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img23 , command = self.plusun23 )
+                        self.button23.grid(row= 2, column = 2)
+                    elif pos == [9,2] :
+                        self.button24.destroy()
+                        self.img24 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button24  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img24 , command = self.plusun24 )
+                        self.button24.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [7,3] :
+                        self.button25.destroy()
+                        self.img25 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button25  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img25 , command = self.plusun25 )
+                        self.button25.grid(row= 1, column = 3)
+                    elif pos == [8,3] :
+                        self.button26.destroy()
+                        self.img26 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button26  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img26 , command = self.plusun26 )
+                        self.button26.grid(row= 2, column = 3)
+                    elif pos == [9,3] :
+                        self.button27.destroy()
+                        self.img27 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button27  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img27 , command = self.plusun27 )
+                        self.button27.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [1,4] :
+                        self.button28.destroy()
+                        self.img28 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button28  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img28 , command = self.plusun28 )
+                        self.button28.grid(row= 1, column = 1)
+                    elif pos == [2,4] :
+                        self.button29.destroy()
+                        self.img29 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button29  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img29 , command = self.plusun29 )
+                        self.button29.grid(row= 2, column = 1)
+                    elif pos == [3,4] :
+                        self.button30.destroy()
+                        self.img30 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button30  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img30 , command = self.plusun30 )
+                        self.button30.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [1,5] :
+                        self.button31.destroy()
+                        self.img31 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button31  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img31 , command = self.plusun31 )
+                        self.button31.grid(row= 1, column = 2)
+                    elif pos == [2,5] :
+                        self.button32.destroy()
+                        self.img32 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button32  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img32 , command = self.plusun32 )
+                        self.button32.grid(row= 2, column = 2)
+                    elif pos == [3,5] :
+                        self.button33.destroy()
+                        self.img33 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button33  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img33 , command = self.plusun33 )
+                        self.button33.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [1,6] :
+                        self.button34.destroy()
+                        self.img34 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button34  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img34 , command = self.plusun34 )
+                        self.button34.grid(row= 1, column = 3)
+                    elif pos == [2,6] :
+                        self.button35.destroy()
+                        self.img35 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button35  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img35 , command = self.plusun35 )
+                        self.button35.grid(row= 2, column = 3)
+                    elif pos == [3,6] :
+                        self.button36.destroy()
+                        self.img36 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button36  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img36 , command = self.plusun36 )
+                        self.button36.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [4,4] :
+                        self.button37.destroy()
+                        self.img37 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button37  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img37 , command = self.plusun37 )
+                        self.button37.grid(row= 1, column = 1)
+                    elif pos == [5,4] :
+                        self.button38.destroy()
+                        self.img38 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button38  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img38 , command = self.plusun38 )
+                        self.button38.grid(row= 2, column = 1)
+                    elif pos == [6,4] :
+                        self.button39.destroy()
+                        self.img39 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button39  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img39 , command = self.plusun39 )
+                        self.button39.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [4,5] :
+                        self.button40.destroy()
+                        self.img40 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button40  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img40 , command = self.plusun40 )
+                        self.button40.grid(row= 1, column = 2)
+                    elif pos == [5,5] :
+                        self.button41.destroy()
+                        self.img41 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button41  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img41 , command = self.plusun41 )
+                        self.button41.grid(row= 2, column = 2)
+                    elif pos == [6,5] :
+                        self.button42.destroy()
+                        self.img42 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button42  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img42 , command = self.plusun42 )
+                        self.button42.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [4,6] :
+                        self.button43.destroy()
+                        self.img43 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button43  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img43 , command = self.plusun43 )
+                        self.button43.grid(row= 1, column = 3)
+                    elif pos == [5,6] :
+                        self.button44.destroy()
+                        self.img44 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button44  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img44 , command = self.plusun44 )
+                        self.button44.grid(row= 2, column = 3)
+                    elif pos == [6,6] :
+                        self.button45.destroy()
+                        self.img45 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button45  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img45 , command = self.plusun45 )
+                        self.button45.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [7,4] :
+                        self.button46.destroy()
+                        self.img46 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button46  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img46 , command = self.plusun46 )
+                        self.button46.grid(row= 1, column = 1)
+                    elif pos == [8,4] :
+                        self.button47.destroy()
+                        self.img47 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button47  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img47 , command = self.plusun47 )
+                        self.button47.grid(row= 2, column = 1)
+                    elif pos == [9,4] :
+                        self.button48.destroy()
+                        self.img48 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button48  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img48 , command = self.plusun48 )
+                        self.button48.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [7,5] :
+                        self.button49.destroy()
+                        self.img49 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button49  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img49 , command = self.plusun49 )
+                        self.button49.grid(row= 1, column = 2)
+                    elif pos == [8,5] :
+                        self.button50.destroy()
+                        self.img50 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button50  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img50 , command = self.plusun50 )
+                        self.button50.grid(row= 2, column = 2)
+                    elif pos == [9,5] :
+                        self.button51.destroy()
+                        self.img51 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button51  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img51 , command = self.plusun51 )
+                        self.button51.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [7,6] :
+                        self.button52.destroy()
+                        self.img52 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button52  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img52 , command = self.plusun52 )
+                        self.button52.grid(row= 1, column = 3)
+                    elif pos == [8,6] :
+                        self.button53.destroy()
+                        self.img53 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button53  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img53 , command = self.plusun53 )
+                        self.button53.grid(row= 2, column = 3)
+                    elif pos == [9,6] :
+                        self.button54.destroy()
+                        self.img54 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button54  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img54 , command = self.plusun54 )
+                        self.button54.grid(row= 3, column = 3)
+                    
+                    
+                    elif pos == [1,7] :
+                        self.button55.destroy()
+                        self.img55 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button55  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img55 , command = self.plusun55 )
+                        self.button55.grid(row= 1, column = 1)
+                    elif pos == [2,7] :
+                        self.button56.destroy()
+                        self.img56 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button56  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img56 , command = self.plusun56 )
+                        self.button56.grid(row= 2, column = 1)
+                    elif pos == [3,7] :
+                        self.button57.destroy()
+                        self.img57 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button57  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img57 , command = self.plusun57 )
+                        self.button57.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [1,8] :
+                        self.button58.destroy()
+                        self.img58 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button58  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img58 , command = self.plusun58 )
+                        self.button58.grid(row= 1, column = 2)
+                    elif pos == [2,8] :
+                        self.button59.destroy()
+                        self.img59 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button59  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img59 , command = self.plusun59 )
+                        self.button59.grid(row= 2, column = 2)
+                    elif pos == [3,8] :
+                        self.button60.destroy()
+                        self.img60 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button60  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img60 , command = self.plusun60 )
+                        self.button60.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [1,9] :
+                        self.button61.destroy()
+                        self.img61 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button61  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img61 , command = self.plusun61 )
+                        self.button61.grid(row= 1, column = 3)
+                    elif pos == [2,9] :
+                        self.button62.destroy()
+                        self.img62 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button62  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img62 , command = self.plusun62 )
+                        self.button62.grid(row= 2, column = 3)
+                    elif pos == [3,9] :
+                        self.button63.destroy()
+                        self.img63 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button63  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img63 , command = self.plusun63 )
+                        self.button63.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [4,7] :
+                        self.button64.destroy()
+                        self.img64 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button64  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img64 , command = self.plusun64 )
+                        self.button64.grid(row= 1, column = 1)
+                    elif pos == [5,7] :
+                        self.button65.destroy()
+                        self.img65 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button65  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img65 , command = self.plusun65 )
+                        self.button65.grid(row= 2, column = 1)
+                    elif pos == [6,7] :
+                        self.button66.destroy()
+                        self.img66 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button66  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img66 , command = self.plusun66 )
+                        self.button66.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [4,8] :
+                        self.button67.destroy()
+                        self.img67 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button67  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img67 , command = self.plusun67 )
+                        self.button67.grid(row= 1, column = 2)
+                    elif pos == [5,8] :
+                        self.button68.destroy()
+                        self.img68 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button68  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img68 , command = self.plusun68 )
+                        self.button68.grid(row= 2, column = 2)
+                    elif pos == [6,8] :
+                        self.button69.destroy()
+                        self.img69 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button69  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img69 , command = self.plusun69 )
+                        self.button69.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [4,9] :
+                        self.button70.destroy()
+                        self.img70 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button70  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img70 , command = self.plusun70 )
+                        self.button70.grid(row= 1, column = 3)
+                    elif pos == [5,9] :
+                        self.button71.destroy()
+                        self.img71 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button71  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img71 , command = self.plusun71 )
+                        self.button71.grid(row= 2, column = 3)
+                    elif pos == [6,9] :
+                        self.button72.destroy()
+                        self.img72 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button72  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img72 , command = self.plusun72 )
+                        self.button72.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [7,7] :
+                        self.button73.destroy()
+                        self.img73 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button73  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img73 , command = self.plusun73 )
+                        self.button73.grid(row= 1, column = 1)
+                    elif pos == [8,7] :
+                        self.button74.destroy()
+                        self.img74 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button74  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img74 , command = self.plusun74 )
+                        self.button74.grid(row= 2, column = 1)
+                    elif pos == [9,7] :
+                        self.button75.destroy()
+                        self.img75 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button75  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img75 , command = self.plusun75 )
+                        self.button75.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [7,8] :
+                        self.button76.destroy()
+                        self.img76 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button76  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img76 , command = self.plusun76 )
+                        self.button76.grid(row= 1, column = 2)
+                    elif pos == [8,8] :
+                        self.button77.destroy()
+                        self.img77 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button77  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img77 , command = self.plusun77 )
+                        self.button77.grid(row= 2, column = 2)
+                    elif pos == [9,8] :
+                        self.button78.destroy()
+                        self.img78 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button78  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img78 , command = self.plusun78 )
+                        self.button78.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [7,9] :
+                        self.button79.destroy()
+                        self.img79 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button79  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img79 , command = self.plusun79 )
+                        self.button79.grid(row= 1, column = 3)
+                    elif pos == [8,9] :
+                        self.button80.destroy()
+                        self.img80 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button80  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img80 , command = self.plusun80 )
+                        self.button80.grid(row= 2, column = 3)
+                    elif pos == [9,9] :
+                        self.button81.destroy()
+                        self.img81 = PhotoImage(data = self.LIST_DES_IMAGESF[SQUARE[0][1]])
+                        self.button81  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img81 , command = self.plusun81 )
+                        self.button81.grid(row= 3, column = 3)
+        elif self.countEmpty(suduku) > 60:
+            self.ATB = True
+            self.AT1.destroy()
+            self.AT1 = Label(self.frame7, background = '#d3cddd' , text="This Sudoku Can't Be Solved", font = 2)
+            self.AT1.grid(row  = 1, column = 1)
+        else:
+            self.the_finale_solver(suduku)
+            for l in range(9):
+                for c in range(9):
+                    pos = [l + 1, c + 1]
+                    num = suduku[l][c]
+                    if pos == [1,1]:
+                        self.button1.destroy()
+                        self.img1 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button1  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img1 , command = self.plusun1 )
+                        self.button1.grid(row= 1, column = 1)
+                    elif pos == [2,1] :
+                        self.button2.destroy()
+                        self.img2 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button2  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img2 , command = self.plusun2 )
+                        self.button2.grid(row= 2, column = 1)
+                    elif pos == [3,1] :
+                        self.button3.destroy()
+                        self.img3 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button3  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img3 , command = self.plusun3 )
+                        self.button3.grid(row= 3, column = 1)
+
+                                    
+                    elif pos == [1,2] :
+                        self.button4.destroy()
+                        self.img4 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button4  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img4 , command = self.plusun4 )
+                        self.button4.grid(row= 1, column = 2)
+                    elif pos == [2,2] :
+                        self.button5.destroy()
+                        self.img5 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button5  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img5 , command = self.plusun5 )
+                        self.button5.grid(row= 2, column = 2)
+                    elif pos == [3,2] :
+                        self.button6.destroy()
+                        self.img6 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button6  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img6 , command = self.plusun6 )
+                        self.button6.grid(row= 3, column = 2)
+
+                                    
+                    elif pos == [1,3] :
+                        self.button7.destroy()
+                        self.img7 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button7  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img7 , command = self.plusun7 )
+                        self.button7.grid(row= 1, column = 3)
+                    elif pos == [2,3] :
+                        self.button8.destroy()
+                        self.img8 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button8  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img8 , command = self.plusun8 )
+                        self.button8.grid(row= 2, column = 3)
+                    elif pos == [3,3] :
+                        self.button9.destroy()
+                        self.img9 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button9  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img9 , command = self.plusun9 )
+                        self.button9.grid(row= 3, column = 3)
+
+
+                    elif pos == [4,1] :
+                        self.button10.destroy()
+                        self.img10 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button10  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img10 , command = self.plusun10 )
+                        self.button10.grid(row= 1, column = 1)
+                    elif pos == [5,1] :
+                        self.button11.destroy()
+                        self.img11 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button11  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img11 , command = self.plusun11 )
+                        self.button11.grid(row= 2, column = 1)
+                    elif pos == [6,1] :
+                        self.button12.destroy()
+                        self.img12 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button12  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img12 , command = self.plusun12 )
+                        self.button12.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [4,2] :
+                        self.button13.destroy()
+                        self.img13 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button13  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img13 , command = self.plusun13 )
+                        self.button13.grid(row= 1, column = 2)
+                    elif pos == [5,2] :
+                        self.button14.destroy()
+                        self.img14 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button14  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img14 , command = self.plusun14 )
+                        self.button14.grid(row= 2, column = 2)
+                    elif pos == [6,2] :
+                        self.button15.destroy()
+                        self.img15 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button15  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img15 , command = self.plusun15 )
+                        self.button15.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [4,3] :
+                        self.button16.destroy()
+                        self.img16 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button16  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img16 , command = self.plusun16 )
+                        self.button16.grid(row= 1, column = 3)
+                    elif pos == [5,3] :
+                        self.button17.destroy()
+                        self.img17 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button17  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img17 , command = self.plusun17 )
+                        self.button17.grid(row= 2, column = 3)
+                    elif pos == [6,3] :
+                        self.button18.destroy()
+                        self.img18 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button18  = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img18 , command = self.plusun18 )
+                        self.button18.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [7,1] :
+                        self.button19.destroy()
+                        self.img19 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button19  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img19 , command = self.plusun19 )
+                        self.button19.grid(row= 1, column = 1)
+                    elif pos == [8,1] :
+                        self.button20.destroy()
+                        self.img20 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button20  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img20 , command = self.plusun20 )
+                        self.button20.grid(row= 2, column = 1)
+                    elif pos == [9,1] :
+                        self.button21.destroy()
+                        self.img21 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button21  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img21 , command = self.plusun21 )
+                        self.button21.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [7,2] :
+                        self.button22.destroy()
+                        self.img22 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button22  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img22 , command = self.plusun22 )
+                        self.button22.grid(row= 1, column = 2)
+                    elif pos == [8,2] :
+                        self.button23.destroy()
+                        self.img23 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button23  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img23 , command = self.plusun23 )
+                        self.button23.grid(row= 2, column = 2)
+                    elif pos == [9,2] :
+                        self.button24.destroy()
+                        self.img24 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button24  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img24 , command = self.plusun24 )
+                        self.button24.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [7,3] :
+                        self.button25.destroy()
+                        self.img25 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button25  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img25 , command = self.plusun25 )
+                        self.button25.grid(row= 1, column = 3)
+                    elif pos == [8,3] :
+                        self.button26.destroy()
+                        self.img26 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button26  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img26 , command = self.plusun26 )
+                        self.button26.grid(row= 2, column = 3)
+                    elif pos == [9,3] :
+                        self.button27.destroy()
+                        self.img27 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button27  = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img27 , command = self.plusun27 )
+                        self.button27.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [1,4] :
+                        self.button28.destroy()
+                        self.img28 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button28  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img28 , command = self.plusun28 )
+                        self.button28.grid(row= 1, column = 1)
+                    elif pos == [2,4] :
+                        self.button29.destroy()
+                        self.img29 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button29  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img29 , command = self.plusun29 )
+                        self.button29.grid(row= 2, column = 1)
+                    elif pos == [3,4] :
+                        self.button30.destroy()
+                        self.img30 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button30  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img30 , command = self.plusun30 )
+                        self.button30.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [1,5] :
+                        self.button31.destroy()
+                        self.img31 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button31  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img31 , command = self.plusun31 )
+                        self.button31.grid(row= 1, column = 2)
+                    elif pos == [2,5] :
+                        self.button32.destroy()
+                        self.img32 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button32  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img32 , command = self.plusun32 )
+                        self.button32.grid(row= 2, column = 2)
+                    elif pos == [3,5] :
+                        self.button33.destroy()
+                        self.img33 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button33  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img33 , command = self.plusun33 )
+                        self.button33.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [1,6] :
+                        self.button34.destroy()
+                        self.img34 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button34  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img34 , command = self.plusun34 )
+                        self.button34.grid(row= 1, column = 3)
+                    elif pos == [2,6] :
+                        self.button35.destroy()
+                        self.img35 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button35  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img35 , command = self.plusun35 )
+                        self.button35.grid(row= 2, column = 3)
+                    elif pos == [3,6] :
+                        self.button36.destroy()
+                        self.img36 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button36  = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img36 , command = self.plusun36 )
+                        self.button36.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [4,4] :
+                        self.button37.destroy()
+                        self.img37 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button37  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img37 , command = self.plusun37 )
+                        self.button37.grid(row= 1, column = 1)
+                    elif pos == [5,4] :
+                        self.button38.destroy()
+                        self.img38 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button38  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img38 , command = self.plusun38 )
+                        self.button38.grid(row= 2, column = 1)
+                    elif pos == [6,4] :
+                        self.button39.destroy()
+                        self.img39 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button39  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img39 , command = self.plusun39 )
+                        self.button39.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [4,5] :
+                        self.button40.destroy()
+                        self.img40 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button40  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img40 , command = self.plusun40 )
+                        self.button40.grid(row= 1, column = 2)
+                    elif pos == [5,5] :
+                        self.button41.destroy()
+                        self.img41 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button41  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img41 , command = self.plusun41 )
+                        self.button41.grid(row= 2, column = 2)
+                    elif pos == [6,5] :
+                        self.button42.destroy()
+                        self.img42 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button42  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img42 , command = self.plusun42 )
+                        self.button42.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [4,6] :
+                        self.button43.destroy()
+                        self.img43 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button43  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img43 , command = self.plusun43 )
+                        self.button43.grid(row= 1, column = 3)
+                    elif pos == [5,6] :
+                        self.button44.destroy()
+                        self.img44 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button44  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img44 , command = self.plusun44 )
+                        self.button44.grid(row= 2, column = 3)
+                    elif pos == [6,6] :
+                        self.button45.destroy()
+                        self.img45 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button45  = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img45 , command = self.plusun45 )
+                        self.button45.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [7,4] :
+                        self.button46.destroy()
+                        self.img46 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button46  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img46 , command = self.plusun46 )
+                        self.button46.grid(row= 1, column = 1)
+                    elif pos == [8,4] :
+                        self.button47.destroy()
+                        self.img47 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button47  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img47 , command = self.plusun47 )
+                        self.button47.grid(row= 2, column = 1)
+                    elif pos == [9,4] :
+                        self.button48.destroy()
+                        self.img48 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button48  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img48 , command = self.plusun48 )
+                        self.button48.grid(row= 3, column = 1)
+
+
+
+                    elif pos == [7,5] :
+                        self.button49.destroy()
+                        self.img49 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button49  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img49 , command = self.plusun49 )
+                        self.button49.grid(row= 1, column = 2)
+                    elif pos == [8,5] :
+                        self.button50.destroy()
+                        self.img50 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button50  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img50 , command = self.plusun50 )
+                        self.button50.grid(row= 2, column = 2)
+                    elif pos == [9,5] :
+                        self.button51.destroy()
+                        self.img51 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button51  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img51 , command = self.plusun51 )
+                        self.button51.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [7,6] :
+                        self.button52.destroy()
+                        self.img52 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button52  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img52 , command = self.plusun52 )
+                        self.button52.grid(row= 1, column = 3)
+                    elif pos == [8,6] :
+                        self.button53.destroy()
+                        self.img53 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button53  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img53 , command = self.plusun53 )
+                        self.button53.grid(row= 2, column = 3)
+                    elif pos == [9,6] :
+                        self.button54.destroy()
+                        self.img54 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button54  = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img54 , command = self.plusun54 )
+                        self.button54.grid(row= 3, column = 3)
+                    
+                    
+                    elif pos == [1,7] :
+                        self.button55.destroy()
+                        self.img55 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button55  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img55 , command = self.plusun55 )
+                        self.button55.grid(row= 1, column = 1)
+                    elif pos == [2,7] :
+                        self.button56.destroy()
+                        self.img56 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button56  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img56 , command = self.plusun56 )
+                        self.button56.grid(row= 2, column = 1)
+                    elif pos == [3,7] :
+                        self.button57.destroy()
+                        self.img57 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button57  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img57 , command = self.plusun57 )
+                        self.button57.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [1,8] :
+                        self.button58.destroy()
+                        self.img58 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button58  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img58 , command = self.plusun58 )
+                        self.button58.grid(row= 1, column = 2)
+                    elif pos == [2,8] :
+                        self.button59.destroy()
+                        self.img59 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button59  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img59 , command = self.plusun59 )
+                        self.button59.grid(row= 2, column = 2)
+                    elif pos == [3,8] :
+                        self.button60.destroy()
+                        self.img60 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button60  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img60 , command = self.plusun60 )
+                        self.button60.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [1,9] :
+                        self.button61.destroy()
+                        self.img61 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button61  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img61 , command = self.plusun61 )
+                        self.button61.grid(row= 1, column = 3)
+                    elif pos == [2,9] :
+                        self.button62.destroy()
+                        self.img62 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button62  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img62 , command = self.plusun62 )
+                        self.button62.grid(row= 2, column = 3)
+                    elif pos == [3,9] :
+                        self.button63.destroy()
+                        self.img63 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button63  = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img63 , command = self.plusun63 )
+                        self.button63.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [4,7] :
+                        self.button64.destroy()
+                        self.img64 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button64  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img64 , command = self.plusun64 )
+                        self.button64.grid(row= 1, column = 1)
+                    elif pos == [5,7] :
+                        self.button65.destroy()
+                        self.img65 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button65  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img65 , command = self.plusun65 )
+                        self.button65.grid(row= 2, column = 1)
+                    elif pos == [6,7] :
+                        self.button66.destroy()
+                        self.img66 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button66  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img66 , command = self.plusun66 )
+                        self.button66.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [4,8] :
+                        self.button67.destroy()
+                        self.img67 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button67  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img67 , command = self.plusun67 )
+                        self.button67.grid(row= 1, column = 2)
+                    elif pos == [5,8] :
+                        self.button68.destroy()
+                        self.img68 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button68  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img68 , command = self.plusun68 )
+                        self.button68.grid(row= 2, column = 2)
+                    elif pos == [6,8] :
+                        self.button69.destroy()
+                        self.img69 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button69  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img69 , command = self.plusun69 )
+                        self.button69.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [4,9] :
+                        self.button70.destroy()
+                        self.img70 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button70  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img70 , command = self.plusun70 )
+                        self.button70.grid(row= 1, column = 3)
+                    elif pos == [5,9] :
+                        self.button71.destroy()
+                        self.img71 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button71  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img71 , command = self.plusun71 )
+                        self.button71.grid(row= 2, column = 3)
+                    elif pos == [6,9] :
+                        self.button72.destroy()
+                        self.img72 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button72  = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img72 , command = self.plusun72 )
+                        self.button72.grid(row= 3, column = 3)
+
+                    
+                    elif pos == [7,7] :
+                        self.button73.destroy()
+                        self.img73 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button73  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img73 , command = self.plusun73 )
+                        self.button73.grid(row= 1, column = 1)
+                    elif pos == [8,7] :
+                        self.button74.destroy()
+                        self.img74 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button74  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img74 , command = self.plusun74 )
+                        self.button74.grid(row= 2, column = 1)
+                    elif pos == [9,7] :
+                        self.button75.destroy()
+                        self.img75 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button75  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img75 , command = self.plusun75 )
+                        self.button75.grid(row= 3, column = 1)
+
+                    
+                    elif pos == [7,8] :
+                        self.button76.destroy()
+                        self.img76 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button76  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img76 , command = self.plusun76 )
+                        self.button76.grid(row= 1, column = 2)
+                    elif pos == [8,8] :
+                        self.button77.destroy()
+                        self.img77 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button77  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img77 , command = self.plusun77 )
+                        self.button77.grid(row= 2, column = 2)
+                    elif pos == [9,8] :
+                        self.button78.destroy()
+                        self.img78 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button78  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img78 , command = self.plusun78 )
+                        self.button78.grid(row= 3, column = 2)
+
+                    
+                    elif pos == [7,9] :
+                        self.button79.destroy()
+                        self.img79 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button79  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img79 , command = self.plusun79 )
+                        self.button79.grid(row= 1, column = 3)
+                    elif pos == [8,9] :
+                        self.button80.destroy()
+                        self.img80 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button80  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img80 , command = self.plusun80 )
+                        self.button80.grid(row= 2, column = 3)
+                    elif pos == [9,9] :
+                        self.button81.destroy()
+                        self.img81 = PhotoImage(data = self.LIST_DES_IMAGES[num])
+                        self.button81  = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img81 , command = self.plusun81 )
+                        self.button81.grid(row= 3, column = 3)
+    def NEW_SUDOKU(self) :
+        global  button1  ,button2  ,button3  ,button4  ,button5  ,button6  ,button7  ,button8  ,button9   ,button10 ,button11 ,button12 ,button13 ,button14 ,button15 ,button16 ,button17 ,button18  ,button19 ,button20 ,button21 ,button22 ,button23 ,button24 ,button25 ,button26 ,button27 ,button28 ,button29 ,button30 ,button31 ,button32 ,button33 ,button34 ,button35 ,button36 ,button37 ,button38 ,button39 ,button40 ,button41 ,button42 ,button43 ,button44 ,button45 ,button46 ,button47 ,button48 ,button49 ,button50 ,button51 ,button52 ,button53 ,button54 ,button55 ,button56 ,button57 ,button58 ,button59 ,button60 ,button61 ,button62 ,button63 ,button64 ,button65 ,button66 ,button67 ,button68 ,button69 ,button70 ,button71 ,button72 ,button73 ,button74 ,button75 ,button76 ,button77 ,button78 ,button79 ,button80 ,button81
+        global  img1  ,img2  ,img3  ,img4  ,img5  ,img6  ,img7  ,img8  ,img9  ,img10 ,img11 ,img12 ,img13 ,img14 ,img15 ,img16 ,img17 ,img18 ,img19 ,img20 ,img21 ,img22 ,img23 ,img24 ,img25 ,img26 ,img27 ,img28 ,img29 ,img30 ,img31 ,img32 ,img33 ,img34 ,img35 ,img36 ,img37 ,img38 ,img39 ,img40 ,img41 ,img42 ,img43 ,img44 ,img45 ,img46 ,img47 ,img48 ,img49 ,img50 ,img51 ,img52 ,img53 ,img54 ,img55 ,img56 ,img57 ,img58 ,img59 ,img60 ,img61 ,img62 ,img63 ,img64 ,img65 ,img66 ,img67 ,img68 ,img69 ,img70 ,img71 ,img72 ,img73 ,img74 ,img75 ,img76 ,img77 ,img78 ,img79 ,img80 ,img81
+        global  counter1  ,counter2  ,counter3  ,counter4  ,counter5  ,counter6  ,counter7  ,counter8  ,counter9  ,counter10 ,counter11 ,counter12 ,counter13 ,counter14 ,counter15 ,counter16 ,counter17 ,counter18 ,counter19 ,counter20 ,counter21 ,counter22 ,counter23 ,counter24 ,counter25 ,counter26 ,counter27 ,counter28 ,counter29 ,counter30 ,counter31 ,counter32 ,counter33 ,counter34 ,counter35 ,counter36 ,counter37 ,counter38 ,counter39 ,counter40 ,counter41 ,counter42 ,counter43 ,counter44 ,counter45 ,counter46 ,counter47 ,counter48 ,counter49 ,counter50 ,counter51 ,counter52 ,counter53 ,counter54 ,counter55 ,counter56 ,counter57 ,counter58 ,counter59 ,counter60 ,counter61 ,counter62 ,counter63 ,counter64 ,counter65 ,counter66 ,counter67 ,counter68 ,counter69 ,counter70 ,counter71 ,counter72 ,counter73 ,counter74 ,counter75 ,counter76 ,counter77 ,counter78 ,counter79 ,counter80 ,counter81
+        global ATB , AT1 , LIST_DES_IMAGES
+        if self.ATB == True :
+            self.AT1['text'] = ''
+            self.ATB = False
+
+        self.counter1  = 0
+        self.counter2  = 0
+        self.counter3  = 0
+        self.counter4  = 0
+        self.counter5  = 0
+        self.counter6  = 0
+        self.counter7  = 0
+        self.counter8  = 0
+        self.counter9  = 0
+        self.counter10  = 0
+        self.counter11  = 0
+        self.counter12  = 0
+        self.counter13  = 0
+        self.counter14  = 0
+        self.counter15  = 0
+        self.counter16  = 0
+        self.counter17  = 0
+        self.counter18  = 0
+        self.counter19  = 0
+        self.counter20  = 0
+        self.counter21  = 0
+        self.counter22  = 0
+        self.counter23  = 0
+        self.counter24  = 0
+        self.counter25  = 0
+        self.counter26  = 0
+        self.counter27  = 0
+        self.counter28  = 0
+        self.counter29  = 0
+        self.counter30  = 0
+        self.counter31  = 0
+        self.counter32  = 0
+        self.counter33  = 0
+        self.counter34  = 0
+        self.counter35  = 0
+        self.counter36  = 0
+        self.counter37  = 0
+        self.counter38  = 0
+        self.counter39  = 0
+        self.counter40  = 0
+        self.counter41  = 0
+        self.counter42  = 0
+        self.counter43  = 0
+        self.counter44  = 0
+        self.counter45  = 0
+        self.counter46  = 0
+        self.counter47  = 0
+        self.counter48  = 0
+        self.counter49  = 0
+        self.counter50  = 0
+        self.counter51  = 0
+        self.counter52  = 0
+        self.counter53  = 0
+        self.counter54  = 0
+        self.counter55  = 0
+        self.counter56  = 0
+        self.counter57  = 0
+        self.counter58  = 0
+        self.counter59  = 0
+        self.counter60  = 0
+        self.counter61  = 0
+        self.counter62  = 0
+        self.counter63  = 0
+        self.counter64  = 0
+        self.counter65  = 0
+        self.counter66  = 0
+        self.counter67  = 0
+        self.counter68  = 0
+        self.counter69  = 0
+        self.counter70  = 0
+        self.counter71  = 0
+        self.counter72  = 0
+        self.counter73  = 0
+        self.counter74  = 0
+        self.counter75  = 0
+        self.counter76  = 0
+        self.counter77  = 0
+        self.counter78  = 0
+        self.counter79  = 0
+        self.counter80  = 0
+        self.counter81  = 0
+        self.button1.destroy()
+        self.button2.destroy()
+        self.button3.destroy()
+        self.button4.destroy()
+        self.button5.destroy()
+        self.button6.destroy()
+        self.button7.destroy()
+        self.button8.destroy()
+        self.button9.destroy()
+        self.button10.destroy()
+        self.button11.destroy()
+        self.button12.destroy()
+        self.button13.destroy()
+        self.button14.destroy()
+        self.button15.destroy()
+        self.button16.destroy()
+        self.button17.destroy()
+        self.button18.destroy()
+        self.button19.destroy()
+        self.button20.destroy()
+        self.button21.destroy()
+        self.button22.destroy()
+        self.button23.destroy()
+        self.button24.destroy()
+        self.button25.destroy()
+        self.button26.destroy()
+        self.button27.destroy()
+        self.button28.destroy()
+        self.button29.destroy()
+        self.button30.destroy()
+        self.button31.destroy()
+        self.button32.destroy()
+        self.button33.destroy()
+        self.button34.destroy()
+        self.button35.destroy()
+        self.button36.destroy()
+        self.button37.destroy()
+        self.button38.destroy()
+        self.button39.destroy()
+        self.button40.destroy()
+        self.button41.destroy()
+        self.button42.destroy()
+        self.button43.destroy()
+        self.button44.destroy()
+        self.button45.destroy()
+        self.button46.destroy()
+        self.button47.destroy()
+        self.button48.destroy()
+        self.button49.destroy()
+        self.button50.destroy()
+        self.button51.destroy()
+        self.button52.destroy()
+        self.button53.destroy()
+        self.button54.destroy()
+        self.button55.destroy()
+        self.button56.destroy()
+        self.button57.destroy()
+        self.button58.destroy()
+        self.button59.destroy()
+        self.button60.destroy()
+        self.button61.destroy()
+        self.button62.destroy()
+        self.button63.destroy()
+        self.button64.destroy()
+        self.button65.destroy()
+        self.button66.destroy()
+        self.button67.destroy()
+        self.button68.destroy()
+        self.button69.destroy()
+        self.button70.destroy()
+        self.button71.destroy()
+        self.button72.destroy()
+        self.button73.destroy()
+        self.button74.destroy()
+        self.button75.destroy()
+        self.button76.destroy()
+        self.button77.destroy()
+        self.button78.destroy()
+        self.button79.destroy()
+        self.button80.destroy()
+        self.button81.destroy()
+
+
+        self.img1 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img2 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img3 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img4 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img5 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img6 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img7 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img8 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img9 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img10 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img11 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img12 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img13 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img14 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img15 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img16 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img17 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img18 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img19 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img20 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img21 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img22 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img23 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img24 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img25 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img26 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img27 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img28 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img29 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img30 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img31 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img32 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img33 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img34 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img35 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img36 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img37 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img38 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img39 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img40 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img41 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img42 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img43 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img44 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img45 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img46 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img47 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img48 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img49 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img50 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img51 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img52 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img53 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img54 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img55 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img56 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img57 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img58 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img59 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img60 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img61 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img62 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img63 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img64 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img65 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img66 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img67 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img68 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img69 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img70 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img71 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img72 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img73 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img74 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img75 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img76 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img77 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img78 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img79 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img80 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+        self.img81 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+
+        self.button1  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img1 , command = self.plusun1 )
+        self.button2  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img2 , command = self.plusun2 )
+        self.button3  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img3 , command = self.plusun3 )
+        self.button4  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img4 , command = self.plusun4 )
+        self.button5  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img5 , command = self.plusun5 )
+        self.button6  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img6 , command = self.plusun6 )
+        self.button7  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img7 , command = self.plusun7 )
+        self.button8  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img8 , command = self.plusun8 )
+        self.button9  = Button(self.frameC1_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img9 , command = self.plusun9 )
+        
+        self.button10 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img10 , command = self.plusun10 )
+        self.button11 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img11 , command = self.plusun11 )
+        self.button12 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img12 , command = self.plusun12 )
+        self.button13 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img13 , command = self.plusun13 )
+        self.button14 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img14 , command = self.plusun14 )
+        self.button15 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img15 , command = self.plusun15 )
+        self.button16 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img16 , command = self.plusun16 )
+        self.button17 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img17 , command = self.plusun17 )
+        self.button18 = Button(self.frameC1_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img18 , command = self.plusun18 )
+    
+        self.button19 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img19 , command = self.plusun19 )
+        self.button20 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img20 , command = self.plusun20 )
+        self.button21 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img21 , command = self.plusun21 )
+        self.button22 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img22 , command = self.plusun22 )
+        self.button23 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img23 , command = self.plusun23 )
+        self.button24 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img24 , command = self.plusun24 )
+        self.button25 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img25 , command = self.plusun25 )
+        self.button26 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img26 , command = self.plusun26 )
+        self.button27 = Button(self.frameC1_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img27 , command = self.plusun27 )
+  
+        self.button28 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img28 , command = self.plusun28 )
+        self.button29 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img29 , command = self.plusun29 )
+        self.button30 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img30 , command = self.plusun30 )
+        self.button31 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img31 , command = self.plusun31 )
+        self.button32 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img32 , command = self.plusun32 )
+        self.button33 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img33 , command = self.plusun33 )
+        self.button34 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img34 , command = self.plusun34 )
+        self.button35 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img35 , command = self.plusun35 )
+        self.button36 = Button(self.frameC3_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img36 , command = self.plusun36 )
+
+        self.button37 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img37 , command = self.plusun37 )
+        self.button38 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img38 , command = self.plusun38 )
+        self.button39 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img39 , command = self.plusun39 )
+        self.button40 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img40 , command = self.plusun40 )
+        self.button41 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img41 , command = self.plusun41 )
+        self.button42 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img42 , command = self.plusun42 )
+        self.button43 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img43 , command = self.plusun43 )
+        self.button44 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img44 , command = self.plusun44 )
+        self.button45 = Button(self.frameC3_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img45 , command = self.plusun45 )
+
+        self.button46 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img46 , command = self.plusun46 )
+        self.button47 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img47 , command = self.plusun47 )
+        self.button48 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img48 , command = self.plusun48 )
+        self.button49 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img49 , command = self.plusun49 )
+        self.button50 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img50 , command = self.plusun50 )
+        self.button51 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img51 , command = self.plusun51 )
+        self.button52 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img52 , command = self.plusun52 )
+        self.button53 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img53 , command = self.plusun53 )
+        self.button54 = Button(self.frameC3_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img54 , command = self.plusun54 )
+
+        self.button55 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img55 , command = self.plusun55 )
+        self.button56 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img56 , command = self.plusun56 )
+        self.button57 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img57 , command = self.plusun57 )
+        self.button58 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img58 , command = self.plusun58 )
+        self.button59 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img59 , command = self.plusun59 )
+        self.button60 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img60 , command = self.plusun60 )
+        self.button61 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img61 , command = self.plusun61 )
+        self.button62 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img62 , command = self.plusun62 )
+        self.button63 = Button(self.frameC5_1, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img63 , command = self.plusun63 )
+
+        self.button64 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img64 , command = self.plusun64 )
+        self.button65 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img65 , command = self.plusun65 )
+        self.button66 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img66 , command = self.plusun66 )
+        self.button67 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img67 , command = self.plusun67 )
+        self.button68 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img68 , command = self.plusun68 )
+        self.button69 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img69 , command = self.plusun69 )
+        self.button70 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img70 , command = self.plusun70 )
+        self.button71 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img71 , command = self.plusun71 )
+        self.button72 = Button(self.frameC5_3, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img72 , command = self.plusun72 )
+
+        self.button73 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img73 , command = self.plusun73 )
+        self.button74 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img74 , command = self.plusun74 )
+        self.button75 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img75 , command = self.plusun75 )
+        self.button76 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img76 , command = self.plusun76 )
+        self.button77 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img77 , command = self.plusun77 )
+        self.button78 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img78 , command = self.plusun78 )
+        self.button79 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img79 , command = self.plusun79 )
+        self.button80 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img80 , command = self.plusun80 )
+        self.button81 = Button(self.frameC5_5, overrelief = FLAT, relief = FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img81 , command = self.plusun81 )
+
+
+        self.button1.grid(row= 1, column = 1)
+        self.button2.grid(row= 2, column = 1)
+        self.button3.grid(row= 3, column = 1)
+        self.button4.grid(row= 1, column = 2)
+        self.button5.grid(row= 2, column = 2)
+        self.button6.grid(row= 3, column = 2)
+        self.button7.grid(row= 1, column = 3)
+        self.button8.grid(row= 2, column = 3)
+        self.button9.grid(row= 3, column = 3)
+        self.button10.grid(row= 1, column = 1)
+        self.button11.grid(row= 2, column = 1)
+        self.button12.grid(row= 3, column = 1)
+        self.button13.grid(row= 1, column = 2)
+        self.button14.grid(row= 2, column = 2)
+        self.button15.grid(row= 3, column = 2)
+        self.button16.grid(row= 1, column = 3)
+        self.button17.grid(row= 2, column = 3)
+        self.button18.grid(row= 3, column = 3)
+        self.button19.grid(row= 1, column = 1)
+        self.button20.grid(row= 2, column = 1)
+        self.button21.grid(row= 3, column = 1)
+        self.button22.grid(row= 1, column = 2)
+        self.button23.grid(row= 2, column = 2)
+        self.button24.grid(row= 3, column = 2)
+        self.button25.grid(row= 1, column = 3)
+        self.button26.grid(row= 2, column = 3)
+        self.button27.grid(row= 3, column = 3)
+        self.button28.grid(row= 1, column = 1)
+        self.button29.grid(row= 2, column = 1)
+        self.button30.grid(row= 3, column = 1)
+        self.button31.grid(row= 1, column = 2)
+        self.button32.grid(row= 2, column = 2)
+        self.button33.grid(row= 3, column = 2)
+        self.button34.grid(row= 1, column = 3)
+        self.button35.grid(row= 2, column = 3)
+        self.button36.grid(row= 3, column = 3)
+        self.button37.grid(row= 1, column = 1)
+        self.button38.grid(row= 2, column = 1)
+        self.button39.grid(row= 3, column = 1)
+        self.button40.grid(row= 1, column = 2)
+        self.button41.grid(row= 2, column = 2)
+        self.button42.grid(row= 3, column = 2)
+        self.button43.grid(row= 1, column = 3)
+        self.button44.grid(row= 2, column = 3)
+        self.button45.grid(row= 3, column = 3)
+        self.button46.grid(row= 1, column = 1)
+        self.button47.grid(row= 2, column = 1)
+        self.button48.grid(row= 3, column = 1)
+        self.button49.grid(row= 1, column = 2)
+        self.button50.grid(row= 2, column = 2)
+        self.button51.grid(row= 3, column = 2)
+        self.button52.grid(row= 1, column = 3)
+        self.button53.grid(row= 2, column = 3)
+        self.button54.grid(row= 3, column = 3)
+        self.button55.grid(row= 1, column = 1)
+        self.button56.grid(row= 2, column = 1)
+        self.button57.grid(row= 3, column = 1)
+        self.button58.grid(row= 1, column = 2)
+        self.button59.grid(row= 2, column = 2)
+        self.button60.grid(row= 3, column = 2)
+        self.button61.grid(row= 1, column = 3)
+        self.button62.grid(row= 2, column = 3)
+        self.button63.grid(row= 3, column = 3)
+        self.button64.grid(row= 1, column = 1)
+        self.button65.grid(row= 2, column = 1)
+        self.button66.grid(row= 3, column = 1)
+        self.button67.grid(row= 1, column = 2)
+        self.button68.grid(row= 2, column = 2)
+        self.button69.grid(row= 3, column = 2)
+        self.button70.grid(row= 1, column = 3)
+        self.button71.grid(row= 2, column = 3)
+        self.button72.grid(row= 3, column = 3)
+        self.button73.grid(row= 1, column = 1)
+        self.button74.grid(row= 2, column = 1)
+        self.button75.grid(row= 3, column = 1)
+        self.button76.grid(row= 1, column = 2)
+        self.button77.grid(row= 2, column = 2)
+        self.button78.grid(row= 3, column = 2)
+        self.button79.grid(row= 1, column = 3)
+        self.button80.grid(row= 2, column = 3)
+        self.button81.grid(row= 3, column = 3)
+    def plusun1(self):
+        global counter1 , button1 , img1, LIST_DES_IMAGES
+        self.button1.destroy()
+        if self.counter1 != 9:
+            self.counter1 += 1
+            self.img1 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter1 ])
+            self.button1 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img1 , command = self.plusun1 )
+            self.button1.grid(row= 1, column = 1)
+        elif self.counter1 == 9 :
+            self.counter1 = 0
+            self.img1 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button1 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img1 , command = self.plusun1 )
+            self.button1.grid(row= 1, column = 1)
+    def plusun2(self):
+        global counter2 , button2 , img2, LIST_DES_IMAGES
+        self.button2.destroy()
+        if self.counter2 != 9:
+            self.counter2 += 1
+            self.img2 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter2 ])
+            self.button2 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img2 , command = self.plusun2 )
+            self.button2.grid(row= 2, column = 1)
+        elif self.counter2 == 9 :
+            self.counter2 = 0
+            self.img2 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button2 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img2 , command = self.plusun2 )
+            self.button2.grid(row= 2, column = 1)
+    def plusun3(self):
+        global counter3 , button3 , img3, LIST_DES_IMAGES
+        self.button3.destroy()
+        if self.counter3 != 9:
+            self.counter3 += 1
+            self.img3 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter3 ])
+            self.button3 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img3 , command = self.plusun3 )
+            self.button3.grid(row= 3, column = 1)
+        elif self.counter3 == 9 :
+            self.counter3 = 0
+            self.img3 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button3 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img3 , command = self.plusun3 )
+            self.button3.grid(row= 3, column = 1)
+    def plusun4(self):
+        global counter4 , button4 , img4, LIST_DES_IMAGES
+        self.button4.destroy()
+        if self.counter4 != 9:
+            self.counter4 += 1
+            self.img4 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter4 ])
+            self.button4 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img4 , command = self.plusun4 )
+            self.button4.grid(row= 1, column = 2)
+        elif self.counter4 == 9 :
+            self.counter4 = 0
+            self.img4 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button4 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img4 , command = self.plusun4 )
+            self.button4.grid(row= 1, column = 2)
+    def plusun5(self):
+        global counter5 , button5 , img5, LIST_DES_IMAGES
+        self.button5.destroy()
+        if self.counter5 != 9:
+            self.counter5 += 1
+            self.img5 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter5 ])
+            self.button5 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img5 , command = self.plusun5 )
+            self.button5.grid(row= 2, column = 2)
+        elif self.counter5 == 9 :
+            self.counter5 = 0
+            self.img5 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button5 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img5 , command = self.plusun5 )
+            self.button5.grid(row= 2, column = 2)
+    def plusun6(self):
+        global counter6 , button6 , img6, LIST_DES_IMAGES
+        self.button6.destroy()
+        if self.counter6 != 9:
+            self.counter6 += 1
+            self.img6 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter6 ])
+            self.button6 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img6 , command = self.plusun6 )
+            self.button6.grid(row= 3, column = 2)
+        elif self.counter6 == 9 :
+            self.counter6 = 0
+            self.img6 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button6 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img6 , command = self.plusun6 )
+            self.button6.grid(row= 3, column = 2)
+    def plusun7(self):
+        global counter7 , button7 , img7, LIST_DES_IMAGES
+        self.button7.destroy()
+        if self.counter7 != 9:
+            self.counter7 += 1
+            self.img7 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter7 ])
+            self.button7 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img7 , command = self.plusun7 )
+            self.button7.grid(row= 1, column = 3)
+        elif self.counter7 == 9 :
+            self.counter7 = 0
+            self.img7 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button7 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img7 , command = self.plusun7 )
+            self.button7.grid(row= 1, column = 3)
+    def plusun8(self):
+        global counter8 , button8 , img8, LIST_DES_IMAGES
+        self.button8.destroy()
+        if self.counter8 != 9:
+            self.counter8 += 1
+            self.img8 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter8 ])
+            self.button8 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img8 , command = self.plusun8 )
+            self.button8.grid(row= 2, column = 3)
+        elif self.counter8 == 9 :
+            self.counter8 = 0
+            self.img8 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button8 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img8 , command = self.plusun8 )
+            self.button8.grid(row= 2, column = 3)
+    def plusun9(self):
+        global counter9 , button9 , img9, LIST_DES_IMAGES
+        self.button9.destroy()
+        if self.counter9 != 9:
+            self.counter9 += 1
+            self.img9 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter9 ])
+            self.button9 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img9 , command = self.plusun9 )
+            self.button9.grid(row= 3, column = 3)
+        elif self.counter9 == 9 :
+            self.counter9 = 0
+            self.img9 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button9 = Button(self.frameC1_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img9 , command = self.plusun9 )
+            self.button9.grid(row= 3, column = 3)
+    def plusun10(self):
+        global counter10 , button10 , img10, LIST_DES_IMAGES
+        self.button10.destroy()
+        if self.counter10 != 9:
+            self.counter10 += 1
+            self.img10 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter10])
+            self.button10 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img10 , command = self.plusun10 )
+            self.button10.grid(row= 1, column = 1)
+        elif self.counter10 == 9 :
+            self.counter10 = 0
+            self.img10 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button10 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img10 , command = self.plusun10 )
+            self.button10.grid(row= 1, column = 1)
+    def plusun11(self):
+        global counter11 , button11 , img11, LIST_DES_IMAGES
+        self.button11.destroy()
+        if self.counter11 != 9:
+            self.counter11 += 1
+            self.img11 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter11])
+            self.button11 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img11 , command = self.plusun11 )
+            self.button11.grid(row= 2, column = 1)
+        elif self.counter11 == 9 :
+            self.counter11 = 0
+            self.img11 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button11 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img11 , command = self.plusun11 )
+            self.button11.grid(row= 2, column = 1)
+    def plusun12(self):
+        global counter12 , button12 , img12, LIST_DES_IMAGES
+        self.button12.destroy()
+        if self.counter12 != 9:
+            self.counter12 += 1
+            self.img12 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter12])
+            self.button12 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img12 , command = self.plusun12 )
+            self.button12.grid(row= 3, column = 1)
+        elif self.counter12 == 9 :
+            self.counter12 = 0
+            self.img12 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button12 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img12 , command = self.plusun12 )
+            self.button12.grid(row= 3, column = 1)
+    def plusun13(self):
+        global counter13 , button13 , img13, LIST_DES_IMAGES
+        self.button13.destroy()
+        if self.counter13 != 9:
+            self.counter13 += 1
+            self.img13 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter13])
+            self.button13 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img13 , command = self.plusun13 )
+            self.button13.grid(row= 1, column = 2)
+        elif self.counter13 == 9 :
+            self.counter13 = 0
+            self.img13 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button13 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img13 , command = self.plusun13 )
+            self.button13.grid(row= 1, column = 2)
+    def plusun14(self):
+        global counter14 , button14 , img14, LIST_DES_IMAGES
+        self.button14.destroy()
+        if self.counter14 != 9:
+            self.counter14 += 1
+            self.img14 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter14])
+            self.button14 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img14 , command = self.plusun14 )
+            self.button14.grid(row= 2, column = 2)
+        elif self.counter14 == 9 :
+            self.counter14 = 0
+            self.img14 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button14 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img14 , command = self.plusun14 )
+            self.button14.grid(row= 2, column = 2)
+    def plusun15(self):
+        global counter15 , button15 , img15, LIST_DES_IMAGES
+        self.button15.destroy()
+        if self.counter15 != 9:
+            self.counter15 += 1
+            self.img15 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter15])
+            self.button15 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img15 , command = self.plusun15 )
+            self.button15.grid(row= 3, column = 2)
+        elif self.counter15 == 9 :
+            self.counter15 = 0
+            self.img15 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button15 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img15 , command = self.plusun15 )
+            self.button15.grid(row= 3, column = 2)
+    def plusun16(self):
+        global counter16 , button16 , img16, LIST_DES_IMAGES
+        self.button16.destroy()
+        if self.counter16 != 9:
+            self.counter16 += 1
+            self.img16 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter16])
+            self.button16 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img16 , command = self.plusun16 )
+            self.button16.grid(row= 1, column = 3)
+        elif self.counter16 == 9 :
+            self.counter16 = 0
+            self.img16 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button16 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img16 , command = self.plusun16 )
+            self.button16.grid(row= 1, column = 3)
+    def plusun17(self):
+        global counter17 , button17 , img17, LIST_DES_IMAGES
+        self.button17.destroy()
+        if self.counter17 != 9:
+            self.counter17 += 1
+            self.img17 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter17])
+            self.button17 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img17 , command = self.plusun17 )
+            self.button17.grid(row= 2, column = 3)
+        elif self.counter17 == 9 :
+            self.counter17 = 0
+            self.img17 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button17 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img17 , command = self.plusun17 )
+            self.button17.grid(row= 2, column = 3)
+    def plusun18(self):
+        global counter18 , button18 , img18, LIST_DES_IMAGES
+        self.button18.destroy()
+        if self.counter18 != 9:
+            self.counter18 += 1
+            self.img18 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter18])
+            self.button18 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img18 , command = self.plusun18 )
+            self.button18.grid(row= 3, column = 3)
+        elif self.counter18 == 9 :
+            self.counter18 = 0
+            self.img18 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button18 = Button(self.frameC1_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img18 , command = self.plusun18 )
+            self.button18.grid(row= 3, column = 3)
+    def plusun19(self):
+        global counter19 , button19 , img19, LIST_DES_IMAGES
+        self.button19.destroy()
+        if self.counter19 != 9:
+            self.counter19 += 1
+            self.img19 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter19])
+            self.button19 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img19 , command = self.plusun19 )
+            self.button19.grid(row= 1, column = 1)
+        elif self.counter19 == 9 :
+            self.counter19 = 0
+            self.img19 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button19 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img19 , command = self.plusun19 )
+            self.button19.grid(row= 1, column = 1)
+    def plusun20(self):
+        global counter20 , button20 , img20, LIST_DES_IMAGES
+        self.button20.destroy()
+        if self.counter20 != 9:
+            self.counter20 += 1
+            self.img20 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter20])
+            self.button20 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img20 , command = self.plusun20 )
+            self.button20.grid(row= 2, column = 1)
+        elif self.counter20 == 9 :
+            self.counter20 = 0
+            self.img20 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button20 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img20 , command = self.plusun20 )
+            self.button20.grid(row= 2, column = 1)
+    def plusun21(self):
+        global counter21 , button21 , img21, LIST_DES_IMAGES
+        self.button21.destroy()
+        if self.counter21 != 9:
+            self.counter21 += 1
+            self.img21 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter21])
+            self.button21 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img21 , command = self.plusun21 )
+            self.button21.grid(row= 3, column = 1)
+        elif self.counter21 == 9 :
+            self.counter21 = 0
+            self.img21 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button21 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img21 , command = self.plusun21 )
+            self.button21.grid(row= 3, column = 1)
+    def plusun22(self):
+        global counter22 , button22 , img22, LIST_DES_IMAGES
+        self.button22.destroy()
+        if self.counter22 != 9:
+            self.counter22 += 1
+            self.img22 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter22])
+            self.button22 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img22 , command = self.plusun22 )
+            self.button22.grid(row= 1, column = 2)
+        elif self.counter22 == 9 :
+            self.counter22 = 0
+            self.img22 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button22 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img22 , command = self.plusun22 )
+            self.button22.grid(row= 1, column = 2)
+    def plusun23(self):
+        global counter23 , button23 , img23, LIST_DES_IMAGES
+        self.button23.destroy()
+        if self.counter23 != 9:
+            self.counter23 += 1
+            self.img23 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter23])
+            self.button23 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img23 , command = self.plusun23 )
+            self.button23.grid(row= 2, column = 2)
+        elif self.counter23 == 9 :
+            self.counter23 = 0
+            self.img23 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button23 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img23 , command = self.plusun23 )
+            self.button23.grid(row= 2, column = 2)
+    def plusun24(self):
+        global counter24 , button24 , img24, LIST_DES_IMAGES
+        self.button24.destroy()
+        if self.counter24 != 9:
+            self.counter24 += 1
+            self.img24 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter24])
+            self.button24 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img24 , command = self.plusun24 )
+            self.button24.grid(row= 3, column = 2)
+        elif self.counter24 == 9 :
+            self.counter24 = 0
+            self.img24 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button24 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img24 , command = self.plusun24 )
+            self.button24.grid(row= 3, column = 2)
+    def plusun25(self):
+        global counter25 , button25 , img25, LIST_DES_IMAGES
+        self.button25.destroy()
+        if self.counter25 != 9:
+            self.counter25 += 1
+            self.img25 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter25])
+            self.button25 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img25 , command = self.plusun25 )
+            self.button25.grid(row= 1, column = 3)
+        elif self.counter25 == 9 :
+            self.counter25 = 0
+            self.img25 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button25 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img25 , command = self.plusun25 )
+            self.button25.grid(row= 1, column = 3)
+    def plusun26(self):
+        global counter26 , button26 , img26, LIST_DES_IMAGES
+        self.button26.destroy()
+        if self.counter26 != 9:
+            self.counter26 += 1
+            self.img26 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter26])
+            self.button26 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img26 , command = self.plusun26 )
+            self.button26.grid(row= 2, column = 3)
+        elif self.counter26 == 9 :
+            self.counter26 = 0
+            self.img26 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button26 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img26 , command = self.plusun26 )
+            self.button26.grid(row= 2, column = 3)
+    def plusun27(self):
+        global counter27 , button27 , img27, LIST_DES_IMAGES
+        self.button27.destroy()
+        if self.counter27 != 9:
+            self.counter27 += 1
+            self.img27 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter27])
+            self.button27 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img27 , command = self.plusun27 )
+            self.button27.grid(row= 3, column = 3)
+        elif self.counter27 == 9 :
+            self.counter27 = 0
+            self.img27 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button27 = Button(self.frameC1_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img27 , command = self.plusun27 )
+            self.button27.grid(row= 3, column = 3)
+    def plusun28(self):
+        global counter28 , button28 , img28, LIST_DES_IMAGES
+        self.button28.destroy()
+        if self.counter28 != 9:
+            self.counter28 += 1
+            self.img28 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter28])
+            self.button28 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img28 , command = self.plusun28 )
+            self.button28.grid(row= 1, column = 1)
+        elif self.counter28 == 9 :
+            self.counter28 = 0
+            self.img28 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button28 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img28 , command = self.plusun28 )
+            self.button28.grid(row= 1, column = 1)
+    def plusun29(self):
+        global counter29 , button29 , img29, LIST_DES_IMAGES
+        self.button29.destroy()
+        if self.counter29 != 9:
+            self.counter29 += 1
+            self.img29 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter29])
+            self.button29 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img29 , command = self.plusun29 )
+            self.button29.grid(row= 2, column = 1)
+        elif self.counter29 == 9 :
+            self.counter29 = 0
+            self.img29 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button29 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img29 , command = self.plusun29 )
+            self.button29.grid(row= 2, column = 1)
+    def plusun30(self):
+        global counter30 , button30 , img30, LIST_DES_IMAGES
+        self.button30.destroy()
+        if self.counter30 != 9:
+            self.counter30 += 1
+            self.img30 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter30])
+            self.button30 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img30 , command = self.plusun30 )
+            self.button30.grid(row= 3, column = 1)
+        elif self.counter30 == 9 :
+            self.counter30 = 0
+            self.img30 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button30 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img30 , command = self.plusun30 )
+            self.button30.grid(row= 3, column = 1)
+    def plusun31(self):
+        global counter31 , button31 , img31, LIST_DES_IMAGES
+        self.button31.destroy()
+        if self.counter31 != 9:
+            self.counter31 += 1
+            self.img31 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter31])
+            self.button31 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img31 , command = self.plusun31 )
+            self.button31.grid(row= 1, column = 2)
+        elif self.counter31 == 9 :
+            self.counter31 = 0
+            self.img31 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button31 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img31 , command = self.plusun31 )
+            self.button31.grid(row= 1, column = 2)
+    def plusun32(self):
+        global counter32 , button32 , img32, LIST_DES_IMAGES
+        self.button32.destroy()
+        if self.counter32 != 9:
+            self.counter32 += 1
+            self.img32 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter32])
+            self.button32 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img32 , command = self.plusun32 )
+            self.button32.grid(row= 2, column = 2)
+        elif self.counter32 == 9 :
+            self.counter32 = 0
+            self.img32 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button32 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img32 , command = self.plusun32 )
+            self.button32.grid(row= 2, column = 2)
+    def plusun33(self):
+        global counter33 , button33 , img33, LIST_DES_IMAGES
+        self.button33.destroy()
+        if self.counter33 != 9:
+            self.counter33 += 1
+            self.img33 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter33])
+            self.button33 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img33 , command = self.plusun33 )
+            self.button33.grid(row= 3, column = 2)
+        elif self.counter33 == 9 :
+            self.counter33 = 0
+            self.img33 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button33 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img33 , command = self.plusun33 )
+            self.button33.grid(row= 3, column = 2)
+    def plusun34(self):
+        global counter34 , button34 , img34, LIST_DES_IMAGES
+        self.button34.destroy()
+        if self.counter34 != 9:
+            self.counter34 += 1
+            self.img34 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter34])
+            self.button34 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img34 , command = self.plusun34 )
+            self.button34.grid(row= 1, column = 3)
+        elif self.counter34 == 9 :
+            self.counter34 = 0
+            self.img34 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button34 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img34 , command = self.plusun34 )
+            self.button34.grid(row= 1, column = 3)
+    def plusun35(self):
+        global counter35 , button35 , img35, LIST_DES_IMAGES
+        self.button35.destroy()
+        if self.counter35 != 9:
+            self.counter35 += 1
+            self.img35 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter35])
+            self.button35 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img35 , command = self.plusun35 )
+            self.button35.grid(row= 2, column = 3)
+        elif self.counter35 == 9 :
+            self.counter35 = 0
+            self.img35 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button35 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img35 , command = self.plusun35 )
+            self.button35.grid(row= 2, column = 3)
+    def plusun36(self):
+        global counter36 , button36 , img36, LIST_DES_IMAGES
+        self.button36.destroy()
+        if self.counter36 != 9:
+            self.counter36 += 1
+            self.img36 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter36])
+            self.button36 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img36 , command = self.plusun36 )
+            self.button36.grid(row= 3, column = 3)
+        elif self.counter36 == 9 :
+            self.counter36 = 0
+            self.img36 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button36 = Button(self.frameC3_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img36 , command = self.plusun36 )
+            self.button36.grid(row= 3, column = 3)
+    def plusun37(self):
+        global counter37 , button37 , img37, LIST_DES_IMAGES
+        self.button37.destroy()
+        if self.counter37 != 9:
+            self.counter37 += 1
+            self.img37 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter37])
+            self.button37 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img37 , command = self.plusun37 )
+            self.button37.grid(row= 1, column = 1)
+        elif self.counter37 == 9 :
+            self.counter37 = 0
+            self.img37 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button37 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img37 , command = self.plusun37 )
+            self.button37.grid(row= 1, column = 1)
+    def plusun38(self):
+        global counter38 , button38 , img38, LIST_DES_IMAGES
+        self.button38.destroy()
+        if self.counter38 != 9:
+            self.counter38 += 1
+            self.img38 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter38])
+            self.button38 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img38 , command = self.plusun38 )
+            self.button38.grid(row= 2, column = 1)
+        elif self.counter38 == 9 :
+            self.counter38 = 0
+            self.img38 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button38 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img38 , command = self.plusun38 )
+            self.button38.grid(row= 2, column = 1)
+    def plusun39(self):
+        global counter39 , button39 , img39, LIST_DES_IMAGES
+        self.button39.destroy()
+        if self.counter39 != 9:
+            self.counter39 += 1
+            self.img39 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter39])
+            self.button39 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img39 , command = self.plusun39 )
+            self.button39.grid(row= 3, column = 1)
+        elif self.counter39 == 9 :
+            self.counter39 = 0
+            self.img39 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button39 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img39 , command = self.plusun39 )
+            self.button39.grid(row= 3, column = 1)
+    def plusun40(self):
+        global counter40 , button40 , img40, LIST_DES_IMAGES
+        self.button40.destroy()
+        if self.counter40 != 9:
+            self.counter40 += 1
+            self.img40 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter40])
+            self.button40 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img40 , command = self.plusun40 )
+            self.button40.grid(row= 1, column = 2)
+        elif self.counter40 == 9 :
+            self.counter40 = 0
+            self.img40 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button40 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img40 , command = self.plusun40 )
+            self.button40.grid(row= 1, column = 2)
+    def plusun41(self):
+        global counter41 , button41 , img41, LIST_DES_IMAGES
+        self.button41.destroy()
+        if self.counter41 != 9:
+            self.counter41 += 1
+            self.img41 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter41])
+            self.button41 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img41 , command = self.plusun41 )
+            self.button41.grid(row= 2, column = 2)
+        elif self.counter41 == 9 :
+            self.counter41 = 0
+            self.img41 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button41 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img41 , command = self.plusun41 )
+            self.button41.grid(row= 2, column = 2)
+    def plusun42(self):
+        global counter42 , button42 , img42, LIST_DES_IMAGES
+        self.button42.destroy()
+        if self.counter42 != 9:
+            self.counter42 += 1
+            self.img42 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter42])
+            self.button42 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img42 , command = self.plusun42 )
+            self.button42.grid(row= 3, column = 2)
+        elif self.counter42 == 9 :
+            self.counter42 = 0
+            self.img42 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button42 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img42 , command = self.plusun42 )
+            self.button42.grid(row= 3, column = 2)
+    def plusun43(self):
+        global counter43 , button43 , img43, LIST_DES_IMAGES
+        self.button43.destroy()
+        if self.counter43 != 9:
+            self.counter43 += 1
+            self.img43 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter43])
+            self.button43 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img43 , command = self.plusun43 )
+            self.button43.grid(row= 1, column = 3)
+        elif self.counter43 == 9 :
+            self.counter43 = 0
+            self.img43 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button43 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img43 , command = self.plusun43 )
+            self.button43.grid(row= 1, column = 3)
+    def plusun44(self):
+        global counter44 , button44 , img44, LIST_DES_IMAGES
+        self.button44.destroy()
+        if self.counter44 != 9:
+            self.counter44 += 1
+            self.img44 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter44])
+            self.button44 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img44 , command = self.plusun44 )
+            self.button44.grid(row= 2, column = 3)
+        elif self.counter44 == 9 :
+            self.counter44 = 0
+            self.img44 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button44 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img44 , command = self.plusun44 )
+            self.button44.grid(row= 2, column = 3)
+    def plusun45(self):
+        global counter45 , button45 , img45, LIST_DES_IMAGES
+        self.button45.destroy()
+        if self.counter45 != 9:
+            self.counter45 += 1
+            self.img45 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter45])
+            self.button45 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img45 , command = self.plusun45 )
+            self.button45.grid(row= 3, column = 3)
+        elif self.counter45 == 9 :
+            self.counter45 = 0
+            self.img45 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button45 = Button(self.frameC3_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img45 , command = self.plusun45 )
+            self.button45.grid(row= 3, column = 3)
+    def plusun46(self):
+        global counter46 , button46 , img46, LIST_DES_IMAGES
+        self.button46.destroy()
+        if self.counter46 != 9:
+            self.counter46 += 1
+            self.img46 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter46])
+            self.button46 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img46 , command = self.plusun46 )
+            self.button46.grid(row= 1, column = 1)
+        elif self.counter46 == 9 :
+            self.counter46 = 0
+            self.img46 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button46 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img46 , command = self.plusun46 )
+            self.button46.grid(row= 1, column = 1)
+    def plusun47(self):
+        global counter47 , button47 , img47, LIST_DES_IMAGES
+        self.button47.destroy()
+        if self.counter47 != 9:
+            self.counter47 += 1
+            self.img47 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter47])
+            self.button47 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img47 , command = self.plusun47 )
+            self.button47.grid(row= 2, column = 1)
+        elif self.counter47 == 9 :
+            self.counter47 = 0
+            self.img47 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button47 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img47 , command = self.plusun47 )
+            self.button47.grid(row= 2, column = 1)
+    def plusun48(self):
+        global counter48 , button48 , img48, LIST_DES_IMAGES
+        self.button48.destroy()
+        if self.counter48 != 9:
+            self.counter48 += 1
+            self.img48 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter48])
+            self.button48 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img48 , command = self.plusun48 )
+            self.button48.grid(row= 3, column = 1)
+        elif self.counter48 == 9 :
+            self.counter48 = 0
+            self.img48 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button48 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img48 , command = self.plusun48 )
+            self.button48.grid(row= 3, column = 1)
+    def plusun49(self):
+        global counter49 , button49 , img49, LIST_DES_IMAGES
+        self.button49.destroy()
+        if self.counter49 != 9:
+            self.counter49 += 1
+            self.img49 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter49])
+            self.button49 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img49 , command = self.plusun49 )
+            self.button49.grid(row= 1, column = 2)
+        elif self.counter49 == 9 :
+            self.counter49 = 0
+            self.img49 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button49 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img49 , command = self.plusun49 )
+            self.button49.grid(row= 1, column = 2)
+    def plusun50(self):
+        global counter50 , button50 , img50, LIST_DES_IMAGES
+        self.button50.destroy()
+        if self.counter50 != 9:
+            self.counter50 += 1
+            self.img50 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter50])
+            self.button50 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img50 , command = self.plusun50 )
+            self.button50.grid(row= 2, column = 2)
+        elif self.counter50 == 9 :
+            self.counter50 = 0
+            self.img50 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button50 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img50 , command = self.plusun50 )
+            self.button50.grid(row= 2, column = 2)
+    def plusun51(self):
+        global counter51 , button51 , img51, LIST_DES_IMAGES
+        self.button51.destroy()
+        if self.counter51 != 9:
+            self.counter51 += 1
+            self.img51 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter51])
+            self.button51 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img51 , command = self.plusun51 )
+            self.button51.grid(row= 3, column = 2)
+        elif self.counter51 == 9 :
+            self.counter51 = 0
+            self.img51 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button51 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img51 , command = self.plusun51 )
+            self.button51.grid(row= 3, column = 2)
+    def plusun52(self):
+        global counter52 , button52 , img52, LIST_DES_IMAGES
+        self.button52.destroy()
+        if self.counter52 != 9:
+            self.counter52 += 1
+            self.img52 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter52])
+            self.button52 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img52 , command = self.plusun52 )
+            self.button52.grid(row= 1, column = 3)
+        elif self.counter52 == 9 :
+            self.counter52 = 0
+            self.img52 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button52 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img52 , command = self.plusun52 )
+            self.button52.grid(row= 1, column = 3)
+    def plusun53(self):
+        global counter53 , button53 , img53, LIST_DES_IMAGES
+        self.button53.destroy()
+        if self.counter53 != 9:
+            self.counter53 += 1
+            self.img53 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter53])
+            self.button53 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img53 , command = self.plusun53 )
+            self.button53.grid(row= 2, column = 3)
+        elif self.counter53 == 9 :
+            self.counter53 = 0
+            self.img53 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button53 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img53 , command = self.plusun53 )
+            self.button53.grid(row= 2, column = 3)
+    def plusun54(self):
+        global counter54 , button54 , img54, LIST_DES_IMAGES
+        self.button54.destroy()
+        if self.counter54 != 9:
+            self.counter54 += 1
+            self.img54 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter54])
+            self.button54 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img54 , command = self.plusun54 )
+            self.button54.grid(row= 3, column = 3)
+        elif self.counter54 == 9 :
+            self.counter54 = 0
+            self.img54 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button54 = Button(self.frameC3_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img54 , command = self.plusun54 )
+            self.button54.grid(row= 3, column = 3)
+    def plusun55(self):
+        global counter55  , button55 , img55, LIST_DES_IMAGES
+        self.button55.destroy()
+        if self.counter55 != 9:
+            self.counter55 += 1
+            self.img55 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter55])
+            self.button55 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img55 , command = self.plusun55 )
+            self.button55.grid(row= 1, column = 1)
+        elif self.counter55 == 9 :
+            self.counter55 = 0
+            self.img55 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button55 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img55 , command = self.plusun55 )
+            self.button55.grid(row= 1, column = 1)
+    def plusun56(self):
+        global counter56 , button56 , img56, LIST_DES_IMAGES
+        self.button56.destroy()
+        if self.counter56 != 9:
+            self.counter56 += 1
+            self.img56 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter56])
+            self.button56 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img56 , command = self.plusun56 )
+            self.button56.grid(row= 2, column = 1)
+        elif self.counter56 == 9 :
+            self.counter56 = 0
+            self.img56 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button56 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img56 , command = self.plusun56 )
+            self.button56.grid(row= 2, column = 1)
+    def plusun57(self):
+        global counter57 , button57 , img57, LIST_DES_IMAGES
+        self.button57.destroy()
+        if self.counter57 != 9:
+            self.counter57 += 1
+            self.img57 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter57])
+            self.button57 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img57 , command = self.plusun57 )
+            self.button57.grid(row= 3, column = 1)
+        elif self.counter57 == 9 :
+            self.counter57 = 0
+            self.img57 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button57 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img57 , command = self.plusun57 )
+            self.button57.grid(row= 3, column = 1)
+    def plusun58(self):
+        global counter58 , button58 , img58, LIST_DES_IMAGES
+        self.button58.destroy()
+        if self.counter58 != 9:
+            self.counter58 += 1
+            self.img58 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter58])
+            self.button58 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img58 , command = self.plusun58 )
+            self.button58.grid(row= 1, column = 2)
+        elif self.counter58 == 9 :
+            self.counter58 = 0
+            self.img58 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button58 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img58 , command = self.plusun58 )
+            self.button58.grid(row= 1, column = 2)
+    def plusun59(self):
+        global counter59 , button59 , img59, LIST_DES_IMAGES
+        self.button59.destroy()
+        if self.counter59 != 9:
+            self.counter59 += 1
+            self.img59 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter59])
+            self.button59 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img59 , command = self.plusun59 )
+            self.button59.grid(row= 2, column = 2)
+        elif self.counter59 == 9 :
+            self.counter59 = 0
+            self.img59 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button59 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img59 , command = self.plusun59 )
+            self.button59.grid(row= 2, column = 2)
+    def plusun60(self):
+        global counter60 , button60 , img60, LIST_DES_IMAGES
+        self.button60.destroy()
+        if self.counter60 != 9:
+            self.counter60 += 1
+            self.img60 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter60])
+            self.button60 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img60 , command = self.plusun60 )
+            self.button60.grid(row= 3, column = 2)
+        elif self.counter60 == 9 :
+            self.counter60 = 0
+            self.img60 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button60 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img60 , command = self.plusun60 )
+            self.button60.grid(row= 3, column = 2)
+    def plusun61(self):
+        global counter61 , button61 , img61, LIST_DES_IMAGES
+        self.button61.destroy()
+        if self.counter61 != 9:
+            self.counter61 += 1
+            self.img61 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter61])
+            self.button61 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img61 , command = self.plusun61 )
+            self.button61.grid(row= 1, column = 3)
+        elif self.counter61 == 9 :
+            self.counter61 = 0
+            self.img61 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button61 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img61 , command = self.plusun61 )
+            self.button61.grid(row= 1, column = 3)
+    def plusun62(self):
+        global counter62 , button62 , img62, LIST_DES_IMAGES
+        self.button62.destroy()
+        if self.counter62 != 9:
+            self.counter62 += 1
+            self.img62 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter62])
+            self.button62 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img62 , command = self.plusun62 )
+            self.button62.grid(row= 2, column = 3)
+        elif self.counter62 == 9 :
+            self.counter62 = 0
+            self.img62 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button62 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img62 , command = self.plusun62 )
+            self.button62.grid(row= 2, column = 3)
+    def plusun63(self):
+        global counter63 , button63 , img63, LIST_DES_IMAGES
+        self.button63.destroy()
+        if self.counter63 != 9:
+            self.counter63 += 1
+            self.img63 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter63])
+            self.button63 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img63 , command = self.plusun63 )
+            self.button63.grid(row= 3, column = 3)
+        elif self.counter63 == 9 :
+            self.counter63 = 0
+            self.img63 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button63 = Button(self.frameC5_1, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img63 , command = self.plusun63 )
+            self.button63.grid(row= 3, column = 3)
+    def plusun64(self):
+        global counter64 , button64 , img64, LIST_DES_IMAGES
+        self.button64.destroy()
+        if self.counter64 != 9:
+            self.counter64 += 1
+            self.img64 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter64])
+            self.button64 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img64 , command = self.plusun64 )
+            self.button64.grid(row= 1, column = 1)
+        elif self.counter64 == 9 :
+            self.counter64 = 0
+            self.img64 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button64 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img64 , command = self.plusun64 )
+            self.button64.grid(row= 1, column = 1)
+    def plusun65(self):
+        global counter65 , button65 , img65, LIST_DES_IMAGES
+        self.button65.destroy()
+        if self.counter65 != 9:
+            self.counter65 += 1
+            self.img65 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter65])
+            self.button65 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img65 , command = self.plusun65 )
+            self.button65.grid(row= 2, column = 1)
+        elif self.counter65 == 9 :
+            self.counter65 = 0
+            self.img65 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button65 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img65 , command = self.plusun65 )
+            self.button65.grid(row= 2, column = 1)
+    def plusun66(self):
+        global counter66 , button66 , img66, LIST_DES_IMAGES
+        self.button66.destroy()
+        if self.counter66 != 9:
+            self.counter66 += 1
+            self.img66 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter66])
+            self.button66 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img66 , command = self.plusun66 )
+            self.button66.grid(row= 3, column = 1)
+        elif self.counter66 == 9 :
+            self.counter66 = 0
+            self.img66 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button66 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img66 , command = self.plusun66 )
+            self.button66.grid(row= 3, column = 1)
+    def plusun67(self):
+        global counter67 , button67 , img67, LIST_DES_IMAGES
+        self.button67.destroy()
+        if self.counter67 != 9:
+            self.counter67 += 1
+            self.img67 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter67])
+            self.button67 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img67 , command = self.plusun67 )
+            self.button67.grid(row= 1, column = 2)
+        elif self.counter67 == 9 :
+            self.counter67 = 0
+            self.img67 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button67 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img67 , command = self.plusun67 )
+            self.button67.grid(row= 1, column = 2)
+    def plusun68(self):
+        global counter68 , button68 , img68, LIST_DES_IMAGES
+        self.button68.destroy()
+        if self.counter68 != 9:
+            self.counter68 += 1
+            self.img68 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter68])
+            self.button68 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img68 , command = self.plusun68 )
+            self.button68.grid(row= 2, column = 2)
+        elif self.counter68 == 9 :
+            self.counter68 = 0
+            self.img68 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button68 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img68 , command = self.plusun68 )
+            self.button68.grid(row= 2, column = 2)
+    def plusun69(self):
+        global counter69 , button69 , img69, LIST_DES_IMAGES
+        self.button69.destroy()
+        if self.counter69 != 9:
+            self.counter69 += 1
+            self.img69 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter69])
+            self.button69 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img69 , command = self.plusun69 )
+            self.button69.grid(row= 3, column = 2)
+        elif self.counter69 == 9 :
+            self.counter69 = 0
+            self.img69 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button69 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img69 , command = self.plusun69 )
+            self.button69.grid(row= 3, column = 2)
+    def plusun70(self):
+        global counter70 , button70 , img70, LIST_DES_IMAGES
+        self.button70.destroy()
+        if self.counter70 != 9:
+            self.counter70 += 1
+            self.img70 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter70])
+            self.button70 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img70 , command = self.plusun70 )
+            self.button70.grid(row= 1, column = 3)
+        elif self.counter70 == 9 :
+            self.counter70 = 0
+            self.img70 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button70 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img70 , command = self.plusun70 )
+            self.button70.grid(row= 1, column = 3)
+    def plusun71(self):
+        global counter71 , button71 , img71, LIST_DES_IMAGES
+        self.button71.destroy()
+        if self.counter71 != 9:
+            self.counter71 += 1
+            self.img71 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter71])
+            self.button71 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img71 , command = self.plusun71 )
+            self.button71.grid(row= 2, column = 3)
+        elif self.counter71 == 9 :
+            self.counter71 = 0
+            self.img71 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button71 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img71 , command = self.plusun71 )
+            self.button71.grid(row= 2, column = 3)
+    def plusun72(self):
+        global counter72 , button72 , img72, LIST_DES_IMAGES
+        self.button72.destroy()
+        if self.counter72 != 9:
+            self.counter72 += 1
+            self.img72 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter72])
+            self.button72 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img72 , command = self.plusun72 )
+            self.button72.grid(row= 3, column = 3)
+        elif self.counter72 == 9 :
+            self.counter72 = 0
+            self.img72 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button72 = Button(self.frameC5_3, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img72 , command = self.plusun72 )
+            self.button72.grid(row= 3, column = 3)
+    def plusun73(self):
+        global counter73 , button73 , img73, LIST_DES_IMAGES
+        self.button73.destroy()
+        if self.counter73 != 9:
+            self.counter73 += 1
+            self.img73 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter73])
+            self.button73 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img73 , command = self.plusun73 )
+            self.button73.grid(row= 1, column = 1)
+        elif self.counter73 == 9 :
+            self.counter73 = 0
+            self.img73 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button73 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img73 , command = self.plusun73 )
+            self.button73.grid(row= 1, column = 1)
+    def plusun74(self):
+        global counter74 , button74 , img74, LIST_DES_IMAGES
+        self.button74.destroy()
+        if self.counter74 != 9:
+            self.counter74 += 1
+            self.img74 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter74])
+            self.button74 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img74 , command = self.plusun74 )
+            self.button74.grid(row= 2, column = 1)
+        elif self.counter74 == 9 :
+            self.counter74 = 0
+            self.img74 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button74 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img74 , command = self.plusun74 )
+            self.button74.grid(row= 2, column = 1)
+    def plusun75(self):
+        global counter75 , button75 , img75, LIST_DES_IMAGES
+        self.button75.destroy()
+        if self.counter75 != 9:
+            self.counter75 += 1
+            self.img75 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter75])
+            self.button75 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img75 , command = self.plusun75 )
+            self.button75.grid(row= 3, column = 1)
+        elif self.counter75 == 9 :
+            self.counter75 = 0
+            self.img75 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button75 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img75 , command = self.plusun75 )
+            self.button75.grid(row= 3, column = 1)
+    def plusun76(self):
+        global counter76 , button76 , img76, LIST_DES_IMAGES
+        self.button76.destroy()
+        if self.counter76 != 9:
+            self.counter76 += 1
+            self.img76 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter76])
+            self.button76 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img76 , command = self.plusun76 )
+            self.button76.grid(row= 1, column = 2)
+        elif self.counter76 == 9 :
+            self.counter76 = 0
+            self.img76 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button76 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img76 , command = self.plusun76 )
+            self.button76.grid(row= 1, column = 2)
+    def plusun77(self):
+        global counter77 , button77 , img77, LIST_DES_IMAGES
+        self.button77.destroy()
+        if self.counter77 != 9:
+            self.counter77 += 1
+            self.img77 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter77])
+            self.button77 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img77 , command = self.plusun77 )
+            self.button77.grid(row= 2, column = 2)
+        elif self.counter77 == 9 :
+            self.counter77 = 0
+            self.img77 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button77 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img77 , command = self.plusun77 )
+            self.button77.grid(row= 2, column = 2)
+    def plusun78(self):
+        global counter78 , button78 , img78, LIST_DES_IMAGES
+        self.button78.destroy()
+        if self.counter78 != 9:
+            self.counter78 += 1
+            self.img78 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter78])
+            self.button78 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img78 , command = self.plusun78 )
+            self.button78.grid(row= 3, column = 2)
+        elif self.counter78 == 9 :
+            self.counter78 = 0
+            self.img78 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button78 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img78 , command = self.plusun78 )
+            self.button78.grid(row= 3, column = 2)
+    def plusun79(self):
+        global counter79 , button79 , img79, LIST_DES_IMAGES
+        self.button79.destroy()
+        if self.counter79 != 9:
+            self.counter79 += 1
+            self.img79 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter79])
+            self.button79 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img79 , command = self.plusun79 )
+            self.button79.grid(row= 1, column = 3)
+        elif self.counter79 == 9 :
+            self.counter79 = 0
+            self.img79 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button79 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img79 , command = self.plusun79 )
+            self.button79.grid(row= 1, column = 3)
+    def plusun80(self):
+        global counter80 , button80 , img80, LIST_DES_IMAGES
+        self.button80.destroy()
+        if self.counter80 != 9:
+            self.counter80 += 1
+            self.img80 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter80])
+            self.button80 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img80 , command = self.plusun80 )
+            self.button80.grid(row= 2, column = 3)
+        elif self.counter80 == 9 :
+            self.counter80 = 0
+            self.img80 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button80 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img80 , command = self.plusun80 )
+            self.button80.grid(row= 2, column = 3)
+    def plusun81(self):
+        global counter81 , button81 , img81, LIST_DES_IMAGES
+        self.button81.destroy()
+        if self.counter81 != 9:
+            self.counter81 += 1
+            self.img81 = PhotoImage(data = self.LIST_DES_IMAGES[self.counter81])
+            self.button81 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img81 , command = self.plusun81 )
+            self.button81.grid(row= 3, column = 3)
+        elif self.counter81 == 9 :
+            self.counter81 = 0
+            self.img81 = PhotoImage(data="R0lGODlhKAAoAPMAAD48Q0JASFNQWGBdZmpncIaCjZSQnJuWo6Gdqa2\
+                                                                    otb23xsfB0MvG1dPN3QAAAAAAACH5BAAAAAAALAAAAAAoACgAAAS+sM\
+                                                                    lJqUKFiBAEKYhSjSS5HAOgrqw6HEspT4zR3rjBzGQi4MCWIMGj2IJIl\
+                                                                    qHYKCSfqwLPCa1KS8dqdTlKaL8AIoXxA1cFu0nWDOU2FmxwrHGIfw+S\
+                                                                    lL06aCj2XxeAWhiDVgSGUBqJTxuMSRyPSB2SQR6VQB+YOCCbNyGeLSJ\
+                                                                    6oX10oSp4b6gAcw1rlW4NZJtoFV6YYhWwhrIVVIlXMsCAwjO8Zr4zPn\
+                                                                    FDTGPISTrPIyekQS+u1CQXGRsdHyHPEQA7")
+            self.button81 = Button(self.frameC5_5, overrelief = FLAT, relief=FLAT,highlightbackground = '#d3cddd', activeforeground = '#d3cddd' , activebackground = '#d3cddd' , background = '#d3cddd', foreground = '#d3cddd', image =self.img81 , command = self.plusun81 )
+            self.button81.grid(row= 3, column = 3)
+    def BACKMENU(self):
+        self.SOLVE.destroy()
+        self.NEW.destroy()
+        self.BACK.destroy()
+        self.frame1.destroy()
+        self.frame2.destroy()
+        self.frame3.destroy()
+        self.frame4.destroy()
+        self.frame5.destroy()
+        self.frame6.destroy()
+        self.frame7.destroy()
+        self.frame8.destroy()
+        self.frameC1.destroy()
+        self.frameC2.destroy()
+        self.frameC3.destroy()
+        self.frameC4.destroy()
+        self.frameC5.destroy()
+        self.frameC1_1.destroy()
+        self.frameC1_2.destroy()
+        self.frameC1_3.destroy()
+        self.frameC1_4.destroy()
+        self.frameC1_5.destroy()
+        self.frameC3_1.destroy()
+        self.frameC3_2.destroy()
+        self.frameC3_3.destroy()
+        self.frameC3_4.destroy()
+        self.frameC3_5.destroy()
+        self.frameC5_1.destroy()
+        self.frameC5_2.destroy()
+        self.frameC5_3.destroy()
+        self.frameC5_4.destroy()
+        self.frameC5_5.destroy()
+        self.button1.destroy()
+        self.button2.destroy()
+        self.button3.destroy()
+        self.button4.destroy()
+        self.button5.destroy()
+        self.button6.destroy()
+        self.button7.destroy()
+        self.button8.destroy()
+        self.button9.destroy()
+        self.button10.destroy()
+        self.button11.destroy()
+        self.button12.destroy()
+        self.button13.destroy()
+        self.button14.destroy()
+        self.button15.destroy()
+        self.button16.destroy()
+        self.button17.destroy()
+        self.button18.destroy()
+        self.button19.destroy()
+        self.button20.destroy()
+        self.button21.destroy()
+        self.button22.destroy()
+        self.button23.destroy()
+        self.button24.destroy()
+        self.button25.destroy()
+        self.button26.destroy()
+        self.button27.destroy()
+        self.button28.destroy()
+        self.button29.destroy()
+        self.button30.destroy()
+        self.button31.destroy()
+        self.button32.destroy()
+        self.button33.destroy()
+        self.button34.destroy()
+        self.button35.destroy()
+        self.button36.destroy()
+        self.button37.destroy()
+        self.button38.destroy()
+        self.button39.destroy()
+        self.button40.destroy()
+        self.button41.destroy()
+        self.button42.destroy()
+        self.button43.destroy()
+        self.button44.destroy()
+        self.button45.destroy()
+        self.button46.destroy()
+        self.button47.destroy()
+        self.button48.destroy()
+        self.button49.destroy()
+        self.button50.destroy()
+        self.button51.destroy()
+        self.button52.destroy()
+        self.button53.destroy()
+        self.button54.destroy()
+        self.button55.destroy()
+        self.button56.destroy()
+        self.button57.destroy()
+        self.button58.destroy()
+        self.button59.destroy()
+        self.button60.destroy()
+        self.button61.destroy()
+        self.button62.destroy()
+        self.button63.destroy()
+        self.button64.destroy()
+        self.button65.destroy()
+        self.button66.destroy()
+        self.button67.destroy()
+        self.button68.destroy()
+        self.button69.destroy()
+        self.button70.destroy()
+        self.button71.destroy()
+        self.button72.destroy()
+        self.button73.destroy()
+        self.button74.destroy()
+        self.button75.destroy()
+        self.button76.destroy()
+        self.button77.destroy()
+        self.button78.destroy()
+        self.button79.destroy()
+        self.button80.destroy()
+        self.button81.destroy()
+        self.LOGO.destroy()
+        self.AT1.destroy()
+        change(1)
+   
+def change(s):
+    global WindowsApp , app 
+    if s == 1 :
+        app = Windows1(WindowsApp)
+    elif s == 2 :
+        app = Windows2(WindowsApp)
+    
+
+WindowsApp = Tk()
+WindowsApp.title("Sudoku Solver   -   Mira-K")
+WindowsApp.geometry("1120x540")
+WindowsApp.configure(bg = "#d3cddd")
+imgicon = PhotoImage( data = "R0lGODlhVAGWAPcAAAAAAAEBAQICAgMDAwQEBAQEBQUFBgYGBgcHBwgICAkICQkJCgoKCwsLDAwMDQ0MDQ4NDg4ODw8PEBAQEREQEhIRExMSExMTFBQUFRU\
+                                UFhYVFxcWGBcXGRgYGhkYGhoZGxsaHBwbHRwcHh0cHx4dIB8eICAfISEgIiEgIyIhJCMiJSQjJiUkJyYkJyYlKCcmKSgnKikoKyopLCspLSsqLSwrLi0sLy4\
+                                tMC8tMS8uMjAvMzEwNDIxNDMxNTQyNjQzNzU0ODY1OTc1Ojg2Ojk3Ozk4PDo5PTs5Pjw6Pz07QD48QT49QT89QkA+Q0E/REJARUNBRkNBR0RCR0VDSEZESUd\
+                                FSkdFS0hGTElHTUpITktJTkxJT0xKUE1LUU5MUk9NU1BNVFFOVFFPVVJQVlNRV1RSWFVSWVZTWlZUW1dVW1hWXFlWXVpXXltYX1tZYFxaYV1aYV5bYl9cY19\
+                                dZGBeZWFeZmJfZ2NgaGRhaGRiaWViamZja2dkbGhlbWlmbmpnb2tocGxpcW1qcm5qc25rdG9sdXBtdXFudnJud3NveHNweXRxenVye3Zye3dzfHd0fXh1fnl\
+                                2f3p2gHt3gXx4gnx5gn16g357hH97hYB8hoF9h4F+iIJ/iIN/iYSAioWBi4aCjIaDjYeDjoiEj4mFj4qGkIuHkYuHkoyIk42JlI6KlY+LlY+LlpCMl5GNmJK\
+                                OmZOPmpSPm5SQnJWRnJaSnZeTnpiTn5mUoJmVoZqWopuXopyXo52YpJ6ZpZ6app+bp6CbqKGcqaKdqaOeqqOfq6SfrKWgraahrqeir6ejr6iksKmksaqlsqu\
+                                ms6yntKyota2otq6ptq+qt7CruLGsubGsurKtu7OuvLSvvLWwvbawvraxv7m5ubeywLizwbm0wrq0w7u1w7u2xLy3xb24xr64x7+5yL+6ycC7ycG8ysK8y8O\
+                                9zMS+zcS/zsXAz8bA0MfB0MjC0cnD0snE08rE1MvF1czG1s3H1s7I187I2M/J2dDK2tHL29LM3NPN3ebm5iH+IFJlc2l6ZWQgd2l0aCBlemdpZi5jb20gR0lG\
+                                IG1ha2VyACwAAAAAVAGWAAAI/wD9CRxIsKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatzIsaPHjyBDihxJsqTJkyhTqlzJsqXLlzBjypxJs6bNmzhz6tzJs6fPn\
+                                0CDCh1KtKjRo0iTKl3KtKnTp1CjSp1KtarVq1izat3KtavXr2DDih1LtqzZs2jTql3Ltq3bt3Djyp1Lt67du3jz6t3Lt6/fv4ADCx5MuLBhkv3u9TvMOGg/bK\
+                                TmNZ7cc1ybH9Ioa8ZZjo4BBorobR4t8xscAwAA2CC2mLRrlf2mdRGQGgABOOte6zap7xeSALVTexClb7dxkPA0rQgeHMiy49A1Pp4zgXnwAWbMRd9O0V4sIwS\
+                                sM/930Mge9/MN+40b9EG8+A+u9qGffzDfLycF3Luvcaw1/fn9qCMJCPrpF0AU2fj333b6IMPFAQUWGAAa2i0YXT/saOICcBEWaEAh8Vh43D7SqNFAhyhK0Mk9\
+                                IupWzyw+0IYiiiLIwk+LpK0DCYEz9pgDMgrieFg/28jBQI9IBsAENkI2xo8zXISHJJICpKFOk4btY4wTMk6J5AKJ1IPlYPsAQwSHXk7pgSryjfkXP8OcmWaaA\
+                                fDAjJt+9RNNE2jOOaUAY1SIp17jlDGAn3468Ih5g+JVDyMLIOpnADAAE2SjcfUDjAuSIjoAGehgWlc7afTZ6ZQBRNBJm6LC1Q8v7Z3/OmcAAhCxTatx1bOHqb\
+                                ImiYAlrOLK1jdE9DqpAEOII2xb/QhDgbF+CoBAK8uelJhiQfHTCrSSuiFZtQgNo8q45MqTEDmskDtuOALxU8sIQiTTkjnqqstKPfG8Ui85/vCjCbeI3nAruA\
+                                d5s8wYwVmDkD16BKdFMO4IJI8IqaEh2krxKMMImi900kw++EDjh21mBPOOP/10IgCvAKO4wC6XEizQJcEZc1A/tSRQmwX8DiQPDKmp8S1L7RyZWir++UvAJBej\
+                                jIoBXbbcYwCZFCdzQfzEwSMAvhwkjhLPphZHsPzYcoUYz7n0TG0hKCtQP8WgMIrVAwVjQdRSzxgIo1cP/0TOGl3U5opB9xCSBhO1vWJQP+6Y61I/pNSGxrf8FL\
+                                MDLDcWVA4SeOfdIR1D9+2PMZ1YUpshBfXTSxG3pJBaANfgdI8atVkikD65HNFLzPg8YgDLnrtnR9OiI1JML7WBofkTseTCoQ5iojyPOuNY4wormfMjDzriQDPK\
+                                NPv8okgqLBKkTzWYKEJKPdv4gso0Ea2DQWoCyHvPKU8sE7NA1sgZfIcBAATf+gaPMLCDGRACwA8Ikg9H2GEeiKhNI9rUDDYkgQSHysRAeHGGIXAgAAYoRyp0do\
+                                HMDAQeljABBg4hh1fQAAAXgEZEflGbHJRDHpG4wjX2d7tUxOp/BSIAJ/+CdbVq7OEe0+BAaljAqmIAARvtuEJtcDEQepQDEqlhwDMGEo9sKCE1YVCGB1KjgC0K\
+                                ZB17EIACaLEPdzQBNUEYIEP4QbPU3AEcfZiAwhgCD0ZEAIgF0kDXRCcQUZzCH+KQQWo+UCF1TAEV/NBG2BggKIHMIjVICNVAygGE1HyiDNZIhREU8S16AAI4js\
+                                iHQIqQmkJExB5IqM0YwhCAANjCIepARAbUlAEODeBQiLpCz0SXjzjEDpapkUBm9kGJNJgrFbXhQvTa1Qg7KkgaEgDAAPjwi37BQ5X9OgVqgFChfXTSAMOIyDeA\
+                                6YAv1CYLjmPIO0ZRA+AxRwBMwAQOakP/AyJ0rkcPEAURZSYOK0TMH1IEgAFs1gwcwG8fgKiNJxSUDxukRnEEKcUSzwBOgnjjhQAYRWvA4ToSsONt8GiHSldaPo\
+                                LUojZOYEYP6DfIhuCDGXoowT/ppwJAZKMXW3tCL2BgTwmZoRyEFMguGJE5NrwOGPCggidulI4f1MZmBMEGcD6wx7fVITUGAIZB9jGJ1KxgmMJADRlOKAUjuPWtY\
+                                iXIPvpQmz/QUZZyVEg/5GGMRkzBBBMwwAAI4IASUAESzaCHPhiBgNokQR20MEGahNAMHi6rH4WoxUAcUZtQaOIK8BAINIBpgnYU5JIAwELozDGE1Oggr+uIQWoG\
+                                Qbc8/6RGswLJhqkE4LaB2KMEtZmFP77BKW1i9SH90Ic6pMGLVrDCFb6YRjuslg4qoGkI6MjHK15QVOYEgAjCGKjM1AGFYdKiNkpIwZ0E0ona7AEfBOGHG1IjiII\
+                                4o7EACMWlfFEbWgwkHLIFQOwEIgvr0CC0BGlGbUCgjX4lojZu6GhE+kFhfgQpGCgIDg74tQ9mcEFnHVLAGKSRuaRGgwsIHh0wARCJ1tQjDrU5JEHqUR0BpJMglK\
+                                gNkwwCCjKySyCVAI4GSmyNWxj5yMKgm0BUURsvfOsaPBKAMzqCD0LkpzYyGFiASsGEBrAsAAw4QilMm9SBUIIR/nFGNgFQhIP6A/8dFNNmNgqCjNTcQBz1UMSV7\
+                                EE7ADQhr/5oLwBQgFR/WOMFFfNHOabcEH5goTaHGMhca5MH8VYEHF8MjgiiQZAA8QIRUaABCUAwghgwYQ+2QIdlCdYOKmhwIN2QbASO6w/kpYYHZB6IbQGwhnyA\
+                                AqPekGx+Y+aJ1DyAGvxIRxw6CQBSxIMNA2YIO6QUgGIkOGwCiDZG+IEKCzAnA8I4yD7iUb1pSOMb7FBymftViwAkoqPy2KcruQjj1DzBzQIxGhD6YIjy3eJ1zUA\
+                                IMKR0BEgkoRleSE0axAALh/DDFLUhwHoFwo4o1AYQ6q7IOshgqgYId90SmUcjvK2APuzCakf/qEFuhosKMARHAIiABXwFknAATMAPIeqXIFwbuhn3ATUAyEEw+F\
+                                GIQ4XAFKsWiDccceXUSCEV7AgfJMb4OkME/CL9yAUJrEOASpQY5A65BzPGPnZpWA0QNUUH2dfOjGbQLR2deIQx+KaPaYzdGl8viDxwoQhU/Pgdn1gEp3HJdrLLYx\
+                                /VKDwzvIGRdqyBVwHoQ8bBPpiybY05BqU8Y8yxBeDZYGCaJ4w9MOEA/WRgd6GvPC8QrZ8CQGLyqX8cP/RxD3rEox3rQEc5yCGOcIDjG8D3hvCH7w3gAx8c4hgHOc\
+                                yRDna8Qx71yMc+ko71PXVXC+mIfUn2UY92lMMb28CG/zSOoYtVbMIRhQjEH/hwhzioAQxYcAIRdACDE3igAg9AQAFWxiFaDcAACyABGjACK1ADP4AEU8AFZdAGdK\
+                                AHfgAIgoAIlDAKsxAMzWAN2dAN4pAO8YAP1Jc60rAFUlIgJYB62ncR/FAP6eAN1xANw9AKkwAIejAHZ1AFPiACQAdIXhIAEwADSeAFbnAHfIAIoJALy1AN2TAO7y\
+                                BhA4EPxUAFIxhEftBzJ6gQ+sAO3TANyRALkHAHbyAGSqACCZQmBBABH8ACOUAET5AFY8AGdLAHgWAIiwAJk2AJmJAJmqAJmXAJlSAJjpAIhOAHdwAHZ+AFVKAEPy\
+                                ADKqQA3WUgF/+wA1egBnIACKDgC89QDc8wCTewU+IxA8XwgWCHD+ZADcswC4vQBmPgBCsQhRHCACggBFxAB4vgCYbkCrYQDMyQDeegUu7gDu8AD/EwD/RQD/aAD/\
+                                mgD/tgYRTWaf3AD/ywD/qQD/dgD/UwD/IQD/DwDu6gUusADtNgDLwgC6pACqFwCYCABk9QAxqwYh1ihiDWIwQgByunffXgDcywC5BwBlgABBoAQBwABGRgCKKQCr\
+                                IADNKADsAIffdgaTPRD/lgD/Rwje7QDciAC61wCpdgB1PwApFyKhzgCYDmJC7BD+jQDLwACV3QBC/QdOJBACtwBYJwCrAQXewwjAs5Ffz/8JARGQ7IYAutkAluIA\
+                                Te5iUsYArE4xIzRxj8cA7IAAt4kAQ18EfuQQAyYAaZIAu+YA3xcA/SVxbJNY3mkAy3wAqA0AT92CEkkAjNEE/CUg/RYAuB8AMqoADugQBAwAeu0AvTMA/ICIplMXv\
+                                5UA7HcAuZ8AUjoB8UEANaAArCQA55JyT9EA/GgApY8AFG83IKsAJqgAq/YA33YGGBUWHpkAy5sAhKUAG/c08Y4AKFgAvbwJDbwQ/zkAyk8AS8ogAjEAR6UAvJkA5+\
+                                CRj4YA3BwAlcAAN3Yx0XAAi3AA768JtDcg/b8ApvcJn0AwJAwAasoAzn4JyMcQ/VAAx+FQMP/2AdOWAJw/AOsMkY2qMMmhAEzGEALkAFhBAM15CUIpIOzJAKaEAEu\
+                                xQcDVAHsDAOHkgZ+wAPwuAIrhNxL9AFjXAM3sCd3BEP0RALcZAE8xMcYIAK3xCSeRIPyPAIGbZgVjAIwdAN6Ykn7hANpcAGPYBfqSEGqUAO9tkX9qANncBKqTEAOh\
+                                AHqXANbNk3/EAOx6AIWaBEqXEAeqAL7PCYdYEhuiAHpadQTDAIxCAOJ3o18YANodAGIQoAPXAJ2MChbrEP4fAJmYYAUrAIy5B9VSgQ+OANrEAHKpAaF4AHw5BzcaE\
+                                P2OAIQDMAScAIyzCPbVoQ+fANrBAHIQAAASAGtv2Qa2yxD9dwCBkWA4QgDOoAoZpnD90gCmJwJFkwC/h2Fv0QDo6wAg1gBq0wDlc6qAURD83gCPvUBbwwTWUBD6XQ\
+                                Ay7QCM/wo6waEftwDrAgBgrQBtGAqU/RD8uQBUqQCuWwqr3KEPOgDIQQA5bgqF4RD5hABrmAp8+6EfrgDZSwBVfnFd/QCMRAq93aEfxQDqKgCjOKFewQDS2VriGRb\
+                                OOqFcZKrxOmr/zar/76rwAbsAI7sARbsAZ7sAibsAq7sAzbsA77sBAbsRI7sRRbsRZ7sRibsRq7sRzbsR77sSAbsiI7siRbsiZ7siibsiq7sizbsi77sjAbszKLKwEBADs=")
+WindowsApp.call('wm', 'iconphoto', WindowsApp._w, imgicon)
+app = Windows1(WindowsApp)
+WindowsApp.mainloop()
